@@ -1,4 +1,4 @@
-Django==1.8.18
+Django==1.11.23
 django_cron==0.5.0
 django-ipware==2.0.1
 django-model-utils==3.1.1
