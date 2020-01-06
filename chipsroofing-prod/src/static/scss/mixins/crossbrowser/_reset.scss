@@ -1,0 +1,200 @@
+// Based on [Eric Meyer's reset 2.0](http://meyerweb.com/eric/tools/css/reset/index.html)
+// Global reset rules.
+// For more specific resets, use the reset mixins provided below
+// Unrecognized elements are displayed inline.
+// This reset provides a basic reset for block html5 elements
+// so they are rendered correctly in browsers that don't recognize them
+// and reset in browsers that have default styles for them.
+@mixin global-reset {
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center, hr,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+
+  html {
+    line-height: 1;
+    font-size: 16px;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    font-weight: normal;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  caption, th, td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: top;
+  }
+  q, blockquote {
+    quotes: none;
+    &:before, &:after {
+      content: none;
+    }
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+    img {
+      border: none;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  input, button, select, textarea {
+    min-width: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    font-size: 100%;
+    outline: 0;
+    outline-offset: 0;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=tel],
+  input[type=url],
+  input[type=search],
+  textarea {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  input[type="search"] {
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+  button::-moz-focus-inner {
+    border: none;
+    padding: 0;
+  }
+  textarea {
+    resize: none;
+    overflow: auto;
+  }
+  label {
+    display: inline-block;
+
+    &[for] {
+      cursor: pointer;
+    }
+  }
+  b, strong {
+    font-weight: bold;
+  }
+  i, em {
+    font-style: italic;
+  }
+  video {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+
+    &::-webkit-media-controls {
+      display: none;
+    }
+  }
+  img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  picture {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  // Correct `block` display not defined for `details` or `summary` in IE 10/11
+  // Correct `block` display not defined for `main` in IE 11.
+  details, summary, main {
+    display: block;
+  }
+
+  // Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+  .progress {
+    vertical-align: baseline;
+  }
+
+  // Prevent modern browsers from displaying `audio` without controls.
+  // Remove excess height in iOS 5 devices.
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+
+  // Correct overflow not hidden in IE 9/10/11.
+  svg:not(:root) {
+    overflow: hidden;
+  }
+
+  /**
+  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+  *    and `video` controls.
+  * 2. Correct inability to style clickable `input` types in iOS.
+  * 3. Improve usability and consistency of cursor style between image-type
+  *    `input` and others.
+  */
+  button,
+  html input[type="button"], /* 1 */
+  input[type="reset"],
+  input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+  }
+
+  /**
+  * Re-set default cursor for disabled elements.
+  */
+  button[disabled],
+  html input[disabled] {
+    cursor: default;
+  }
+}

@@ -1,0 +1,36 @@
+{% extends 'suit/change_form.html' %}
+
+{% load i18n %}
+
+{% block object-tools-items %}
+  {{ block.super }}
+
+  {% if has_share_permission %}
+    <li>
+      <a href="javascript: void(0)" class="social-share-btn">
+        <i class="icon-bullhorn icon-alpha75"></i>{% trans "Share" %}
+      </a>
+    </li>
+  {% endif %}
+{% endblock object-tools-items %}
+
+
+{% block content %}
+  {{ block.super }}
+
+  <div id="autopost-dialog" class="hide" data-ct="{{ content_type_id }}" data-pk="{{ original.pk }}">
+    <form action="{{ share_form_url }}" method="post" class="autopost-form">
+      {% csrf_token %}
+
+      <div class="alert alert-info">{% trans 'It can take up to <b>1 hour</b> for the post to be published' %}</div>
+
+      {% for field in share_form %}
+        <div class="field">
+          {{ field.label_tag }}
+          {{ field }}
+        </div>
+      {% endfor %}
+    </form>
+  </div>
+
+{% endblock content %}

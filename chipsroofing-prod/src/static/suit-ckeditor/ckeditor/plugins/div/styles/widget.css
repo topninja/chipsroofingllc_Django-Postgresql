@@ -1,0 +1,13 @@
+div[data-widget-name="div"] {
+    padding: 5px;
+    margin-bottom: 1em;
+    border: 4px double #a0a0a0;
+}
+
+div[data-widget-name="div"] > *:first-child {
+    margin-top: 0;
+}
+
+div[data-widget-name="div"] > *:last-child {
+    margin-bottom: 0;
+}

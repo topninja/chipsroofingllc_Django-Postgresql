@@ -1,0 +1,6 @@
+<script>
+  window.loadLocalStorageCSS('{{ url }}', '{{ url }}?_={{ modified }}');
+</script>
+<noscript>
+  <link href="{{ url }}?_={{ modified }}" rel="stylesheet" type="{{ type }}" {% if media %}media="{{ media }}"{% endif %} {% if title %}title="{{ title|default:"all" }}"{% endif %} {% if charset %}charset="{{ charset }}"{% endif %}/>
+</noscript>

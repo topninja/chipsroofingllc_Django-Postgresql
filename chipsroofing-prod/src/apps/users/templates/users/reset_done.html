@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+  <div class="grid-block">
+    <h1 class="title-h1">{% trans 'Password reset' %}</h1>
+
+    <div class="text-styles">
+      <p>
+        {% blocktrans %}We've sent password reset instructions to your email <b>{{ email }}</b>.{% endblocktrans %}
+      </p>
+    </div>
+  </div>
+{% endblock content %}

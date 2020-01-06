@@ -1,0 +1,27 @@
+<div class="sprite-icon-field">
+  <input type="hidden" {{ attrs }}>
+
+  <div class="wrapper">
+    <div class="sprite-icon-preview"
+         style="width: {{ widget.size.0 }}px;
+             height: {{ widget.size.1 }}px;
+             background-color: {{ widget.background }};
+             background-image: url({{ widget.sprite }});
+             background-position: {{ initial_position.0 }}px {{ initial_position.1 }}px">
+    </div>
+
+    <div class="sprite-icon-dropdown">
+      <div class="sprite-icon-list">
+        {% for key, val in choices %}
+          <div class="sprite-icon-item {% if key == value %}active{% endif %}"
+               style="width: {{ widget.size.0 }}px;
+                   height: {{ widget.size.1 }}px;
+                   background-color: {{ widget.background }};
+                   background-image: url({{ widget.sprite }});
+                   background-position: {{ val.0 }}px {{ val.1 }}px"
+               data-key="{{ key }}"></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{% extends '404.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Server error' %}{% endblock %}
+
+{% block code %}500{% endblock code %}
+{% block text %}
+  {% blocktrans %}
+    Server error
+  {% endblocktrans %}
+{% endblock text %}

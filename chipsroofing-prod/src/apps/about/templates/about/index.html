@@ -1,0 +1,23 @@
+{% extends 'std_page/index.html' %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+{% load text %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'about' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'about' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+
+
+{% endblock page_content %}
+

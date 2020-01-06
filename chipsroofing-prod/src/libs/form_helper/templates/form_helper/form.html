@@ -1,0 +1,21 @@
+{% load form_helper %}
+
+{% if form.csrf_token %}
+  {% csrf_token %}
+{% endif %}
+
+{% block prefix %}{% endblock prefix %}
+
+{% block hidden_fields %}
+  {% for field in form.hidden_fields %}
+    {% render_field form field.name %}
+  {% endfor %}
+{% endblock %}
+
+{% block visible_fields %}
+  {% for field in form.visible_fields %}
+    {% render_field form field.name %}
+  {% endfor %}
+{% endblock %}
+
+{% block suffix %}{% endblock suffix %}

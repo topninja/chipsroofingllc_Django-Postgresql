@@ -1,0 +1,162 @@
+@import "mixins";
+
+.content__text{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.contact-block{
+  padding-top: 220px;
+
+  @include media_interval(0, $media768){
+    padding-top: 140px;
+  }
+}
+
+.title-h1{
+  padding-bottom: 15px;
+}
+
+.map-block {
+  position: relative;
+  height: 520px;
+}
+
+.wr-map{
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  &:after{
+    content: '';
+    position: absolute;
+    height: 360px;
+    width: 9999px;
+    left: -100%;
+    bottom: 0;
+    z-index: 0;
+    background-color: #00af86;
+  }
+}
+
+#google-map {
+  position: relative;
+  z-index: 1;
+
+  .map {
+    height: 520px;
+    .gmap-label {
+      .gmap-label-text{
+        font-weight: normal;
+        color: $pink;
+      }
+    }
+  }
+}
+
+.wrap-cont{
+  padding: 40px 0 50px;
+
+  @include media_interval(0, $media768){
+    padding: 30px 0 40px;
+  }
+}
+.address-block {
+  .description {
+    display: inline-block;
+    vertical-align: top;
+    font-style: italic;
+    color: $white;
+    padding-bottom: 20px;
+    @include font-size(15px, 22px);
+    @include font_default;
+  }
+
+  ul {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 30px;
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 58px;
+      z-index: 1;
+      background-color: #bfbfbf;
+    }
+  }
+
+  .address {
+    margin-right: 30px;
+    cursor: pointer;
+    color: $white;
+    @include font_default;
+    @include font-size(15px, 24px);
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+    span, .street {
+      display: inline-block;
+    }
+
+    .phone {
+      color: $white;
+      font-weight: bold;
+      display: inline-block;
+      margin-right: 20px;
+      @include font-size(15px, 24px);
+      @include transition(opacity .6s);
+      &:hover {
+        @include opacity(.7);
+      }
+    }
+    .email{
+      @include transition(opacity .6s);
+      &:hover{
+        @include opacity(.8);
+      }
+    }
+  }
+}
+
+.top__scrumbs{
+  z-index: 2;
+}
+
+#contacts{
+  display: block;
+  position: relative;
+  z-index: 1;
+  color: $white;
+}
+
+.std-bg{
+  position: relative;
+  background: radial-gradient(ellipse at center, #074067, #072c4d);
+}
+
+.top__scrumbs{
+  &:after{
+    display: none;
+  }
+}
+
+.wr-btn-direction {
+  display: none;
+  position: absolute;
+  .btn-direction {
+    background-color: $green;
+    @include transition(background-color .6s);
+    &:hover{
+      background-color: $dark_green;
+    }
+  }
+  @include media_interval(0, $media_mobile){
+    display: block;
+    top: 40px;
+    left: 30px;
+  }
+}

@@ -1,0 +1,127 @@
+.stdimage {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.stdimage .input-file {
+    position: absolute;
+    top: 0;
+    left: -5000px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.stdimage .btn i {
+    margin-left: -4px;
+    margin-right: 2px;
+}
+
+/* Подсказка */
+.stdimage .hint {
+    margin-left: 10px;
+    color: gray;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+
+/* Перетаскивание файла */
+.stdimage.dragover {
+    min-height: 130px;
+}
+.stdimage.dragover:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(160, 160, 160, 0.85);
+}
+.stdimage.dragover:after {
+    content: 'Drop files here';
+    position: absolute;
+    margin-top: -12px;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    z-index: 3;
+    color: #FFFFFF;
+    font-size: 20px;
+    text-align: center;
+}
+.stdimage.dragover .input-file {
+    left: 0;
+    z-index: 10;
+}
+
+
+/* Превью */
+.stdimage .item-preview {
+    display: inline-block;
+    position: relative;
+    margin: 5px 0 10px;
+    z-index: 1;
+    box-shadow: 1px 1px 3px #808080;
+}
+
+/* Прелоадер */
+.stdimage.preloader .item-preview {
+    min-width: 200px;
+    min-height: 200px;
+}
+.stdimage.preloader .item-preview:before {
+    content: '';
+    background: url(../img/loading.gif) no-repeat center center rgba(255,255,255,0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+.stdimage.preloader .delete-wrapper {
+    display: none;
+}
+.stdimage.preloader .crop-btn-wrapper {
+    display: none;
+}
+
+/* Некорректная картинка */
+.stdimage.invalid .item-preview {
+    min-width: 120px;
+    min-height: 120px;
+    box-shadow: 1px 1px 4px red;
+}
+.stdimage.invalid .item-preview .error {
+    content: '';
+    position: absolute;
+    padding: 8% 9%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: bold;
+    background-color: rgba(192, 0, 0, 0.75);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Чекбокс удаления файла */
+.stdimage .delete {
+    vertical-align: middle;
+    margin: 0 0 0 5px;
+}
+
+.stdimage .crop-btn-wrapper {
+    margin: 10px 0 0;
+}

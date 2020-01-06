@@ -1,0 +1,29 @@
+@function legacy-background-clip($value) {
+  $conversion-map: (
+    border-box: border,
+    padding-box: padding,
+    content-box: content,
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+};
+
+// @include background-clip(border-box);
+@mixin background-clip($value) {
+  -webkit-background-clip: legacy-background-clip($value);
+  -moz-background-clip: legacy-background-clip($value);
+  background-clip: $value;
+}
+
+// Полифилл для IE8-9.
+// Поддерживает только cover / contain.
+@mixin background-size($value) {
+  $polyfilled: (cover, contain);
+
+  background-size: $value;
+  @if ($value in $polyfilled) {
+    -ms-behavior: url(/static/polyfills/backgroundsize.min.htc);
+  }
+}

@@ -1,0 +1,28 @@
+# OS or Editor folders
+Thumbs.db
+.idea
+*.orig
+
+#Vagrant
+.vagrant
+Vagrantfile
+
+#Development configuration
+dev.py
+/backup
+/media
+/static
+/public
+/venv
+/.venv
+
+#Python
+__pycache__
+*.pyc
+
+# NodeJS
+node_modules
+
+#Data
+celerybeat*
+SxGeoCity.dat

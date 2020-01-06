@@ -1,0 +1,49 @@
+// @include linear-gradient(to bottom, #555 0%, #333 100%);
+// @include repeating-linear-gradient(to bottom, red 0%, yellow 10%);
+@function is-direction($value) {
+  $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+
+  @return $is-keyword or $is-angle;
+}
+
+@function legacy-gradient-direction($value) {
+  @if is-direction($value) == false {
+    @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+  }
+
+  $conversion-map: (
+          to top : bottom,
+          to top right : bottom left,
+          to right : left,
+          to bottom right : top left,
+          to bottom : top,
+          to bottom left : top right,
+          to left : right,
+          to left top : right bottom
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return 90deg - $value;
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  background-image: -webkit-linear-gradient(legacy-gradient-direction($direction), $color-stops);
+  background-image: linear-gradient($direction, $color-stops);
+}
+
+@mixin repeating-linear-gradient($direction, $color-stops...) {
+  background-image: -webkit-repeating-linear-gradient(legacy-gradient-direction($direction), $color-stops);
+  background-image: repeating-linear-gradient($direction, $color-stops);
+}
+
+@mixin radial-gradient($args...) {
+  background-image: -moz-radial-gradient($args);
+  background-image: -webkit-radial-gradient($args);
+  background-image: -o-radial-gradient($args);
+  background-image: -ms-radial-gradient($args);
+  background-image: radial-gradient($args);
+}

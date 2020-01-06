@@ -1,0 +1,124 @@
+.file-widget {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* прячем оригинальное поле */
+.file-widget input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: -5000px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    font-size: 0;
+    cursor: pointer;
+}
+
+/* зеленая кнопка */
+.file-widget label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+    line-height: 14px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.file-widget label i {
+    margin-left: -4px;
+    margin-right: 6px;
+}
+
+.file-widget label span {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    min-width: 65px;
+    max-width: 200px;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+}
+
+.file-widget .action-btn {
+    display: inline-block;
+    position: relative;
+    margin-left: -37px;
+    vertical-align: middle;
+    -webkit-border-radius: 0 7px 7px 0;
+    -moz-border-radius: 0 7px 7px 0;
+    border-radius: 0 7px 7px 0;
+    -webkit-transition: margin-left 0.2s;
+    -moz-transition: margin-left 0.2s;
+    -ms-transition: margin-left 0.2s;
+    -o-transition: margin-left 0.2s;
+    transition: margin-left 0.2s;
+}
+
+/* ссылка на файл */
+.file-widget .preview {
+    padding: 5px 7px 5px 14px;
+    z-index: 1;
+}
+
+.file-widget .preview:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+    vertical-align: top;
+    background: url(../img/eye.svg) no-repeat center;
+}
+
+.file-widget.has-link .preview {
+    margin-left: -7px;
+}
+
+/* чекбокс удаления */
+.file-widget .clear {
+    padding: 4px 7px 4px 14px;
+    min-height: 18px;
+}
+
+.file-widget .clear input {
+    -moz-transform: scale(0.82);
+}
+
+.file-widget.has-link .clear {
+    margin-left: -7px;
+}
+
+/* перетаскивание файла */
+.file-widget.dragover {
+    min-height: 130px;
+}
+.file-widget.dragover:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(160, 160, 160, 0.85);
+}
+.file-widget.dragover:after {
+    content: 'Drop files here';
+    position: absolute;
+    margin-top: -12px;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    z-index: 3;
+    color: #FFFFFF;
+    font-size: 20px;
+    text-align: center;
+}
+.file-widget.dragover input {
+    left: 0;
+    z-index: 10;
+}

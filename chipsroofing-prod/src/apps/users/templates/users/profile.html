@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% load pipeline_plus %}
+{% load i18n %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'user_profile' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'user_profile' %}
+{% endblock static_js %}
+
+
+{% block content %}
+  <div id="profile">
+    <div class="grid-block">
+      <h1 class="title-h1">
+        {% with username=profile_user.username %}
+          {% blocktrans %}Profile of «{{ username }}»{% endblocktrans %}
+        {% endwith %}
+      </h1>
+
+      {% include 'users/profile_avatar.html' %}
+
+      <div class="profile-info">
+        {% with fullname=profile_user.get_full_name %}
+          {% if fullname %}
+            <p><b>{% trans 'Name' %}</b>: {{ fullname }}</p>
+          {% endif %}
+        {% endwith %}
+        {% with email=profile_user.email %}
+          {% if email %}
+            <p><b>{% trans 'E-mail' %}</b>: {{ email }}</p>
+          {% endif %}
+        {% endwith %}
+        {% if profile_user == request.user %}
+          <a href="{% url 'users:reset' %}" class="btn">{% trans 'Change password' %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

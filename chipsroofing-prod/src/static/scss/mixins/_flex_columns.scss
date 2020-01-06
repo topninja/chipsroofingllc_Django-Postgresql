@@ -1,0 +1,40 @@
+/*
+  Многоколоночная верстка через flexbox.
+
+  Пример:
+    .list {
+      @include flexbox;
+      @include flex-flow(row wrap);
+
+      .item {
+        @include flex-columns(2, 10px, 10px);
+      }
+    }
+*/
+@mixin flex-columns($columns, $margin-right:null, $margin-top:null) {
+  $min_basis: 100% / ($columns + 1);
+  $max_basis: 100% / $columns;
+  $basis: min($min_basis + 0.5%, ($min_basis + $max_basis) / 2);
+  @include flex(1 0 $basis);
+
+  @if ($margin-top) {
+    &:nth-of-type(n+#{$columns+1}) {
+      margin-top: $margin-top;
+    }
+  }
+
+  @if ($margin-right) {
+    @if (str_index(#{$margin-right}, '%')) {
+      max-width: #{$max_basis - (($columns - 1) * $margin-right) / $columns};
+    } @else {
+      max-width: calc(#{$max_basis} - #{(($columns - 1) * $margin-right) / $columns});
+    }
+
+    margin-right: $margin-right;
+    &:nth-of-type(#{$columns}n) {
+      margin-right: 0;
+    }
+  } @else {
+    max-width: $max_basis;
+  }
+}

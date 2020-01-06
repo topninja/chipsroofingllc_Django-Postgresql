@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% load i18n %}
+
+{% block metatags %}
+  {{ block.super }}
+  <meta http-equiv="refresh" content="5; url={{ redirect|default:"/" }}"/>
+{% endblock metatags %}
+
+
+{% block content %}
+  <div class="grid-block">
+    <h1 class="title-h1">{% trans 'Password reset' %}</h1>
+
+    <div class="text-styles">
+      <p>
+        {% trans 'Your password was successfully changed. You will be redirected to a new page in 5 seconds.' %}
+      </p>
+    </div>
+  </div>
+{% endblock content %}

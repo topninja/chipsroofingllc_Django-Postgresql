@@ -1,0 +1,59 @@
+{% load away %}
+{% load text %}
+{% load cache %}
+
+{% if block.videos %}
+
+  <div class="video-block wow fadeIn animated" data-wow-duration="1s">
+  <div class="video-grid">
+  <div class="grid">
+  <div class="gc-wide-10 gc-10 gc-tablet-10 gc-mobile-full">
+
+  {% if block.videos.video.key %}
+
+    <div class="youtube-wr">
+      <iframe class="youtube-video" src="https://www.youtube.com/embed/{{ block.videos.video.key }}?rel=0&amp;showinfo=0" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+  {% endif %}
+
+  {% if block.videos.video_webm %}
+
+    <div class="video-file">
+      <video muted playsinline preload>
+        <source src="{{ block.videos.video_webm.url }}" type="video/webm">
+      </video>
+      <div class="video-preview"></div>
+    </div>
+
+  {% endif %}
+
+  {% if block.videos.video_mp4 %}
+
+    <div class="video-file">
+      <video muted playsinline preload>
+        <source src="{{ block.videos.video_mp4.url }}" type="video/mp4">
+      </video>
+      <div class="video-preview"></div>
+    </div>
+
+  {% endif %}
+
+{% endif %}
+
+</div>
+</div>
+</div>
+
+<div class="grid">
+  <div class="gc-wide-10 gc-10 gc-tablet-10 gc-mobile-full">
+    {% if block.videos.content %}
+      <div class="text-styles">{% away block.videos.content|typograf %}</div>
+    {% endif %}
+  </div>
+</div>
+
+</div>
+
+

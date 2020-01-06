@@ -1,0 +1,50 @@
+@import "mixins";
+
+.services-block {
+  padding-top: 0;
+  @include media_interval(0, $media768){
+    padding-top: 40px;
+  }
+
+  &:before {
+    display: none;
+  }
+}
+.content__text{
+  @include media_interval($media768, 0){
+    padding-bottom: 50px;
+  }
+  @include media_interval(0, $media768){
+    padding-bottom: 0;
+  }
+}
+
+  .estimate-block {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 9999px;
+      height: 75%;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      background-color: #00af86;
+    }
+  }
+
+
+.testimonials-bg{
+  background-color: $white;
+}
+
+.partners-block{
+  &.block{
+    padding-top: 160px;
+    padding-bottom: 160px;
+
+    @include media_interval(0, $media768){
+      padding-top: 50px;
+      padding-bottom: 70px;
+    }
+  }
+}

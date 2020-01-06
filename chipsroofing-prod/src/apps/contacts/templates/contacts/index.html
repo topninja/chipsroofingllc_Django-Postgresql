@@ -1,0 +1,81 @@
+{% extends 'std_page/index.html' %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+{% load form_helper %}
+{% load text %}
+{% load i18n %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'contacts' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'contacts' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  <div class="wrap-cont">
+    <div class="grid">
+      <div id="contacts" class="gc-wide-full gc-full gc-tablet-full gc-mobile-full">
+        <h1 class="title-h1">{{ config.header }}</h1>
+      </div>
+    </div>
+    <div id="addresses" class="grid address-block">
+      <div class="gc-wide-3 gc-4 gc-tablet-5 gc-mobile-full">
+        <div class="description">{{ config.license }}</div>
+      </div>
+
+      <div class="gc-wide-8 gc-8 gc-tablet-7 gc-mobile-full">
+        <ul>
+          <li class="address" typeof="PostalAddress" data-lat="{{ address.coords.lat }}"
+              data-lng="{{ address.coords.lng }}">
+            <p class="street" property="streetAddress">{{ address.address }}</p>,
+            <span property="schema:addressLocality">{{ address.city }}</span>
+            <span property="schema:addressRegion">{{ address.region }}</span>
+            <span property="schema:postalCode">{{ address.zip }}</span>
+            <div class="phone-wr">
+              <p class="phone" property="schema:telephone">
+                <a href="tel:{{ address.phone|phone }}">{{ address.phone }}</a>
+              </p>
+              <span itemprop="faxNumber"><a href="fax:{{ address.fax|phone }}">Fax: {{ address.fax }}</a></span>
+            </div>
+            <span class="email" itemprop="email"><a href="mailto:{{ address.email }}">{{ address.email }}</a></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-block">
+    <div class="grid">
+      <div id="widthBlockMap" class="widthBlock gc-wide-10 gc-11 gc-tablet-11 gc-mobile-full">
+        <div class="wr-map">
+          <div id="google-map">
+            <div class="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% with default_url=address.coords %}
+      <div class="wr-btn-direction">
+        <a href="{{ address.url|default:default_url }}" class="btn btn-direction" target="_blank" rel="noopener">
+          <span>{% trans 'GET DIRECTIONS' %}</span>
+        </a>
+      </div>
+    {% endwith %}
+
+  </div>
+
+{% endblock page_content %}
+
+
+
+
+
+

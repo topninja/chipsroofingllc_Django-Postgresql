@@ -1,0 +1,83 @@
+@import "core";
+
+body[yahoo] {
+  /* Шапка */
+  .header {
+    padding: 25px 0 25px;
+    @include media_interval(0, $media_mobile) {
+      padding: 20px 7.2% 20px !important;
+    }
+
+    .logo {
+      display: inline-block;
+      width: 170px;
+      height: 52px;
+      @include media_interval(0, $media_mobile) {
+        width: 136px;
+        height: 42px;
+      }
+    }
+
+    .backlink-cell {
+      width: 100px;
+      min-width: 100px;
+      text-align: right;
+      vertical-align: bottom;
+      @include font-size(12px, 18px);
+
+      a {
+        color: $gray;
+      }
+    }
+  }
+
+  /* Контент */
+  .content-cell {
+    padding: 30px 7.2% 46px;
+    background-color: $white;
+    @include media_interval(0, $media_mobile) {
+      padding: 24px 7.2% 30px !important;
+    }
+
+    img {
+      display: inline-block;
+    }
+  }
+
+  /* Footer */
+  .footer {
+    padding: 12px 0 30px;
+    @include media_interval(0, $media_mobile) {
+      padding: 12px 7.2% 30px !important;
+    }
+
+    .top-cell {
+      color: $gray;
+      @include font-size(12px, 18px);
+
+      a {
+        color: $gray;
+        @include font-size(12px, 18px);
+      }
+    }
+
+    .bottom-table {
+      margin-top: 8px;
+
+      .left-cell, .right-cell {
+        @include font-size(12px, 20px);
+      }
+
+      .right-cell {
+        width: 70px;
+        min-width: 70px;
+        text-align: right;
+        vertical-align: bottom;
+      }
+
+      .mailerlite {
+        color: $gray;
+      }
+    }
+  }
+}

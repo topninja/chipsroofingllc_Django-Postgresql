@@ -1,0 +1,31 @@
+{% extends 'std_page/index.html' %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+{% load text %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'examples' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'examples' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  <div id="work-example" class="items">
+    <div class="grid-block">
+      <div class="space-block">
+          <div id="items" class="example-wr">
+            {% include 'examples/items.html' %}
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock page_content %}

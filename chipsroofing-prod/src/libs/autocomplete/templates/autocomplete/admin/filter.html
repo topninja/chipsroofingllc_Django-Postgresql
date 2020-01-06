@@ -1,0 +1,20 @@
+{% load admin_static %}
+
+<input type="hidden"
+       placeholder="{{ title }}"
+       name="{{ field_name }}"
+       data-name="{{ field_name }}"
+
+       {% if spec.multiple %}
+         value="{{ spec.value|default_if_none:''|join:"," }}"
+       {% else %}
+         value="{{ spec.value|default_if_none:'' }}"
+       {% endif %}
+
+       class="autocomplete-filter"
+       style="width: {{ spec.width|default:200 }}px; min-width: 0; vertical-align: top"
+       data-url="{{ spec.url }}"
+       data-multiple="{{ spec.multiple|yesno:"1,0" }}"
+       data-expression="{{ spec.expression }}"
+       data-minimum_input_length="{{ spec.min_chars }}"
+       data-filters="{{ spec.filters_fields }}">

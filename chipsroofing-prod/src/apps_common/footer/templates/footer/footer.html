@@ -1,0 +1,75 @@
+{% load staticfiles %}
+{% load footer %}
+{% load menu %}
+{% load social_links %}
+{% load text %}
+{% load rating %}
+
+<footer typeof="WPFooter">
+
+  <div class="scroll-fix-block">
+    <div class="wr-scroll-fix-block grid-block wow fadeInDown" data-wow-delay="3s" data-wow-duration="0.4s">
+      <div class="wr wow fadeInDownBig" data-wow-delay="3.5s" data-wow-duration="0.6s">
+        {% social_links %}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-block wow fadeInUp animated" data-wow-duration="1s">
+    <div class="space-block">
+
+      <div class="part left-part">
+        <nav class="menu footer-menu">
+          {% menu 'footer' %}
+        </nav>
+        <div class="wrap-flex">
+          <div class="address-footer-box">
+            <div class="address-footer" property="schema:address" typeof="schema:PostalAddress">
+
+              <div class="footer-address-list">
+                <span property="schema:streetAddress">{{ address.address }}</span>,
+                <span property="schema:addressLocality">{{ address.city }}</span>
+                <span property="schema:addressRegion">{{ address.region }}</span>
+                <span property="schema:postalCode">{{ address.zip }}</span>
+                <div class="phone-wr">
+                  <p class="footer-phone" property="schema:telephone">
+                    <a href="tel:{{ address.phone|phone }}" class="footer-phone-link">{{ address.phone }}</a>
+                  </p>
+                  <span itemprop="faxNumber"><a href="fax:{{ address.fax }}">Fax: {{ address.fax }}</a></span>
+                </div>
+                <span class="email" itemprop="email"><a href="mailto:{{ address.email }}">{{ address.email }}</a></span>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="icon-footer">
+            <div class="partner-icon first-icon"></div>
+            <div class="partner-icon second-icon"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="part right-part">
+        <div class="wrap-block-top">
+          <div class="wr-social">{% social_links %}</div>
+          <div class="buttons-block">
+            <button class="btn-border btn-border-white open-contact-popup tag-contact-us">Contact us</button>
+            <button class="btn-border btn-border-white open-free-estimate-popup tag-estimate">Free Estimate</button>
+          </div>
+        </div>
+        <div class="rating-wrapper">
+          <span>Company rating:</span>
+          {% rating %}
+        </div>
+        <div class="dl-logo-box">
+          {% dl_link %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>

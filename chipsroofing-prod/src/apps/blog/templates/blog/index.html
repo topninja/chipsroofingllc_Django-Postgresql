@@ -1,0 +1,45 @@
+{% extends 'std_page/index.html' %}
+
+{% load pipeline_plus %}
+{% load paginator %}
+{% load text %}
+{% load i18n %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'blog' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'blog' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  <div id="blog-page">
+    <div class="grid-block">
+      <div class="space-block">
+        <div class="blog-wr">
+          <div class="category-wr">
+            {% if tags %}
+              <a href="{% url 'blog:index' %}"
+                 class="category category-all {% if not current_tag %}active{% endif %}"><span>{% trans 'All' %}</span></a>
+              {% for tag in tags %}
+                <a href="{{ tag.get_absolute_url }}"
+                   class="category category-all {% if current_tag.pk == tag.pk %}active{% endif %}"><span>{{ tag.title }}</span></a>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div id="posts" class="content-block blog-list">
+            {% include 'blog/articles.html' %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock page_content %}

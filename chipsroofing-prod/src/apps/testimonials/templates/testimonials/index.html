@@ -1,0 +1,35 @@
+{% extends 'std_page/index.html' %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+{% load text %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'testimonials' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'testimonials' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  <div id="testimonials-page">
+    <div class="grid-block">
+      <div class="wrap-testimonial">
+        {% for testimonial in testimonials %}
+          <div class="testimonial">
+            <div class="quotes"></div>
+            <div class="title" itemprop="name">{{ testimonial.title }}</div>
+            <div class="contain-star" itemprop="star" data-star="{{ testimonial.star }}"></div>
+            <div class="description" itemprop="description">{{ testimonial.description }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock page_content %}

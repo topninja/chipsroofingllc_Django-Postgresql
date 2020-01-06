@@ -1,0 +1,52 @@
+{% extends "admin/base_site.html" %}
+{% load admin_static %}
+{% load i18n %}
+
+
+{% block title %}
+  {% trans 'Backups' %}
+  {{ block.super }}
+{% endblock title %}
+
+
+{% block content %}
+  <h2 style="margin-bottom: 3px">{% trans 'Backups' %}</h2>
+
+  <table class="table admin-table table-valign-middle">
+    <thead>
+    <tr>
+      <th>{% trans 'File' %}</th>
+      <th>{% trans 'Size' %}</th>
+      <th>{% trans 'Download' %}</th>
+      <th>{% trans 'Delete' %}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      {% for file in files %}
+        <tr>
+          <td>
+            <span>{{ file.0 }}</span>
+          </td>
+          <td>
+            <span>{{ file.1|filesizeformat }}</span>
+          </td>
+          <td>
+            <a href="{% url 'admin:backups_backup_download' file.0 %}" class="btn btn-success">
+              {% trans 'Download' %}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'admin:backups_backup_delete' file.0 %}" class="btn btn-danger btn-small"
+                onclick="return confirm('{% trans 'Are you sure?' %}')">
+              {% trans 'Delete' %}
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'admin:backups_backup_create' %}" class="btn btn-info">{% trans 'Create' %}</a>
+
+{% endblock %}

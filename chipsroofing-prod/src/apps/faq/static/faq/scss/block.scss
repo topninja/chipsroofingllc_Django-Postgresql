@@ -1,0 +1,197 @@
+@import "mixins";
+
+#faq {
+  padding-bottom: 100px;
+
+  .title-h2 {
+    margin-bottom: 50px;
+    max-width: 460px;
+
+    @include media_interval(0, $media768){
+      margin-bottom: 50px;
+    }
+
+    @include media_interval(0, $media480){
+      max-width: 260px;
+    }
+  }
+
+  .faq-block {
+    width: 100%;
+    margin-top: -30px;
+    @include align-content(stretch);
+    @include flex-wrap(wrap);
+    @include flexbox;
+    @include flex-direction(row);
+
+    @include media_interval(0, $media768){
+      margin-bottom: -40px;
+    }
+  }
+
+  .faq-container {
+    position: relative;
+    color: #333333;
+    padding: 30px 20px 45px 30px;
+    margin-right: 20px;
+    margin-top: 30px;
+    vertical-align: top;
+    width: 25%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-left: hidden;
+    text-align: left;
+    cursor: pointer;
+    @include transition(border-color .4s ease-in-out);
+    @include box-sizing(border-box);
+    @include font_default;
+    @include flexbox;
+    @include flex-direction(column);
+
+    &:nth-of-type(4) {
+      margin-left: 26.7%;
+
+      @include media_interval(0, 1400px) {
+        margin-left: 0;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include media_interval($media768, 1400px) {
+      width: 30%;
+    }
+
+    @include media_interval(0, $media768) {
+      padding: 0 30px 40px;
+      margin-top: 0;
+    }
+
+    @include media_interval($media480, $media768) {
+      width: 50%;
+    }
+
+    @include media_interval(0, $media480) {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 92px;
+      height: 60px;
+      border-left: solid 1px #bfbfbf;
+      @include transition(border-color .4s ease-in-out);
+
+      @include media_interval(0, $media768){
+        top: 20px;
+      }
+    }
+
+    @include media_interval($media768, 0) {
+
+      &:hover {
+        border-color: #00af86;
+        @include transition(border-color .4s ease-in-out);
+
+        &:before {
+          border-left: solid 2px #00af86;
+          top: 0;
+          height: 50%;
+          @include transition(all .4s ease-in-out);
+        }
+
+        .icon-faq {
+          .overlay-icon-faq {
+            opacity: 1;
+            @include transition(opacity .4s ease-in-out);
+          }
+        }
+      }
+    }
+
+    .icon-faq {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      background: $sprite_url no-repeat center;
+
+      &.faq-overlay-contract {
+        background: $sprite_url no-repeat 0 -281px;
+      }
+
+      &.faq-overlay-insurance {
+        background: $sprite_url no-repeat -45px -281px;
+      }
+
+      &.faq-overlay-warranty {
+        background: $sprite_url no-repeat -90px -281px;
+      }
+
+      &.faq-overlay-materials {
+        background: $sprite_url no-repeat -135px -281px;
+      }
+
+      &.faq-overlay-inspection {
+        background: $sprite_url no-repeat -180px -281px;
+      }
+
+      .overlay-icon-faq {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+        background: $sprite_url no-repeat center;
+        @include transition(opacity .4s ease-in-out);
+
+        &.overlay-contract {
+          background-position: 0px -330px;
+        }
+
+        &.overlay-insurance {
+          background-position: -45px -330px;
+        }
+
+        &.overlay-warranty {
+          background-position: -90px -330px;
+        }
+
+        &.overlay-materials {
+          background-position: -135px -330px;
+        }
+
+        &.overlay-inspection {
+          background-position: -180px -330px;
+        }
+      }
+    }
+
+    .title {
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-align: left;
+      min-height: 64px;
+      @include font-size(26px, 32px);
+
+      @include media_interval(0, 769px) {
+        margin-bottom: 5px;
+        min-height: inherit;
+        color: $green;
+        @include font-size(16px, 19px);
+      }
+    }
+
+    .description {
+      text-align: left;
+      @include font-size(14px, 21px);
+    }
+  }
+
+}

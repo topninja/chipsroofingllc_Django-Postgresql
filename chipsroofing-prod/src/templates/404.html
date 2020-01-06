@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% load pipeline_plus %}
+{% load i18n %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'error' %}
+{% endblock static_head %}
+
+
+{% block title %}{% trans 'Page not found' %}{% endblock %}
+
+{% block content %}
+
+    <div id="error" class="grid">
+        <div class="gc-wide-8 gc-ml-wide-3 gc-ml-wide-1 gc-8 gc-ml-3 gc-tablet-8 gc-ml-tablet-3">
+            <div class="block-name">{% block code %}404{% endblock code %}</div>
+            <div class="text">
+                {% block text %}
+                    {% blocktrans %}
+                        Sorry, page not found
+                    {% endblocktrans %}
+                {% endblock text %}
+            </div>
+        </div>
+    <div class="home-404">
+        <img src="/static/img/home.svg" class="">
+    </div>
+    </div>
+
+{% endblock content %}

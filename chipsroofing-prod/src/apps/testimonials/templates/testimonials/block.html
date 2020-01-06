@@ -1,0 +1,30 @@
+<div class="testimonials-bg">
+  <div class="grid">
+    <div class="testimonials-content">
+      <div class="title-block gc-wide-3 gc-4 gc-tablet-full gc-mobile-full wow fadeInRight animated"  data-wow-duration=".3s">
+        {% if block.header %}
+          <h2 class="title-h2">{{ block.header }}</h2>
+        {% endif %}
+        <div class="btn-wrapper">
+          <button class="btn-border btn-border-green"
+                  onClick='location.href="{% url 'testimonials:index' %}"'>View all testimonials
+          </button>
+        </div>
+      </div>
+      <div class="gc-wide-9 gc-8 gc-tablet-full gc-mobile-full">
+        <div class="wrap-testimonial">
+          {% for testimonial in testimonials %}
+
+            <div class="testimonial wow fadeInRight animated" data-wow-delay="{% cycle '0.3s' '0.6s' '0.9s' %}" data-wow-duration=".3s">
+              <div class="quotes"></div>
+              <div class="title">{{ testimonial.title }}</div>
+              <div class="contain-star" itemprop="star" data-star="{{ testimonial.star }}"></div>
+              <div class="description">{{ testimonial.description }}</div>
+            </div>
+
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

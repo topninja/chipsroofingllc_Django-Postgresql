@@ -1,0 +1,129 @@
+@import 'mixins';
+
+/*
+  Упрощенный алиас для конструкции
+
+  <div class="grid">
+    <div class="gc">
+      ...
+    </div>
+  </div>
+*/
+.grid-block {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: $grid_max_width;
+  @include border-box;
+  @include background-clip(content-box);
+  @include media_map((padding-left, padding-right), $grid_full_paddings);
+}
+
+.grid {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: $grid_max_width;
+  @include clearfix;
+  @include border-box;
+  @include background-clip(content-box);
+  @include media_map((padding-left, padding-right), $grid_paddings);
+
+  .gc-center {
+    float: none;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.gc, [class*="gc-"] {
+  min-height: 1px;
+  padding: 0 $grid_column_gap;
+  @include border-box;
+  @include background-clip(content-box);
+}
+
+// Wide-desktop (1200+)
+@include media_interval($media1200, 0) {
+  @for $index from 1 through $cols_wide - 1 {
+    .gc-wide-#{$index} {
+      float: left;
+      width: (100% / $cols_wide) * $index;
+    }
+
+    .gc-ml-wide-#{$index} {
+      margin-left: (100% / $cols_wide) * $index;
+    }
+    .gc-mr-wide-#{$index} {
+      margin-right: (100% / $cols_wide) * $index;
+    }
+  }
+
+  .gc-wide-full {
+    width: 100%;
+  }
+}
+
+// Desktop (1024-1199)
+@include media_interval($media1024, $media1200) {
+  @for $index from 1 through $cols_desktop - 1 {
+    .gc-#{$index} {
+      float: left;
+      width: (100% / $cols_desktop) * $index;
+    }
+
+    .gc-ml-#{$index} {
+      margin-left: (100% / $cols_desktop) * $index;
+    }
+    .gc-mr-#{$index} {
+      margin-right: (100% / $cols_desktop) * $index;
+    }
+  }
+
+  .gc-full {
+    width: 100%;
+  }
+}
+
+// Tablet (768-1023)
+@include media_interval($media768, $media1024) {
+  @for $index from 1 through $cols_tablet - 1 {
+    .gc-tablet-#{$index} {
+      float: left;
+      width: (100% / $cols_tablet) * $index;
+    }
+
+    .gc-ml-tablet-#{$index} {
+      margin-left: (100% / $cols_tablet) * $index;
+    }
+    .gc-mr-tablet-#{$index} {
+      margin-right: (100% / $cols_tablet) * $index;
+    }
+  }
+
+  .gc-tablet-full {
+    width: 100%;
+  }
+}
+
+// Mobile (-767)
+@include media_interval(0, $media768) {
+  @for $index from 1 through $cols_mobile - 1 {
+    .gc-mobile-#{$index} {
+      float: left;
+      width: (100% / $cols_mobile) * $index;
+    }
+
+    .gc-ml-mobile-#{$index} {
+      margin-left: (100% / $cols_mobile) * $index;
+    }
+    .gc-mr-mobile-#{$index} {
+      margin-right: (100% / $cols_mobile) * $index;
+    }
+  }
+
+  .gc-mobile-full {
+    width: 100%;
+  }
+}

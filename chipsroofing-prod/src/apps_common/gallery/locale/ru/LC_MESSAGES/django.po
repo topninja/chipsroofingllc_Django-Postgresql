@@ -1,0 +1,258 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 18:14+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: admin_views.py:30
+msgid "Gallery model not found"
+msgstr "Модель галереи не найдена"
+
+#: admin_views.py:40 admin_views.py:48
+msgid "Gallery not found"
+msgstr "Галерея не найдена"
+
+#: admin_views.py:59 admin_views.py:67
+msgid "Item not found"
+msgstr "Элемент галереи не найден"
+
+#: admin_views.py:223 admin_views.py:258
+msgid "Item is not image"
+msgstr "Элемент не явняется изображением"
+
+#: admin_views.py:227 admin_views.py:262
+msgid "Image is not exists"
+msgstr "Изображение не существует"
+
+#: admin_views.py:233
+msgid "Invalid rotate direction"
+msgstr "Некорректное направление поворота"
+
+#: admin_views.py:270
+msgid "Invalid crop coords"
+msgstr "Некорректные координаты обрезки"
+
+#: admin_views.py:292 admin_views.py:298 admin_views.py:315 admin_views.py:321
+msgid "Not found form class"
+msgstr "Не найден класс формы"
+
+#: admin_views.py:354
+#, python-format
+msgid "Gallery item #%s not found"
+msgstr "Элемент галереи №%s не найден"
+
+#: models.py:59
+msgid "description"
+msgstr "описание"
+
+#: models.py:61
+msgid "sort order"
+msgstr "порядок"
+
+#: models.py:62
+msgid "created on"
+msgstr "дата создания"
+
+#: models.py:63
+msgid "changed on"
+msgstr "дата изменения"
+
+#: models.py:68
+msgid "gallery item"
+msgstr "элемент галереи"
+
+#: models.py:69
+msgid "gallery items"
+msgstr "элементы галереи"
+
+#: models.py:178
+msgid "image"
+msgstr "изображение"
+
+#: models.py:183
+msgid "stored_crop"
+msgstr "координаты обрезки"
+
+#: models.py:188
+msgid "alt"
+msgstr "alt"
+
+#: models.py:191
+msgid "image item"
+msgstr "элемент-картинка"
+
+#: models.py:192
+msgid "image items"
+msgstr "элементы-картинки"
+
+#: models.py:204
+#, python-format
+msgid "Image item %(pk)s (%(path)s)"
+msgstr "Элемент-картинка %(pk)s (%(path)s)"
+
+#: models.py:476
+msgid "video"
+msgstr "видео"
+
+#: models.py:477
+msgid "preview"
+msgstr "превью"
+
+#: models.py:484
+msgid "video item"
+msgstr "элемент-видео"
+
+#: models.py:485
+msgid "video items"
+msgstr "элементы-видео"
+
+#: models.py:497
+#, python-format
+msgid "Video item %(pk)s (%(path)s)"
+msgstr "Элемент-видео %(pk)s (%(path)s)"
+
+#: models.py:680
+msgid "gallery"
+msgstr "галерея"
+
+#: models.py:681
+msgid "galleries"
+msgstr "галереи"
+
+#: models.py:737
+#, python-format
+msgid "Gallery %(pk)s"
+msgstr "Галерея %(pk)s"
+
+#: models.py:764
+#, python-format
+msgid "this gallery can't contain more than %s item"
+msgid_plural "this gallery can't contain more than %s items"
+msgstr[0] "эта галерея не может содержать более %s элемент"
+msgstr[1] "эта галерея не может содержать более %s элементов"
+
+#: models.py:797
+msgid "Item belongs to another gallery"
+msgstr "Элемент принадлежит другой галерее"
+
+#: templates/gallery/admin/gallery.html:69
+#: templates/gallery/admin/gallery_items.html:36
+msgid "Crop image"
+msgstr "Обрезать изображение"
+
+#: templates/gallery/admin/gallery.html:71
+#: templates/gallery/admin/gallery_items.html:38
+msgid "Rotate by 90 degrees counterclockwise"
+msgstr "Повернуть на 90 градусов против ЧС"
+
+#: templates/gallery/admin/gallery.html:73
+#: templates/gallery/admin/gallery_items.html:39
+msgid "Rotate by 90 degrees clockwise"
+msgstr "Повернуть на 90 градусов по ЧС"
+
+#: templates/gallery/admin/gallery.html:74
+#: templates/gallery/admin/gallery.html:93
+#: templates/gallery/admin/gallery_items.html:40
+#: templates/gallery/admin/gallery_items.html:54
+msgid "Edit item"
+msgstr "Редактировать"
+
+#: templates/gallery/admin/gallery.html:75
+#: templates/gallery/admin/gallery.html:94
+#: templates/gallery/admin/gallery_items.html:41
+#: templates/gallery/admin/gallery_items.html:55
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/gallery/admin/gallery_empty.html:4
+msgid "Create gallery"
+msgstr "Создать галерею"
+
+#: templates/gallery/admin/gallery_items.html:5
+#, python-format
+msgid ""
+"\n"
+"      Gallery has <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> image and\n"
+"      <span class=\"gallery-videolink-counter\">%(video_count)s</span> "
+"video\n"
+"    "
+msgid_plural ""
+"\n"
+"      Gallery has <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> images and\n"
+"      <span class=\"gallery-videolink-counter\">%(video_count)s</span> "
+"video\n"
+"    "
+msgstr[0] ""
+"\n"
+"      В галерее <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> картинка и\n"
+"      <span class=\"gallery-videolink-counter\">%(video_count)s</span> "
+"видео\n"
+"    "
+msgstr[1] ""
+"\n"
+"      В галерее <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> картинок и\n"
+"      <span class=\"gallery-videolink-counter\">%(video_count)s</span> "
+"видео\n"
+"    "
+
+#: templates/gallery/admin/gallery_items.html:13
+#, python-format
+msgid ""
+"\n"
+"      Gallery has <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> image\n"
+"    "
+msgid_plural ""
+"\n"
+"      Gallery has <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> images\n"
+"    "
+msgstr[0] ""
+"\n"
+"      В галерее <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> картинка\n"
+"    "
+msgstr[1] ""
+"\n"
+"      В галерее <span class=\"gallery-image-counter\">%(image_count)s</"
+"span> картинок\n"
+"    "
+
+#: templates/gallery/admin/gallery_items.html:68
+msgid "Add image"
+msgstr "Добавить изображение"
+
+#: templates/gallery/admin/gallery_items.html:74
+msgid "Add video"
+msgstr "Добавить видео"
+
+#: templates/gallery/admin/gallery_items.html:80
+msgid "Delete checked items"
+msgstr "Удалить выбранные элементы"
+
+#: templates/gallery/admin/gallery_items.html:81
+msgid "Delete gallery"
+msgstr "Удалить галерею"
+
+#: templates/gallery/admin/gallery_items.html:87
+msgid "Drop files here"
+msgstr "Перетащите файлы сюда"

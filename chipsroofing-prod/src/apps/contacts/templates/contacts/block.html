@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load text %}
+
+<div class="contact-block">
+  <div class="grid-block">
+    <div class="space-block">
+      <div class="content-block">
+        <div class="section-inner">
+          {% if block.header %}
+            <h2 class="title-h2">{{ block.header }}</h2>
+          {% endif %}
+          {% if block.description %}
+            <div class="description">{{ block.description }}</div>
+          {% endif %}
+          {% if address.phone %}
+            <a href="tel:{{ address.phone|phone }}" class="phone">{{ address.phone }}</a>
+          {% endif %}
+          <div class="btn-wrapper">
+            <button class="btn btn-red open-contact-popup tag-contact-us">{% trans 'Contact us' %}</button>
+          </div>
+        </div>
+        <div class="section-image">
+          <img src="/static/img/home_contactus.svg" class="home-contact" alt="The roof repaired by Denver roofing company">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

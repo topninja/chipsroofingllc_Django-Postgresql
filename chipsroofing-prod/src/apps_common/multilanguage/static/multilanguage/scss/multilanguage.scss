@@ -1,0 +1,19 @@
+@import "mixins";
+
+.langs {
+  display: inline-block;
+  position: relative;
+  @include no_fontsize;
+
+  .lang {
+    display: inline-block;
+    padding: 4px;
+    line-height: 1;
+    text-transform: uppercase;
+    @include font-size(12px);
+
+    &.active {
+      background-color: #A0A0A0;
+    }
+  }
+}

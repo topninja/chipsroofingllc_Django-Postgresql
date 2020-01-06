@@ -1,0 +1,16 @@
+<div class="rating" itemscope itemtype="http://schema.org/LocalBusiness">
+  <img itemprop="image" src="/static/img/favicon/favicon-128x128.png"  alt="Chips Roofing">
+  <span itemprop="name">Company rating:</span>
+  <div class="wr-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+    <meta  itemprop="ratingValue" content="{{ rating.avg|floatformat:"2" }}">
+    <meta itemprop="reviewCount" content="{{ rating.count }}">
+
+    <ul itemprop="ratingCount" class="stars">
+      <li data-vote="1"></li>
+      <li data-vote="2"></li>
+      <li data-vote="3"></li>
+      <li data-vote="4"></li>
+      <li data-vote="5"></li>
+    </ul>
+  </div>
+</div>

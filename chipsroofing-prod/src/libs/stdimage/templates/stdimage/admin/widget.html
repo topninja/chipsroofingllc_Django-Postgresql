@@ -1,0 +1,48 @@
+{% load i18n %}
+
+<div class="stdimage {{ classes }}"
+     data-source="{{ value.url_nocache }}"
+     data-size="{{ preview_variation.size|join:'x' }}"
+     data-crop="{{ preview_variation.crop|yesno:"1,0,1" }}"
+     data-stretch="{{ preview_variation.stretch|yesno:"1,0,0" }}"
+     data-max_width="{{ preview_variation.max_width }}"
+     data-max_height="{{ preview_variation.max_height }}"
+     data-offset="{{ preview_variation.offset|default:''|join:'x' }}"
+     data-center="{{ preview_variation.center|default:''|join:'x' }}"
+     data-background="{{ preview_variation.background|join:',' }}"
+     data-aspects="{{ aspects }}"
+     data-min_dimensions="{{ min_dimensions|join:'x' }}"
+     data-max_dimensions="{{ max_dimensions|join:'x' }}">
+
+  <div class="item-preview" {% if not value %}style="display: none"{% endif %}>
+    {% if preview %}
+      <img src="{{ preview.url_nocache }}">
+    {% endif %}
+  </div>
+
+  <div class="button-wrapper">
+    <button type="button" class="btn btn-small btn-success">
+      <i class="icon-folder-open icon-white"></i>
+      {% trans 'Select file' %}
+    </button>
+    <span class="hint">{% trans 'Dimensions: ' %} {% trans 'from' %} {{ min_dimensions|join:'x' }} {% trans 'to' %} {{ max_dimensions|join:'x' }}</span>
+  </div>
+
+  {% if crop_area %}
+    <div class="crop-btn-wrapper {% if not value %}hide{% endif %}">
+      <button class="btn btn-mini btn-info">
+        {% trans 'Crop image' %}
+      </button>
+      <input type="hidden" name="{{ name }}-croparea" value="{{ value.croparea|default:'' }}">
+    </div>
+  {% endif %}
+
+  {% if value %}
+    <div class="delete-wrapper">
+      <span>{% trans 'Delete' %}:</span>
+      <input type="checkbox" name="{{ name }}-delete" class="delete"/>
+    </div>
+  {% endif %}
+
+  <input type="file" class="input-file" {{ attrs }}>
+</div>

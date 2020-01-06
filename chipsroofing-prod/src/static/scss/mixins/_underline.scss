@@ -1,0 +1,26 @@
+// Гибкое подчеркивание для текста с возможностью анимации
+//
+// Пример (сплошная линия):
+//    @include underline(red, 2px);
+//
+// Пример (пунктирная линия):
+//    @include underline(red 66%, 8px 1px, 0 1.18em);
+@mixin underline($color, $size: 1px, $position: center 1.18em, $padding: 0) {
+  @if ($padding) {
+    padding-bottom: #{$padding};
+  }
+
+  background: repeat-x #{$position};
+
+  @if (str-index(#{$size}, ' ')) {
+    background-size: #{$size};
+  } @else {
+    background-size: 100% #{$size};
+  }
+
+  @if (str-index(#{$color}, '%') == null) {
+    @include linear-gradient(to right, $color, $color);
+  } @else {
+    @include linear-gradient(to right, $color, rgba(255, 255, 255, 0.01) 0%);
+  }
+}

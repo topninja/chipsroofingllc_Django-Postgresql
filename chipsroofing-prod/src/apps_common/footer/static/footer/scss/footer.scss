@@ -1,0 +1,315 @@
+@import 'mixins';
+
+// точка перехода к вертикальному подвалу
+$column_footer: $media840;
+$end_two_column_footer: 768px;
+$icon_size: 30px;
+
+#footer-cell > footer {
+  color: $white;
+  background-color: #0080b0;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  @include media_interval(0, $media480){
+    padding-bottom: 75px;
+  }
+  .space-block{
+    @include flexbox;
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    @include media_interval(0, $end_two_column_footer){
+      @include flex-direction(column);
+      @include justify-content(start);
+    }
+    .wrap-flex {
+      @include flexbox;
+      @include flex-direction(row);
+      @include media_interval($end_two_column_footer, 1300px){
+        @include flex-direction(column);
+      }
+      @include media_interval(0, $media600){
+        @include flex-direction(column);
+      }
+    }
+  }
+
+  .part{
+    @include flexbox;
+    @include flex-direction(column);
+    @include media_interval(0, $media480){
+      display: block;
+      width: 100%;
+    }
+    &.right-part{
+      text-align: right;
+
+      @include media_interval(0, $media1024){
+        text-align: inherit;
+      }
+      @include media_interval($end_two_column_footer, $media1024){
+        @include flex(0 0 auto);
+        @include flex-direction(column);
+        @include align-items(flex-end);
+      }
+      @include media_interval(0, $end_two_column_footer){
+        @include flex-direction(column);
+        @include justify-content(start);
+      }
+    }
+    &.left-part {
+      @include media_interval($media_mobile, 0) {
+        padding-right: 10px;
+        @include box-sizing(border-box);
+      }
+    }
+  }
+
+
+  .footer-menu{
+    display: inline-block;
+    margin-bottom: 20px;
+    @include media_interval(0, $media480){
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    li{
+      display: inline-block;
+      margin: 10px 0;
+      margin-right: 30px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      @include media_interval(0, $media480){
+        margin-right: 0;
+        width: 50%;
+      }
+      a{
+        font-weight: bold;
+        color: $white;
+        text-transform: uppercase;
+        @include opacity(0.75);
+        @include font-size(13px, 16px);
+        @include font_default;
+        @include transition(opacity 0.5s);
+        &:hover {
+           @include opacity(1);
+        }
+      }
+    }
+  }
+
+
+  .icon-footer{
+    display: inline-block;
+    @include media_interval($end_two_column_footer, 1300px){
+      margin-top: 15px;
+      display: block;
+    }
+    @include media_interval(0, $end_two_column_footer){
+      margin-bottom: 0;
+      display: block;
+    }
+
+    .partner-icon{
+      display: inline-block;
+      background: $sprite_url no-repeat;
+
+      &.first-icon{
+        margin-right: 25px;
+        width: 108px;
+        height: 39px;
+        background-position: (0 -442px);
+      }
+      &.second-icon{
+        width: 39px;
+        height: 40px;
+        background-position: (-109px -440px);
+      }
+    }
+  }
+
+  .address-footer-box{
+    display: inline-block;
+    margin-right: 40px;
+    vertical-align: text-bottom;
+    @include media_interval($column_footer, $media900){
+      margin-right: 30px;
+    }
+    @include media_interval($media540, $column_footer){
+      margin-right: 40px;
+    }
+    @include media_interval($media480, $media540){
+      margin-right: 35px;
+    }
+    @include media_interval(0, $media600){
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    @include media_interval(0, $media1024){
+      display: block;
+    }
+    .footer-address-list{
+      @include font-size(13px, 21px);
+      @include font_default;
+      .footer-phone {
+        display: inline-block;
+        margin-right: 20px;
+        @include media_interval(0, $media768){
+          display: block;
+        }
+        @include transition(opacity .6s);
+        &:hover {
+          @include opacity(.8);
+        }
+      }
+
+      .email{
+        @include transition(opacity .6s);
+        &:hover{
+          @include opacity(.8);
+        }
+      }
+    }
+  }
+
+  .dl-logo-box {
+    display: inline-block;
+    @include media_interval(0, $end_two_column_footer){
+      display: block;
+    }
+    .dl-links {
+      text-align: right;
+      @include media_interval(0, $media1024) {
+        text-align: left;
+      }
+
+      p {
+        display: inline-block;
+        margin-bottom: 10px;
+        text-align: left;
+        white-space: nowrap;
+        @include font-size(14px, 21px);
+        @include media_interval($end_two_column_footer, $media1024) {
+          text-align: right;
+          white-space: nowrap;
+        }
+        @include media_interval(0, $end_two_column_footer) {
+          text-align: left;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      span {
+        @include media_interval($media_mobile, $media960){
+          display: block;
+        }
+        @include media_interval(0, $media480){
+          display: block;
+        }
+      }
+      a {
+        @include transition(opacity .6s);
+        &:hover {
+          @include opacity(0.7);
+        }
+      }
+    }
+  }
+
+  .wrap-block-top {
+    @include flexbox;
+    @include flex-direction(row);
+    @include align-items(center);
+    @include media_interval(0, 1300px){
+      @include flex-direction(column);
+       @include align-items(flex-end);
+    }
+    @include media_interval(0, $media_mobile){
+      @include align-items(flex-start);
+    }
+    .wr-social{
+      margin-right: 20px;
+      @include media_interval($media_mobile, 1300px){
+        @include order(1);
+        margin-top: 15px;
+        margin-right: 0;
+      }
+      @include media_interval(0, $media_mobile){
+        margin-top: 30px;
+      }
+
+      .social-links{
+        a{
+          &.fb:before {
+            background-position: rel-background-position($icon_size, $icon_size, -120px, -101px);
+          }
+          &.tw:before {
+            background-position: rel-background-position($icon_size, $icon_size, -210px, -101px);
+          }
+          &.go:before {
+            background-position: rel-background-position($icon_size, $icon_size, -180px, -101px);
+          }
+          &.ye:before {
+            background-position: rel-background-position($icon_size, $icon_size, -150px, -101px);
+          }
+        }
+      }
+    }
+    .buttons-block{
+      margin: 0 -5px;
+      @include flexbox;
+      @include flex-direction(row);
+      @include align-items(flex-start);
+
+      @include media_interval($media1024, 1300px){
+        @include justify-content(flex-end);
+        @include flex-wrap(wrap);
+      }
+      @include media_interval($media480, $end_two_column_footer){
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+      }
+      @include media_interval(0, $media480){
+        width: 100%;
+        margin: 0;
+        margin-top: 30px;
+        @include flex-direction(column);
+      }
+      .btn-border{
+        width: 100%;
+        max-width: 160px;
+        margin: 0 5px;
+        @include order(0);
+        @include media_interval($media480, $media1024){
+          display: block;
+          &:first-of-type{
+            margin-bottom: 10px;
+          }
+        }
+        @include media_interval(0, $media480){
+          display: block;
+          margin: 0;
+          margin-bottom: 20px;
+          max-width: inherit;
+          &:nth-last-of-type(1){
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+    .rating-wrapper {
+    @include media_interval(0, $media_mobile){
+      margin-bottom: 15px;
+    }
+  }
+
+}
+
+
+
+

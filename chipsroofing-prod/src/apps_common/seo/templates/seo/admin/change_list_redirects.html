@@ -1,0 +1,24 @@
+{% extends 'admin/change_list.html' %}
+
+{% load admin_urls %}
+{% load i18n %}
+
+
+{% block object-tools-items %}
+  <a href="{% url 'admin:seo_redirect_download_csv' %}" class="btn btn-info">
+    <i class="icon-download icon-white"></i>&nbsp;
+    {% trans 'Export CSV' %}
+  </a>
+
+  <a href="{% url 'admin:seo_redirect_upload_csv' %}" class="btn btn-info upload-csv">
+    <i class="icon-upload icon-white"></i>&nbsp;
+    {% trans 'Import CSV' %}
+  </a>
+
+  {% if has_add_permission %}
+    <a href="{% url cl.opts|admin_urlname:'add' %}{% if is_popup %}?_popup=1{% endif %}" class="btn btn-success">
+      <i class="icon-plus-sign icon-white"></i>&nbsp;
+      {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
+    </a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+// @include transition(all 0.2s ease-in-out);
+@mixin transition($args...) {
+  // Safari fix
+  $result: ();
+  @for $i from 1 through length($args) {
+    $item: nth($args, $i);
+    $property: nth($item, 1);
+    @if $property == transform {
+      $result: append($result, replace-nth($item, 1, -webkit-transform), 'comma');
+    }
+    $result: append($result, $item, 'comma');
+  }
+
+  -webkit-transition: $result;
+  -moz-transition: $result;
+  -ms-transition: $result;
+  -o-transition: $result;
+  transition: $result;
+}
+
+@mixin transition-property($args...) {
+  -webkit-transition-property: $args;
+  -moz-transition-property: $args;
+  -ms-transition-property: $args;
+  -o-transition-property: $args;
+  transition-property: $args;
+}
+
+@mixin transition-duration($args...) {
+  -webkit-transition-duration: $args;
+  -moz-transition-duration: $args;
+  -ms-transition-duration: $args;
+  -o-transition-duration: $args;
+  transition-duration: $args;
+}
+
+@mixin transition-delay($args...) {
+  -webkit-transition-delay: $args;
+  -moz-transition-delay: $args;
+  -ms-transition-delay: $args;
+  -o-transition-delay: $args;
+  transition-delay: $args;
+}
+
+@mixin transition-timing-function($args...) {
+  -webkit-transition-timing-function: $args;
+  -moz-transition-timing-function: $args;
+  -ms-transition-timing-function: $args;
+  -o-transition-timing-function: $args;
+  transition-timing-function: $args;
+}

@@ -1,0 +1,86 @@
+@import 'mixins';
+
+$hover_color: rgba(#00A000, 0.8);
+$active_color: #00A000;
+$disabled_color: rgba(#00A000, 0.4);
+
+// когда прятать Prev / Next
+$hide_nav: $media600;
+
+.navigation {
+  padding: 10px 0;
+  font-weight: bold;
+  text-align: center;
+  border-top: 1px solid #D0D0D0;
+  border-bottom: 1px solid #D0D0D0;
+  @include fontsize_default;
+  @include flexbox;
+  @include flex-flow(row wrap);
+  @include align-items(center);
+  @include justify-content(space-between);
+
+  .nav-item {
+    @include media_interval(0, $hide_nav) {
+      display: none;
+    }
+
+    &.prev-page {
+      &:before {
+        content: '←';
+        margin-right: 5px;
+        vertical-align: 0.1em;
+      }
+    }
+
+    &.next-page {
+      @include align-self(flex-end);
+
+      &:after {
+        content: '→';
+        margin-left: 5px;
+        vertical-align: 0.1em;
+      }
+    }
+
+    &:hover {
+      color: $hover_color;
+    }
+
+    &.disabled {
+      color: $disabled_color;
+    }
+  }
+
+  .pages {
+    margin: 0 20px;
+    @include media_interval(0, $media600) {
+      margin: 0 auto;
+    }
+  }
+
+  .page {
+    display: inline-block;
+    min-width: 1.8em;
+    margin: 0 0.3em;
+    text-align: center;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+
+    &.zip-item {
+      min-width: 1.2em;
+      margin: 0;
+    }
+
+    &.active {
+      color: $active_color;
+    }
+
+    &.link:hover {
+      color: $hover_color;
+    }
+  }
+}

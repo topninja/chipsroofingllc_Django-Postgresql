@@ -1,0 +1,79 @@
+@import "mixins";
+
+#work-example {
+
+  .content-part {
+    width: 100%;
+    vertical-align: top;
+
+    @include media_interval(0, $media900) {
+      @include flex(0 0 100%);
+    }
+  }
+
+  .example-wr {
+    position: relative;
+    background-color: $white;
+    z-index: 0;
+    text-align: right;
+    width: 100%;
+    padding-top: 70px;
+    padding-bottom: 95px;
+    @include box-sizing(border-box);
+    @include flexbox;
+    @include flex-flow(row wrap);
+
+    @include media_interval(0, $media768) {
+      padding-top: 0;
+      padding-bottom: 60px;
+      margin-top: 30px;
+    }
+
+    .example-image {
+      @include flex-columns(4, 50px, 50px);
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      z-index: 1;
+
+      @include media_interval($media600, $media900) {
+        height: 110px;
+        @include flex-columns(3, 20px, 20px);
+
+        &:nth-of-type(4n) {
+          margin-right: 20px;
+        }
+
+      }
+      @include media_interval(0, $media600) {
+
+        height: 90px;
+        @include flex-columns(2, 20px, 20px);
+
+      }
+
+      .section-image {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        max-width: none;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .btn-wrapper {
+    position: relative;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto;
+
+    .btn-border {
+      width: 100%;
+    }
+  }
+
+}

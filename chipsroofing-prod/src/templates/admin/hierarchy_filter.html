@@ -1,0 +1,33 @@
+{% if choices %}
+  <div class="hierarchy-filter xfull">
+    <div class="title">
+      <b>{{ title }}:</b>
+      {% for node in spec.get_branch %}
+        {% if forloop.last %}
+          <span>{{ node.display }}</span>
+        {% else %}
+          <a href="{{ node.query_string }}">{{ node.display }}</a>
+          <span>&nbsp;->&nbsp;</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <ul class="toplinks breadcrumb">
+      {% for choice in choices %}
+        <li class="{{ choice.selected|yesno:"active," }}">
+          {% if choice.selected %}
+            <span>{{ choice.display }}</span>
+          {% else %}
+            <a href="{{ choice.query_string }}">{{ choice.display }}</a>
+          {% endif %}
+
+          {% if not forloop.last %}
+            <span class="divider small">|</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <input type="hidden" name="{{ spec.parameter_name }}" value="{{ spec.value|default_if_none:'' }}">
+  </div>
+{% endif %}

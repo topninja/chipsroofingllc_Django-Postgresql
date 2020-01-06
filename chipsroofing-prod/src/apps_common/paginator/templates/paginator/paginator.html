@@ -1,0 +1,34 @@
+{% load i18n %}
+{% load paginator %}
+
+<div class="navigation" typeof="SiteNavigationElement">
+  {% if paginator.previous_page_number %}
+    <a href="{% href paginator paginator.previous_page_number %}"
+       class="nav-item prev-page"
+       data-page="{{ paginator.previous_page_number }}">{% trans 'Previous' %}</a>
+  {% else %}
+    <span class="nav-item prev-page disabled">{% trans 'Previous' %}</span>
+  {% endif %}
+
+  <div class="pages">
+    {% for page_num in paginator.zipped_page_range %}
+      {% if page_num == None %}
+        <span class="page zip-item">...</span>
+      {% elif current_page_number == page_num %}
+        <span class="page active">{{ page_num }}</span>
+      {% else %}
+        <a href="{% href paginator page_num %}" property="url"
+           class="page link {% if current_page_number == page_num %}active{% endif %}"
+           data-page="{{ page_num }}">{{ page_num }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if paginator.next_page_number %}
+    <a href="{% href paginator paginator.next_page_number %}"
+       class="nav-item next-page"
+       data-page="{{ paginator.next_page_number }}">{% trans 'Next' %}</a>
+  {% else %}
+    <span class="nav-item next-page disabled">{% trans 'Next' %}</span>
+  {% endif %}
+</div>

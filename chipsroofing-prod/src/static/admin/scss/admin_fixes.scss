@@ -1,0 +1,383 @@
+@import "mixins";
+
+body {
+  font-family: 'Roboto', sans-serif;
+  @include font-size(13px);
+
+  button, select, textarea, input[type="text"], input[type="password"],
+  input[type="datetime"], input[type="datetime-local"],
+  input[type="date"], input[type="month"], input[type="time"],
+  input[type="week"], input[type="number"], input[type="email"],
+  input[type="url"], input[type="search"], input[type="tel"],
+  input[type="color"], .uneditable-input {
+    font-family: 'Roboto', sans-serif;
+    @include font-size(13px);
+  }
+
+  select, input[type="text"], input[type="password"],
+  input[type="datetime"], input[type="datetime-local"],
+  input[type="date"], input[type="month"], input[type="time"],
+  input[type="week"], input[type="number"], input[type="email"],
+  input[type="url"], input[type="search"], input[type="tel"],
+  input[type="color"], .uneditable-input {
+    padding: 6px;
+  }
+
+  textarea {
+    padding: 4px 6px;
+  }
+}
+
+// попап на всю ширину
+.popup {
+  #suit-center {
+    width: 100%;
+  }
+
+  .inner-two-columns .inner-right-column {
+    width: 140px;
+
+    .btn {
+      max-width: 100%;
+    }
+  }
+
+  .inner-two-columns .inner-center-column {
+    margin-right: 160px;
+  }
+}
+
+input[type="file"] {
+  @include font-size(12px);
+}
+
+// небольшое увеличение полей
+.input-mini {
+  width: 70px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.controls .file-upload .clearable-file-input input {
+  margin: 7px 7px 0 0;
+}
+
+.controls .file-upload .clearable-file-input label {
+  margin: 0;
+  line-height: 1.2;
+}
+
+// правка полей EnclosedInput
+.input-append .add-on,
+.input-prepend .add-on {
+  padding: 6px 5px;
+  min-width: 28px;
+  height: 32px;
+  @include border-box;
+  @include font-size(14px);
+}
+
+// правка иконок related
+.control-group .related-widget-wrapper-link {
+  margin: 0 0 0 10px;
+  padding: 4px;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  @include opacity(0.2);
+
+  &.add-related {
+    background-position: 4px -92px;
+  }
+
+  &.change-related {
+    background-position: 4px -68px;
+  }
+
+  &.related-lookup {
+    background-position: -44px 4px;
+  }
+
+  &.delete-related {
+    display: inline-block;
+    border: 1px solid transparent;
+    background: url(/static/suit/bootstrap/img/glyphicons-halflings.png) no-repeat -308px 4px;
+  }
+
+  & > img {
+    display: none;
+  }
+
+  & + .related-widget-wrapper-link {
+    margin-left: 0;
+  }
+
+  &:link {
+    @include opacity(0.6);
+
+    &:hover {
+      @include opacity(1);
+    }
+  }
+}
+
+// не ограниченная высота textarea
+textarea.autosize {
+  height: auto;
+  max-height: none;
+}
+
+// поля на всю ширину
+.full-width {
+  width: 90%;
+}
+
+// поле ссылки
+.url {
+  &.input-append {
+    display: block;
+    margin-right: 30px;
+  }
+
+  a:hover {
+    background-color: #D0D0D0;
+  }
+}
+
+td, th {
+  // минимальная ширина столбца "view" в списке сущностей
+  &.mini-column {
+    width: 1%;
+  }
+
+  // минимальная ширина для столбца сортировки
+  &.sort_order-column {
+    width: 1%;
+    white-space: nowrap;
+  }
+}
+
+// минимальная ширина для столбца чекбоксов + смена фона
+.table thead th {
+  line-height: 1.1;
+  @include linear-gradient(to bottom, #F4F4F4, #EAEAEA);
+
+  &.sorted {
+    @include linear-gradient(to bottom, #F2F2F2, #E0E0E0);
+  }
+
+  &.action-checkbox-column {
+    width: 1%;
+  }
+}
+
+.inline-group .tabular table.table tr.add-row td {
+  @include linear-gradient(to bottom, #F4F4F4, #EAEAEA);
+}
+
+// не помню для чего, но что-то с CKEditor
+.cke_panel {
+  overflow: hidden !important;
+}
+
+// украшение диалогов CKEditor
+.cke_dialog {
+  .cke_dialog_contents_body {
+    padding: 5px 10px;
+  }
+
+  .cke_dialog_ui_labeled_label {
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+
+  .cke_dialog_ui_input_textarea {
+    width: 100%;
+    height: 10em;
+    white-space: normal;
+  }
+}
+
+// правка отступа между действиями и списком
+.actions {
+  margin-bottom: 18px;
+}
+
+// правка отступа между действиями и кол-вом сущностей
+.pagination-info {
+  margin: 0;
+}
+
+// правка списков сущностей из-за шрифта
+.table.table-condensed tbody th,
+.table.table-condensed tbody td {
+  padding: 5px 10px 5px 10px;
+}
+
+// правка положения галочки булевых полей в списках
+.table td > img {
+  vertical-align: text-bottom;
+
+  &:only-child {
+    vertical-align: baseline;
+  }
+}
+
+// правка положения чекбоксов в сущностях и-за шрифта
+.table .action-select {
+  margin: -3px 0 0;
+}
+
+// правка из-за шрифта
+#changelist .actions span.all,
+#changelist .actions span.action-counter,
+#changelist .actions span.clear,
+#changelist .actions span.question {
+  vertical-align: middle;
+}
+
+// удаление непонятных отступов
+.search-container {
+  margin-top: 0;
+}
+.search-container input, .search-container select {
+  margin-top: 0;
+}
+.search-container .result-count {
+  margin: 0 0 0 5px;
+}
+
+// блок фильтров
+.search-filters {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// увеличение стандартного поля M2M
+.form-horizontal .control-group .controls .selector {
+  .selector-available select {
+    min-height: 200px;
+    @include font-size(12px);
+  }
+
+  .selector-chosen select {
+    min-height: 180px;
+    @include font-size(12px);
+  }
+}
+
+// стили для списков
+.form-horizontal .control-group .controls ul {
+  list-style-type: none;
+  margin: 0;
+
+  label {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin: 0;
+    z-index: 1;
+
+    input {
+      position: absolute;
+      top: 0.2em;
+      left: 0;
+      z-index: 1;
+    }
+  }
+}
+
+// уродливые белые линии в поле добавления инлайна
+.form-horizontal .inline-group .add-row,
+.inline-group .tabular table.table tr.add-row td {
+  @include box-shadow(none);
+  @include linear-gradient(to bottom, #F3F3F3, #E5E5E5);
+}
+
+// уменьшаем столбец с заголовками полей
+label {
+  @include font-size(12px);
+}
+
+.form-horizontal .control-group:first-child .control-label,
+.form-horizontal .control-group:first-of-type .control-label {
+  padding-top: 16px;
+}
+
+.form-horizontal .control-group .control-label {
+  padding-top: 12px;
+  min-width: 100px;
+}
+
+.form-horizontal .inline-related h3 > a {
+  display: none;
+}
+
+.form-horizontal .inline-related h3 b {
+  min-width: 130px;
+}
+
+// отступ между stacked-инлайнами
+.form-horizontal .inline-related:not(:first-of-type) h3 {
+  margin-top: 10px;
+}
+
+.form-horizontal .inline-group > h2 {
+  margin: 24px 0 3px 10px;
+  line-height: 24px;
+}
+
+.form-horizontal .inline-group .tabular {
+  margin-top: 24px;
+}
+
+// увеличение отступа от заголовков
+.form-horizontal fieldset {
+  margin-top: 38px;
+
+  .legend {
+    margin: -33px 0 0 0;
+  }
+}
+
+// хз как починить этот баг
+.popup .form-horizontal fieldset:first-of-type > .legend:first-child {
+  display: none;
+}
+
+.form-horizontal .inline-related.tabular fieldset > h2 {
+  margin: 0 0 3px 10px;
+}
+
+// правка цвета текста autocomplete-поля в инлайне,
+// когда этот инлайн двигают.
+tr.selected .select2-chosen {
+  color: #444;
+}
+
+// правка из-за шрифта
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+  width: 14px;
+  height: 14px;
+}
+
+select, input[type="file"] {
+  height: auto;
+}
+
+// правка Google-карты
+.gm-style {
+  line-height: normal;
+}
+
+/*
+  Font-size
+*/
+.nav-tabs-suit li a {
+  @include font-size(13px);
+  @include box-shadow(none);
+}
+

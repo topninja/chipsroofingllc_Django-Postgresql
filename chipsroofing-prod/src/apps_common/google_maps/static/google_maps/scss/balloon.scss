@@ -1,0 +1,109 @@
+@import "mixins";
+
+$balloon_background: #FFF;
+$balloon_border: #CCC;
+$balloon_shadow: rgba(#CCC, 0.5);
+$balloon_close_color: #CCC;
+$arrow_height: 18px;
+$arrow_space: 6px;      // расстояние между маркером и стрелкой окна
+
+
+.gmap-balloon {
+  position: absolute;
+  min-width: 40px;
+  min-height: 40px;
+  z-index: 100;
+  cursor: initial;
+  padding-bottom: $arrow_height + $arrow_space;
+  @include border-box;
+
+  .gmap-balloon-content {
+    position: relative;
+    max-width: 100%;
+    z-index: 1;
+    background: $balloon_background;
+    border: 1px solid $balloon_border;
+    @include border-box;
+  }
+
+  .gmap-balloon-arrow {
+    position: absolute;
+    bottom: -$arrow_height + $arrow_space;
+    left: 50%;
+    z-index: 10;
+    border: $arrow_height solid transparent;
+    border-top: $arrow_height solid rgba($balloon_border, 0.6);
+    @include transform(translateX(-50%));
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: -$arrow_height;
+      top: -$arrow_height - 1px;
+      z-index: 1;
+      border: $arrow_height solid transparent;
+      border-top: $arrow_height solid $balloon_background;
+    }
+  }
+
+  .gmap-balloon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    cursor: pointer;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      background: $balloon_close_color;
+    }
+  }
+}
+
+
+// ====================
+//  THEME
+// ====================
+
+.gmap-balloon {
+  max-width: 350px;
+
+  .gmap-balloon-content {
+    width: 350px;
+    padding: 20px;
+    @include border_radius(10px);
+    @include font-size(14px, 18px);
+    @include box-shadow(8px 8px 10px $balloon_shadow);
+    @include media_interval(0, $media768) {
+      padding: 14px;
+      @include font-size(12px);
+    }
+  }
+
+  .gmap-balloon-close {
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    @include transform(scale(0.75));
+    @include transition(transform 0.2s ease-in);
+
+    &:before, &:after {
+      height: 2px;
+    }
+    &:before {
+      @include transform(translate3d(0, -50%, 0) rotate(45deg));
+    }
+    &:after {
+      @include transform(translate3d(0, -50%, 0) rotate(-45deg));
+    }
+
+    &:hover {
+      @include transform(scale(1));
+    }
+  }
+}

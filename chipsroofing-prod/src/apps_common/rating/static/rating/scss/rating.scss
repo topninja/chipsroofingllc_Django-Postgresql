@@ -1,0 +1,108 @@
+@import "mixins";
+
+.wr-rating{
+  display: inline-block;
+}
+
+.rating-wrapper{
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 18px;
+
+  @include media_interval($media768, 1285px){
+    margin-top: 10px;
+  }
+}
+
+.rating {
+  display: inline-block;
+  vertical-align: middle;
+  @include no_fontsize;
+
+  img{
+    display: none;
+  }
+
+  span{
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    @include font-size(14px, 21px);
+    @include font_default;
+  }
+
+  .stars {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    &:hover {
+      li {
+        &:before {
+          content: '';
+          display: block;
+          padding-top: 100%;
+          background: $sprite_url no-repeat ( -15px -488px);
+          width: 15px;
+        }
+      }
+    }
+
+    li:hover ~ li {
+      &:before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+        background: $sprite_url no-repeat ( -30px -488px);
+        width: 15px;
+      }
+    }
+
+    @for $index from 1 through 5 {
+      &.voted-#{$index} {
+        & > li {
+          &:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+            background: $sprite_url no-repeat ( -30px -488px);
+            width: 15px;
+          }
+        }
+
+        & > li:nth-last-child(n+#{5 - $index + 1}) {
+          &:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+            background: $sprite_url no-repeat ( -15px -488px);
+            width: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  li {
+    display: inline-block;
+    padding: 0 1px;
+    width: 16px;
+    cursor: pointer;
+    vertical-align: middle;
+
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+      background: $sprite_url no-repeat (-30px -488px);
+    }
+  }
+}

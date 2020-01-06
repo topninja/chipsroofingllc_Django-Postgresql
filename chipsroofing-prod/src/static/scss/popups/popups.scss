@@ -1,0 +1,146 @@
+@import "popups_core";
+
+
+// вертикальные отступы окна
+$window_margin: (
+    ($media1024, 0): 60px,
+    (0, $media1024): 50px
+);
+
+// размер окна
+$window_width: auto;
+
+// максимальная ширина окна
+$window_max_width: (
+    ($media1024, 0): 70%,
+    ($media480, $media1024): 80%,
+    (0, $media480): 90%,
+);
+
+// поля контентной части окна
+$content_paddings: (
+    ($media640, 0): 36px 50px,
+    ($media480, $media640): 36px,
+    (0, $media480): 20px 20px 36px,
+);
+
+// цвет фона окна
+$background_color: $white;
+
+// кнопка закрытия
+$close_btn_size: 21px;
+$close_btn_color: #ffffff;
+$close_btn_weight: 3px;
+
+
+//=======================
+// CORE
+//=======================
+
+#popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: #00af86;
+}
+
+.popup {
+  .popup-window {
+    @include media_map(width, $window_width);
+    @include media_map(max-width, $window_max_width);
+    @include media_map((margin-top, margin-bottom), $window_margin);
+  }
+
+  .popup-close-button {
+    position: absolute;
+    top: -20px;
+    right: -100%;
+    width: $close_btn_size;
+    height: $close_btn_size;
+    z-index: 6;
+    cursor: pointer;
+    @include transform(scale(0.8));
+    @include transition(transform 0.2s);
+
+    @include media_interval(1860px, 0){
+      right: 0;
+    }
+
+    @include media_interval(0, 1500px){
+      right: 0;
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: $close_btn_weight;
+      background: $close_btn_color;
+      @include border_radius($close_btn_weight);
+    }
+    &:before {
+      @include transform(translate3d(-50%, -50%, 0) rotate(45deg));
+    }
+    &:after {
+      @include transform(translate3d(-50%, -50%, 0) rotate(-45deg));
+    }
+
+    &:hover {
+      @include transform(scale(1));
+    }
+  }
+
+  .popup-content {
+    .field-type_message {
+      display: none;
+    }
+    background-color: #00af86;
+    @include media_map(padding, $content_paddings);
+
+    .title-h1{
+      color: $white;
+      padding-bottom: 30px;
+    }
+
+    .btn{
+      margin-top: 20px;
+    }
+
+    .grecaptcha-badge {
+      visibility: hidden;
+    }
+
+    .recaptcha__wrapper{
+      margin-top: 20px;
+      max-width: 380px;
+      color: rgba(255, 255, 255, 0.7);
+      @include font-size(16px, 25px);
+      @include media_interval(0, $media768) {
+        margin-top: 0;
+      }
+      @include media_interval(0, $media640) {
+      }
+      &>p{
+        display: inline;
+      }
+      &>a{
+        display: inline-block;
+        color: #FFFFFF;
+      }
+    }
+    .recaptcha__link {
+      color: $white;
+      margin-left: 3px;
+      margin-right: 3px;
+      @include transition(opacity 0.6s);
+      &:hover {
+        @include opacity(.8);
+      }
+    }
+  }
+}

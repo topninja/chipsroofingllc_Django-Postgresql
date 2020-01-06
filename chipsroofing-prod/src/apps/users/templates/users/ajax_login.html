@@ -1,0 +1,17 @@
+{% load form_helper %}
+{% load i18n %}
+
+<p class="title title-h1">{% trans 'Sign In or Register' %}</p>
+
+{{ form.media }}
+<form method="post" action="{% url 'users:login' %}" id="ajax-login-form"
+      class="users-login-form users-popup-form users-form" autocomplete="off">
+
+  {% render_form form %}
+
+  <div>
+    <button type="submit" class="btn">{% trans 'Sign in' %}</button>
+    <a href="{% url 'users:reset' %}" class="open-reset-password-popup">{% trans 'Forgot your password?' %}</a>
+    <a href="{% url 'users:register' %}" class="open-register-popup">{% trans 'Registration' %}</a>
+  </div>
+</form>

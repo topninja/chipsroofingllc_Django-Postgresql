@@ -1,0 +1,44 @@
+{% load text %}
+
+{% for post in paginator.current_page %}
+<div class="post post-unit">
+  <a class="article-post" href="{{ post.get_absolute_url }}">
+    <article typeof="BlogPosting">
+      <meta property="dateModified" content="{{ post.updated|date:"c" }}"/>
+      <meta property="mainEntityOfPage" typeof="WebPage" content="{{ post.get_absolute_url }}"/>
+      {% if post.preview %}
+      <div href="{{ post.get_absolute_url }}" property="image" typeof="ImageObject">
+        <div class="image">
+          <img class="image-post" srcset="{{ post.preview.normal.srcset }}, {{ post.preview.mobile.srcset }}" src="{{ post.preview.normal.url }}" width="{{ post.preview.normal.target_width }}" height="{{ post.preview.normal.target_height }}" property="url" sizes="100vw" alt="{{ post.alt }}">
+        </div>
+        <meta property="width" content="{{ post.preview.normal.target_width }}"/>
+        <meta property="height" content="{{ post.preview.normal.target_height }}"/>
+      </div>
+      {% endif %}
+
+      <header>
+        <time datetime="{{ post.date|date:"c" }}" class="date" property="datePublished">
+        {{ post.date|date:"jS E Y" }}
+        </time>
+
+        <div class="title" property="headline">
+          {{ post.header }}
+        </div>
+        {% if post.note %}
+        <div class="description" property="articleBody">
+          {{ post.note|clean }}
+        </div>
+        {% endif %}
+      </header>
+
+    </article>
+  </a>
+  <a class="category-wr" href="{{ post.tags.first.get_absolute_url }}">
+    <div class="category">
+    <span>{{ post.tags.first.title }}</span>
+    </div>
+  </a>
+</div>
+{% endfor %}
+
+{% if paginator.current_page.has_next %}{% include 'blog/more.html' %}{% endif %}

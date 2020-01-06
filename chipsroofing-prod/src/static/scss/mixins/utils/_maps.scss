@@ -1,0 +1,113 @@
+/*
+    Добавляет константу к каждому значению карты.
+
+    Пример:
+      $map: (
+        (1024px, 0): 100px,
+        (768px, 1024px): 80px,
+        (0, 768px): 60px,
+      )
+
+      > map_add($map, 10px)
+      (
+        (1024px, 0): 110px,
+        (768px, 1024px): 90px,
+        (0, 768px): 70px,
+      )
+ */
+@function map_add($map, $const) {
+  $result: ();
+  @each $key, $value in $map {
+    $result: map-merge($result, ($key: $value + $const));
+  }
+  @return $result;
+}
+
+
+/*
+    Получение ключа карты $map media-интервалов,
+    в который входит искомый интервал $media.
+    Если искомый интервал находится на границе
+    двух или более интервалов карты, генерируется ошибка.
+
+    Пример:
+      $map: (
+        (1024px, 0): 100px,
+        (768px, 1024px): 80px,
+        (0, 768px): 60px,
+      )
+
+      > media_map_key($map, (1200px, 0))
+      (1024px, 0)
+ */
+@function media_map_key($map, $interval) {
+  $from: nth($interval, 1);
+  $to: nth($interval, 2);
+  @if ($from >= $to) and ($to != 0) {
+    @error "Invalid media interval (#{$interval})";
+  }
+
+  @each $key, $value in $map {
+    $map_from: nth($key, 1);
+    $map_to: nth($key, 2);
+
+    @if ($from >= $map_from) and (($to <= $map_to) or ($map_to == 0)) {
+      @return $key;
+    }
+  }
+
+  @error "Interval (#{$interval}) not fount in map";
+}
+
+
+/*
+    Получение среза media-карты.
+
+    Пример:
+      $map: (
+        (1024px, 0): 100px,
+        (768px, 1024px): 80px,
+        (0, 768px): 60px,
+      )
+
+      > media_map_slice($map, (640px, 1200px))
+      (
+        (1024px, 1200px): 100px,
+        (768px, 1024px): 80px,
+        (640px, 768px): 60px,
+      )
+ */
+@function media_map_slice($map, $interval) {
+  $from: nth($interval, 1);
+  $to: nth($interval, 2);
+  @if ($from >= $to) and ($to != 0) {
+    @error "Invalid media interval (#{$interval})";
+  }
+
+  $result: ();
+  @each $key, $value in $map {
+    $map_from: nth($key, 1);
+    $map_to: nth($key, 2);
+
+    // отсекаем интервалы, которые начинаются позже конца искомого
+    @if ($to > $map_from) or ($to == 0) {
+      // замена верхней границы
+      @if ($to != 0) and (($map_to == 0) or ($to < $map_to)) {
+        $key: replace-nth($key, 2, $to);
+        $map_to: $to;
+      }
+
+      // отсекаем интервалы, которые заканчиваются раньше начала искомого
+      @if ($from < $map_to) or ($map_to == 0) {
+        // замена нижней границы
+        @if ($map_from == 0) or ($from > $map_from) {
+          $key: replace-nth($key, 1, $from);
+          $map_from: $to;
+        }
+
+        $result: map-merge($result, ($key: $value));
+      }
+    }
+  }
+  @return $result;
+}

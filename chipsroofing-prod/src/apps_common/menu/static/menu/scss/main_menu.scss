@@ -1,0 +1,201 @@
+@import 'mixins';
+
+$menu_text_color: #404040;
+$menu_hover_color: rgba(#ffffff, 0.7);
+$menu_active_color: rgba(#ffffff, 0.7);
+
+$mobile_background: #00af86;
+$mobile_text_color: $white;
+$mobile_hover_color: $menu_hover_color;
+$mobile_active_color: $menu_active_color;
+
+
+// базовый класс всех меню
+.menu {
+  @include no_fontsize;
+
+  ul {
+  }
+
+  li {
+    color: $menu_text_color;
+
+    a {
+      display: inline-block;
+      @include fontsize_default;
+      @include transition(color .6s);
+
+      &:hover {
+        color: $menu_hover_color;
+      }
+    }
+
+    &.active > a {
+      color: $menu_active_color;
+    }
+  }
+}
+
+
+// главное меню
+.main-menu {
+  display: none;
+
+  li {
+    display: inline-block;
+    margin-right: 10px;
+    &:nth-last-of-type(1) {
+      margin-right: 0;
+    }
+  }
+}
+
+
+// мобильное меню
+.mobile-menu {
+  position: absolute;
+  overflow: hidden;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 768px;
+  height: 100vh;
+  z-index: 50;
+  text-align: left;
+  background: $mobile_background;
+  @include border-box;
+  @include flexbox;
+  @include align-items(start);
+  @include transition(left 0.6s);
+
+  .scrollable {
+    padding-right: 20px;  // для скрытия скроллбара
+    padding-top: 120px;
+    overflow-x: hidden;
+    max-height: 100%;
+    margin: 0 auto;
+    @include media_interval(0, $media640){
+      padding-top: 50px;
+    }
+
+    .scrollable-content {
+      padding: 0 50px 30px 30px;
+      @include border-box;
+      a {
+        font-weight: bold;
+        @include font-size(38px);
+        @include media_interval(0, $media640){
+          @include font-size(24px);
+        }
+      }
+      .social-links {
+        margin-top: 100px;
+        @include media_interval(0, $media640){
+          margin-top: 50px;
+        }
+        a{
+          width: 40px;
+          margin-right: 20px;
+          @include media_interval(0, $media640){
+            width: 30px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  li {
+    margin: 20px 0;
+
+    &:nth-of-type(1) {
+      margin-top: 0;
+    }
+
+    &:nth-last-of-type(1) {
+      margin-bottom: 0;
+    }
+
+    a {
+      display: inline-block;
+      vertical-align: top;
+      color: $mobile_text_color;
+      @include font-size(22px, 28px);
+
+      &:hover {
+        color: $mobile_hover_color;
+      }
+    }
+
+    &.active a {
+      color: $mobile_active_color;
+    }
+  }
+
+  @at-root .main-menu-opened & {
+    left: 0;
+  }
+}
+
+
+// Кнопка меню для мобильной версии
+#mobile-menu-button {
+  display: inline-block;
+  position: relative;
+  z-index: 60;
+  cursor: pointer;
+  text-align: left;
+  vertical-align: middle;
+  @include unselectable;
+
+  .burger {
+    position: relative;
+    width: $menu_burger_width;
+    height: 3 * $menu_burger_line_height + 2 * $menu_burger_line_space;
+    @include media_interval(0, $media400) {
+      width: $menu_burger_width_mob;
+      height: 3 * $menu_burger_line_height + 2 * $menu_burger_line_space_mob;
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: $menu_burger_line_height;
+      background: $menu_burger_color;
+      @include transition-timing-function(linear);
+    }
+    &:before {
+      top: 0;
+      @include box-shadow($menu_burger_color 0 ($menu_burger_line_height + $menu_burger_line_space) 0 0);
+      @include transform(translate3d(0, 0, 0) rotate(0deg));
+      @include transition-property(transform, box-shadow, top);
+      @include transition-duration(0.55s, 0.2s, 0.2s);
+      @include transition-delay(0s, 0.45s, 0.45s);
+      @include media_interval(0, $media400) {
+        @include box-shadow($menu_burger_color 0 ($menu_burger_line_height + $menu_burger_line_space_mob) 0 0);
+      }
+    }
+    &:after {
+      top: 100%;
+      @include transform(translate3d(0, -100%, 0) rotate(0deg));
+      @include transition-property(transform, top);
+      @include transition-duration(0.55s, 0.2s);
+      @include transition-delay(0s, 0.45s);
+    }
+
+    @at-root .main-menu-opened & {
+      &:before {
+        top: 50%;
+        @include box-shadow(transparent 0 0 0 0);
+        @include transform(translate3d(0, -50%, 0) rotate(225deg));
+        @include transition-delay(0.1s, 0.1s, 0s, 0s);
+      }
+      &:after {
+        top: 50%;
+        @include transform(translate3d(0, -50%, 0) rotate(315deg));
+        @include transition-delay(0.1s, 0s);
+      }
+    }
+  }
+}

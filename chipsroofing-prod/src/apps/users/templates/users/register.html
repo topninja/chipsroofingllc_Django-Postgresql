@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% load form_helper %}
+{% load i18n %}
+
+
+{% block content %}
+  <div class="grid-block">
+    <h1 class="title-h1">{% trans 'Registration' %}</h1>
+
+    {{ form.media }}
+    <form method="post" action="" id="register-form"
+          class="users-register-form users-form" autocomplete="off">
+      <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+      {% render_form form %}
+
+      <div>
+        <button type="submit" class="btn">{% trans 'Register' %}</button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

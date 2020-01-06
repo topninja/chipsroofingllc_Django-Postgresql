@@ -1,0 +1,99 @@
+@import "mixins";
+
+$facebook_blue: #3A66A5;
+
+@include keyframes(facebook-show) {
+  0% {
+    @include opacity(0);
+  }
+  100% {
+    @include opacity(1);
+  }
+}
+
+@include keyframes(facebook-hide) {
+  0% {
+    @include opacity(1);
+  }
+  100% {
+    @include opacity(0);
+  }
+}
+
+#facebook-banner {
+  display: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  z-index: 2;
+  background: #EBF1FF;
+  @include media_interval(0, $media640) {
+    display: none !important;
+  }
+
+  .logo {
+    position: relative;
+    height: 50px;
+    border-bottom: 1px solid lighten($facebook_blue, 10%);
+    background: url(../img/logo.png) no-repeat 15px center $facebook_blue;
+    background-size: 100px auto;
+
+    .close-button {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      right: 10px;
+      top: 50%;
+      z-index: 2;
+      cursor: pointer;
+      @include transform(translateY(-50%));
+
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 70%;
+        top: 50%;
+        left: 50%;
+        height: 3px;
+        background: $white;
+        @include border_radius(3px);
+      }
+
+      &:before {
+        @include transform(translate(-50%, -50%) rotate(-45deg));
+      }
+
+      &:after {
+        @include transform(translate(-50%, -50%) rotate(45deg));
+      }
+
+      &:hover {
+        @include opacity(0.6);
+      }
+    }
+  }
+
+  .text {
+    position: relative;
+    padding: 12px 15px 20px 15px;
+    z-index: 1;
+    color: $white;
+    background: $facebook_blue;
+    @include font-size(16px, 20px);
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 15px;
+      border: 12px solid transparent;
+      border-top: 12px solid $facebook_blue;
+    }
+  }
+
+  .button-window {
+    padding: 30px 15px;
+    min-height: 30px;
+  }
+}

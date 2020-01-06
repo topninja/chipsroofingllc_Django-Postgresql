@@ -1,0 +1,30 @@
+<script>
+  !function() {
+    if (!window.loadCSS) {
+      return;
+    }
+
+    var support = function() {
+      try {
+        return document.createElement("link").relList.supports("preload");
+      } catch (e) {
+        return false;
+      }
+    };
+
+    var poly = function() {
+      var links = document.getElementsByTagName("link");
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        if (link.rel === "preload" && link.getAttribute("as") === "style") {
+          loadCSS(link.href, link, link.getAttribute("media"));
+          link.rel = null;
+        }
+      }
+    };
+
+    if (!support()) {
+      poly();
+    }
+  }();
+</script>

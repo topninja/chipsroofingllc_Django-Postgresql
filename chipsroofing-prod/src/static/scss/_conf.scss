@@ -1,0 +1,88 @@
+//=======================
+// Точки для media-queries
+//=======================
+$media1200: 1200px;
+$media1024: 1024px;
+$media900: 900px;
+$media960: 960px;
+$media840: 840px;
+$media768: 768px;
+$media640: 640px;
+$media600: 600px;
+$media540: 540px;
+$media480: 480px;
+$media400: 400px;
+
+
+//=======================
+// Сетка
+//=======================
+$cols_wide: 12;
+$cols_desktop: 12;
+$cols_tablet: 12;
+$cols_mobile: 6;
+
+// Максимальная ширина сетки
+$grid_max_width: 1400px;
+
+// Боковые границы каждого столбца
+$grid_column_gap: 10px;
+
+// Боковые границы сетки
+$grid_paddings: (
+    ($media1200, 0): 100px,
+    ($media1024, $media1200): 40px,
+    ($media768, $media1024): 28px,
+    ($media640, $media768): 26px,
+    (0, $media640): 20px,
+);
+
+// Боковые границы сетки с прибавлением границы столбца
+$grid_full_paddings: ();
+@each $key, $value in $grid_paddings {
+  $grid_full_paddings: map-merge($grid_full_paddings, (
+    $key: $value + $grid_column_gap
+  ))
+}
+
+
+//=======================
+// Sprite
+//=======================
+$sprite_url: url(/static/img/sprite.svg);
+$sprite_width: 340px;
+$sprite_height: 510px;
+
+
+
+//=======================
+// Цвета
+//=======================
+$white: #FFFFFF;
+$green: #00af86;
+$dark_green: #00926F;
+$pink: #bf406f;
+$dark_pink: #a92e5c;
+$text_color: #2C3035;
+
+
+//=======================
+// Меню
+//=======================
+$menu_burger_color: #FFFFFF;
+$menu_burger_width: 30px;
+$menu_burger_width_mob: 20px;
+$menu_burger_line_height: 2px;
+$menu_burger_line_space_mob: 6px;
+$menu_burger_line_space: 7px;
+
+// интервал показа мобильного меню
+$media_mobile: $media768;
+
+
+//=======================
+// Формы
+//=======================
+
+// вертикальное расстояние между полями
+$field_space: 20px;

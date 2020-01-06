@@ -1,0 +1,17 @@
+.page-file {
+    padding: 5px 0 5px 32px;
+    min-height: 24px;
+    background: url(../icons/file.png) no-repeat 2px 6px;
+}
+
+.page-file:after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    min-height: inherit;
+    vertical-align: middle;
+}
+
+.page-file a {
+    vertical-align: middle;
+}

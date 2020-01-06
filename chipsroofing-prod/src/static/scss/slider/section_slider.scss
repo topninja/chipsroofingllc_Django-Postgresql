@@ -1,0 +1,76 @@
+@import 'mixins';
+
+/*
+    Для случая слайдера фоток на фоне блока с фиксированным контентом.
+
+    <div class="section section-full-height">
+      <div class="section-slider">
+        <div class="slider no-slider">
+
+          <div class="slider-item">
+            <img src="{% static 'pic1.jpg' %}">
+          </div>
+          ...
+
+        </div>
+      </div>
+
+      <div class="section-inner">
+        <div class="grid-block">
+            ...
+        </div>
+      </div>
+    </div>
+
+    JS:
+      Slider('.section-slider .slider', {
+          sliderHeight: Slider.prototype.HEIGHT_NONE
+      }).attachPlugins([
+          SliderSideAnimation({}),
+          SliderSideShortestAnimation({}),
+          SliderControlsPlugin({
+              animationName: 'side-shortest'
+          }),
+          SliderNavigationPlugin({
+              animationName: 'side'
+          })
+      ]);
+*/
+
+.section-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: inherit;
+  min-height: inherit;
+  z-index: 30;
+
+  .no-slider {
+    height: inherit;
+    min-height: inherit;
+
+    .slider-item ~ .slider-item {
+      display: none;
+    }
+  }
+
+  .slider-root {
+    height: inherit;
+    min-height: inherit;
+  }
+
+  .slider-slide {
+    height: inherit;
+    min-height: inherit;
+  }
+
+  .slider-item {
+    height: inherit;
+    min-height: inherit;
+  }
+
+  .slider-item > img {
+    @include centrizeImage($zIndex: auto);
+  }
+}

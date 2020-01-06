@@ -1,0 +1,90 @@
+<script>
+  !function(e) {
+    "use strict";
+    function t(e, t, n) {
+      e.addEventListener ? e.addEventListener(t, n, !1) : e.attachEvent && e.attachEvent("on" + t, n)
+    }
+
+    function n(t, n) {
+      return e.localStorage && localStorage[t + "_content"] && localStorage[t + "_file"] === n
+    }
+
+    function o(t, o) {
+      if (e.localStorage && e.XMLHttpRequest)n(t, o) ? r(localStorage[t + "_content"]) : a(t, o);
+      else {
+        var i = l.createElement("link");
+        i.href = o;
+        i.id = t;
+        i.rel = "stylesheet";
+        i.type = "text/css";
+        l.getElementsByTagName("head")[0].appendChild(i);
+        l.cookie = t
+      }
+    }
+
+    function a(e, t) {
+      var n = new XMLHttpRequest;
+      n.open("GET", t, !0);
+      n.onreadystatechange = function() {
+        if (4 === n.readyState && 200 === n.status) {
+          r(n.responseText);
+          localStorage[e + "_content"] = n.responseText;
+          localStorage[e + "_file"] = t;
+        }
+      };
+      n.send()
+    }
+
+    function r(e) {
+      var t = l.createElement("style");
+      t.setAttribute("type", "text/css");
+      l.getElementsByTagName("head")[0].appendChild(t);
+      t.styleSheet ? t.styleSheet.cssText = e : t.innerHTML = e
+    }
+
+    var l = e.document;
+    e.loadCSS = function(e, t, n) {
+      function o(e) {
+        return l.body ? e() : void setTimeout(function() {
+          o(e)
+        }, 0)
+      }
+
+      function a() {
+        i.addEventListener && i.removeEventListener("load", a);
+        i.media = n || "all"
+      }
+
+      var r, i = l.createElement("link");
+      if (t)r = t; else {
+        var s = (l.body || l.getElementsByTagName("head")[0]).childNodes;
+        r = s[s.length - 1]
+      }
+      var c = l.styleSheets;
+      i.rel = "stylesheet";
+      i.href = e;
+      i.media = "only x";
+      o(function() {
+        r.parentNode.insertBefore(i, t ? r : r.nextSibling)
+      });
+
+      var d = function(e) {
+        for (var t = i.href, n = c.length; n--;)if (c[n].href === t)return e();
+        setTimeout(function() {
+          d(e)
+        }, 0)
+      };
+
+      i.addEventListener && i.addEventListener("load", a);
+      i.onloadcssdefined = d;
+      d(a);
+      return i
+    };
+
+    e.loadLocalStorageCSS = function(a, r) {
+      n(a, r) || l.cookie.indexOf(a) > -1 ? o(a, r) : t(e, "load", function() {
+        o(a, r)
+      })
+    };
+  }(window);
+</script>

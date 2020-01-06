@@ -1,0 +1,3 @@
+-r common.txt
+
+sqlparse==0.2.3

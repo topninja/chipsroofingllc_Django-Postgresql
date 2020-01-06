@@ -1,0 +1,30 @@
+// https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering
+@function legacy-image-rendering($value, $browser) {
+  $conversion-map: (
+    mozilla: (
+      auto: auto,
+      crisp-edges: -moz-crisp-edges,
+    ),
+    opera: (
+      auto: auto,
+      crisp-edges: -o-crisp-edges,
+    ),
+    webkit: (
+      auto: auto,
+      crisp-edges: -webkit-optimize-contrast,
+    ),
+  );
+
+  @if map-has-key($conversion-map, $browser) {
+    $browser_map: map-get($conversion-map, $browser);
+    @return map-get($browser_map, $value);
+  }
+};
+
+// Пример: @include image-rendering(crisp-edges);
+@mixin image-rendering($value) {
+  // image-rendering: legacy-image-rendering($value, mozilla);
+  image-rendering: legacy-image-rendering($value, opera);
+  image-rendering: legacy-image-rendering($value, webkit);
+  image-rendering: $value;
+}

@@ -1,0 +1,25 @@
+{% load i18n %}
+{% load text %}
+
+{% for service in services %}
+
+  {% if param  == 'siding' and service.button_position == 'bottom-middle' %}
+    {% include 'main/popup_part.html' %}
+
+  {% elif param == 'gutters' and service.button_position == 'bottom-right' %}
+    {% include 'main/popup_part.html' %}
+
+  {% elif param == 'new-roofing' and service.button_position == 'bottom-left' %}
+    {% include 'main/popup_part.html' %}
+
+  {% elif param == 'commercial-roofing' and service.button_position == 'top-left' %}
+    {% include 'main/popup_part.html' %}
+
+  {% elif param == 'residential-roofing' and service.button_position == 'top-middle' %}
+    {% include 'main/popup_part.html' %}
+
+  {% elif param == 'roof-repairs' and service.button_position == 'top-right' %}
+    {% include 'main/popup_part.html' %}
+  {% endif %}
+
+{% endfor %}

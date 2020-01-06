@@ -1,0 +1,35 @@
+@import 'mixins/all';
+@import 'conf';
+
+//=========================================
+//  Размеры шрифта
+//=========================================
+@mixin fontsize_default() {
+  @include font-size(16px, 24px);
+  @include media_interval(0, $media768) {
+    @include font-size(14px, 21px);
+  }
+}
+
+@mixin fontsize_h1() {
+  @include font-size(38px, 46px);
+  @include media_interval(0, $media768) {
+    @include font-size(20px, 26px);
+  }
+}
+
+@mixin fontsize_h2() {
+  @include font-size(30px, 36px);
+  @include media_interval(0, $media768) {
+    @include font-size(18px, 24px);
+  }
+}
+
+//=========================================
+//  Шрифты
+//=========================================
+@mixin font_default() {
+  font-family: Montserrat, Helvetica, sans-serif;
+}
+
+

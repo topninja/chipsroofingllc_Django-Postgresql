@@ -1,0 +1,4 @@
+// Отмена размытия картинок
+@mixin sharp-image() {
+  @include image-rendering(crisp-edges);
+}

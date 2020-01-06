@@ -1,0 +1,43 @@
+@import "mixins";
+
+$icon_size: 32px;
+
+.social-button {
+  display: inline-block;
+  margin-right: 5px;
+  overflow: hidden;
+  width: 32px;
+  cursor: pointer;
+  @include fontsize_default;
+  @include border_radius(45%);
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+    background: $sprite_url no-repeat;
+    background-size: rel-background-size($icon_size, $icon_size);
+  }
+
+  &.social-fb:before {
+    background-position: rel-background-position($icon_size, $icon_size, -30px, -56px);
+  }
+  &.social-tw:before {
+    background-position: rel-background-position($icon_size, $icon_size, -64px, -56px);
+  }
+  &.social-gp:before {
+    background-position: rel-background-position($icon_size, $icon_size, -98px, -56px);
+  }
+  &.social-li:before {
+    background-position: rel-background-position($icon_size, $icon_size, -132px, -56px);
+  }
+  &.social-pn:before {
+    background-position: rel-background-position($icon_size, $icon_size, -166px, -56px);
+  }
+  &.social-vk:before {
+    background-position: rel-background-position($icon_size, $icon_size, -200px, -56px);
+  }
+}

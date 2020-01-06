@@ -1,0 +1,13 @@
+{% for item in paginator.current_page %}
+    <a href="{{ item.image.desktop.url }}" class="example-image">
+
+        <div class="img-wr">
+            <img class="section-image" src="{{ item.image.preview.url }}"
+                 alt="example-image"
+                 title="">
+        </div>
+
+    </a>
+{% endfor %}
+
+{% if paginator.current_page.has_next %}{% include 'examples/more.html' %}{% endif %}

@@ -1,0 +1,27 @@
+<div class="{% block classes %}{{ classes }}{% endblock classes %}">
+  {% block field %}
+    <div class="label-holder">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    </div>
+
+    <div class="control">
+      {{ field }}
+    </div>
+  {% endblock field %}
+
+  {% block help_text %}
+    {% if render_help_text and help_text %}
+      <div class="help-text">
+        <span>{{ help_text }}</span>
+      </div>
+    {% endif %}
+  {% endblock help_text %}
+
+  {% block errors %}
+    {% if render_errors and errors %}
+      <div class="error">
+        <span>{{ errors|first }}</span>
+      </div>
+    {% endif %}
+  {% endblock %}
+</div>

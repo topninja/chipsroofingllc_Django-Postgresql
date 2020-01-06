@@ -1,0 +1,24 @@
+{% extends 'std_page/index.html' %}
+{% load i18n %}
+{% load text %}
+{% load away %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'services' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'services' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  {% render_attached_blocks config set_name='service' %}
+
+{% endblock page_content %}

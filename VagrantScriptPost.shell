@@ -1,0 +1,101 @@
+#!/bin/bash
+
+### dev.py
+DEV_PY_CONTENT=$"from .dev_common import *
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+PIPELINE['PIPELINE_ENABLED'] = False
+
+DOMAIN = '127.0.0.1'
+SESSION_COOKIE_DOMAIN = DOMAIN
+CSRF_COOKIE_DOMAIN = DOMAIN
+ALLOWED_HOSTS = (
+    DOMAIN,
+    'localhost',
+    '127.0.0.1',
+)
+"
+
+DEV_PY="/vagrant/src/settings/dev.py"
+if [ ! -f "$DEV_PY" ]
+then
+    echo "Create dev.py file..."
+	echo "$DEV_PY_CONTENT" > $DEV_PY
+fi
+
+### static dir
+STATIC_DIR="/vagrant/static"
+if [ ! -d "$STATIC_DIR" ]
+then
+    echo "Create static directory..."
+    mkdir $STATIC_DIR
+fi
+
+
+function get_db_name {
+python3 - <<END
+import sys
+sys.path.append('/vagrant/src')
+from settings.dev_common import DATABASES
+
+print(DATABASES['default']['NAME'])
+
+END
+}
+
+function get_db_password {
+python3 - <<END
+import sys
+sys.path.append('/vagrant/src')
+from settings.dev_common import DATABASES
+
+print(DATABASES['default']['PASSWORD'])
+END
+}
+
+function get_db_user {
+python3 - <<END
+import sys
+sys.path.append('/vagrant/src')
+from settings.dev_common import DATABASES
+
+print(DATABASES['default']['USER'])
+END
+}
+
+DB_NAME=$(get_db_name)
+DB_PASSWORD=$(get_db_password)
+DB_USER=$(get_db_user)
+
+### Postgres & Database ###
+echo "Create user '$DB_USER', database '$DB_NAME' with password '$DB_PASSWORD'..."
+su - postgres -c "/usr/bin/createuser -S -d -R $DB_USER"
+su - postgres -c "/usr/bin/createdb -O $DB_USER $DB_NAME"
+su - postgres -c "echo \"alter user $DB_USER with password '$DB_PASSWORD';\" | psql $DB_NAME"
+
+
+echo "Edit /etc/postgresql/9.4/main/pg_hba.conf..."
+
+# меняем local peer на local md5
+sudo sed -i -E "s/local.*all.*all.*peer/local all all md5/" /etc/postgresql/9.4/main/pg_hba.conf
+
+echo "Restart postgres..."
+service postgresql restart
+
+echo "update pip..."
+cd /tmp
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py
+
+echo "pip install requirements/dev.txt..."
+pip install --upgrade -r /vagrant/requirements/dev.txt
+
+#echo "migrate db..."
+#python3 /vagrant/src/manage.py migrate
+
+#echo "collectstatic..."
+#python3 /vagrant/src/manage.py collectstatic --noinput --clear
+
+echo "Done!"

@@ -1,0 +1,15 @@
+@import "mixins";
+
+.users-form {
+  @include fontsize_default;
+}
+
+#ajax-login-form {
+  .open-reset-password-popup {
+    margin-left: 12px;
+  }
+
+  .open-register-popup {
+    margin-left: 10px;
+  }
+}

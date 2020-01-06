@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load file_widget %}
+
+<div class="file-widget {% if value %}has-value has-link{% endif %}" data-old-name="{{ value.name|basename }}">
+  <label for="{{ for_label }}" class="btn btn-small btn-success">
+    <i class="icon-folder-open icon-white"></i>
+    <span>{% if value %}{{ value.name|basename }}{% else %}{% trans 'Choose a file' %}{% endif %}</span>
+  </label>
+
+  <a href="{% if value %}{{ value.url }}{% else %}#{% endif %}" target="_blank" class="preview action-btn btn btn-info" title="{% trans 'View file' %}"></a>
+
+  {% if clear %}
+    <span class="clear action-btn btn btn-danger" title="{% trans 'Delete file' %}">{{ clear }}</span>
+  {% endif %}
+
+  {{ input }}
+</div>

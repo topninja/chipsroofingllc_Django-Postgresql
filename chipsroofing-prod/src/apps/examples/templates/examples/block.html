@@ -1,0 +1,22 @@
+<div class="grid-block">
+    <div class="example-block space-block">
+      <div class="title-part">
+        {% if block.header %}
+          <h2 class="title-h2">{{ block.header }}</h2>
+        {% endif %}
+      </div>
+      <div class="content-part">
+        <div class="example-wr">
+          {% for item in config.gallery.image_items.all|slice:":9" %}
+            <a href="{{ item.image.desktop.url }}" class="example-image">
+                <div class="img-wr"><img class="section-image" src="{{ item.image.desktop.url }}"
+                                          alt="{{ block.header }}"
+                                          title=""></div></a>
+          {% endfor %}
+          <div class="btn-wrapper">
+            <button class="btn-border btn-border-green" onClick='location.href="{% url 'examples:index' %}"'>View more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+{% extends 'admin/base.html' %}
+
+{% load admin_static %}
+{% load i18n %}
+
+
+{% block extrastyle %}
+  <script>
+    var docElement = document.documentElement;
+    docElement.setAttribute('data-google-apikey', '{{ GOOGLE_APIKEY }}');
+  </script>
+  <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+  <link href="{% static 'admin/css/customize.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block extrahead %}
+  {% url 'jsi18n' as jsi18nurl %}
+  <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+  <script type="text/javascript">
+    window.is_superuser = {{ user.is_superuser|yesno:"true, false" }};
+  </script>
+{% endblock %}
+
+{% block header_time %}
+{% endblock %}
+
+{% block welcome-msg %}
+  <span class="username">{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</span>
+{% endblock %}
+
+{% block userlinks %}
+  {% url 'django-admindocs-docroot' as docsroot %}
+  {% if docsroot %}
+    <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+    <span class="separator">|</span>
+  {% endif %}
+  <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
+  <span class="separator">|</span>
+  <form method="post" action="{% url 'admin:logout' %}" class="logout">
+    {% csrf_token %}
+    <button type="submit">{% trans 'Log out' %}</button>
+  </form>
+{% endblock %}
+
+{% block footer %}
+  {% if not is_popup %}
+    <div id="footer" class="footer">
+      <div class="content">
+        <div class="help-box">
+          <p>Please contact us if you have any problems</p>
+        </div>
+
+        <div class="phone-box">
+          <p>+1 267 626 2554</p>
+        </div>
+
+        <div class="email-box">
+          <p><a href="mailto:office@directlinedev.com">office@directlinedev.com</a></p>
+        </div>
+
+        <div class="logo-box">
+          <a href="http://directlinedev.com" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock footer %}

@@ -1,0 +1,21 @@
+.page-files {
+    margin: 1em 0;
+    padding: 8px;
+    background: #eee;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 1px #fff inset, 0 -1px 0 #ccc inset;
+}
+
+.page-files .cke_widget_drag_handler_container {
+    top: 0 !important;
+    width: 100%;
+    height: 100% !important;
+    background: transparent !important;
+}
+
+.page-files .cke_widget_drag_handler_container img {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}

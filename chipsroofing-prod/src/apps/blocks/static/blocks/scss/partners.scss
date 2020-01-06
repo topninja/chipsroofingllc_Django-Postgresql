@@ -1,0 +1,38 @@
+@import "mixins";
+
+.partners-block {
+  position: relative;
+  background-color: #00af86;
+
+  .title-h2 {
+    color: $white;
+    padding-bottom: 45px;
+
+    @include media_interval(0, $media768) {
+      padding-bottom: 30px;
+    }
+
+    @include media_interval(0, $media480){
+      max-width: 220px;
+    }
+  }
+}
+
+.swiper-container-autoheight .swiper-wrapper {
+  padding-bottom: 36px;
+  @include align-items(center);
+}
+.swiper-slide {
+  text-align: left;
+}
+.swiper-container {
+  margin: 0 auto;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  /* Fix of Webkit flickering */
+  z-index: 1;
+  @include media_interval($media1024, 0){
+      overflow: hidden;
+  }
+}

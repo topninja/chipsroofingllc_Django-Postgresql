@@ -1,0 +1,50 @@
+@import "mixins";
+
+$size: 50px;
+$color: #0080b0;
+$bg_color: $white;
+
+
+@keyframes loading {
+  20% {
+    border-width: 8px;
+    width: 0;
+    height: 0;
+  }
+
+  90% {
+    border-width: 8px;
+    width: 87.5%;
+    height: 87.5%;
+  }
+
+  100% {
+    border-width: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.preloader {
+  position: relative;
+  display: inline-block;
+  width: $size;
+  height: $size;
+  z-index: 1;
+  vertical-align: middle;
+  background-color: $color;
+  @include border_radius(50%);
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 0 solid $bg_color;
+    animation: loading 1000ms linear forwards infinite;
+    @include border_radius(50%);
+    @include transform(translate(-50%, -50%));
+  }
+}
+

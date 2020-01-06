@@ -1,0 +1,13 @@
+{% load form_helper %}
+{% load i18n %}
+
+<p class="title title-h1">{% trans 'Subscribe' %}</p>
+
+{{ form.media }}
+<form method="post" action="{% url 'mailerlite:ajax_subscribe' %}" id="ajax-subscribe-form" autocomplete="off">
+  {% render_form form %}
+
+  <div>
+    <button type="submit" class="btn">{% trans 'Submit' %}</button>
+  </div>
+</form>

@@ -1,0 +1,64 @@
+@import "mixins";
+
+/*
+    Кастомная таблица. Например, для shop и для backup
+*/
+.admin-table {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  width: auto;
+  z-index: 2;
+  @include border_radius(4px);
+  @include box-shadow(0 0 0 1px rgba(0, 0, 0, 0.07));
+
+  thead, tfoot {
+    background: no-repeat #e5e5e5;
+    @include linear-gradient(to bottom, #f3f3f3 0%, #e5e5e5 100%);
+    @include background-clip(padding-box);
+  }
+
+  td, th {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  thead {
+    td, th {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-last-of-type(1) {
+        td, th {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    td, th {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  tfoot {
+    td, th {
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+  }
+
+
+  &.table-valign-middle {
+    tbody {
+      td, th {
+        vertical-align: middle;
+      }
+    }
+  }
+}

@@ -1,0 +1,587 @@
+@import "mixins";
+
+$blue: #3991C9;
+$footer_2col: $media768;
+$footer_1col: $media480;
+
+
+// стилизация шапки
+.header {
+  height: 55px;
+  text-shadow: none;
+  background: $blue;
+
+  #branding {
+    height: 55px;
+    border-right: none;
+
+    h1 {
+      margin-left: 18px;
+      margin-top: 8px;
+      text-shadow: none;
+      font-weight: normal;
+      @include font-size(24px);
+    }
+  }
+
+  #user-tools {
+    padding-top: 17px;
+    @include font-size(15px);
+
+    .username {
+      color: #2C3035;
+    }
+
+    .separator {
+      color: white;
+    }
+  }
+
+  .logout {
+    display: inline-block;
+    margin: 0;
+    vertical-align: bottom;
+
+    button {
+      display: inline;
+      padding: 0;
+      color: white;
+      border: none;
+      background: none;
+      font-size: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  a {
+    color: white;
+  }
+}
+
+
+// стилизация меню
+#wrap {
+  background: #FAFAFA;
+  @include flexbox;
+  @include flex-flow(column nowrap);
+}
+
+#container {
+  @include flexbox;
+  @include flex-grow(1);
+  @include flex-flow(column nowrap);
+}
+
+.suit-columns {
+  padding-left: 0;
+  padding-right: 0;
+  @include flexbox;
+}
+
+#suit-center {
+  width: auto;
+  @include flex(1 0 0);
+}
+
+#suit-left {
+  width: 220px;
+  float: none;
+  right: 0;
+  margin-left: 0;
+  background: #F5F9FC;
+  border-right: 1px solid #DADADA;
+  @include flex(0 0 220px);
+}
+
+#left-nav {
+  margin-top: 0;
+  margin-bottom: 100px;
+  @include font-size(13px);
+
+  ul {
+    border-bottom: none;
+  }
+
+  li {
+    border: none;
+
+    a {
+      padding: 6px 8px 6px 27px;
+      text-shadow: none;
+      border-bottom: none;
+      background: inherit;
+
+      &:hover {
+        background: rgba($blue, 0.1);
+      }
+    }
+  }
+
+  & > ul {
+    padding: 14px 0;
+
+    a {
+      color: #0088cc;
+      font-weight: normal;
+    }
+
+    // подменюхи
+    ul {
+      display: none;
+      padding: 0;
+
+      li.active > a {
+        color: #333;
+        font-weight: bold;
+      }
+    }
+
+    // показ подменню активного пункта
+    li.active {
+      & > ul {
+        display: block;
+        @include box-shadow(none);
+      }
+    }
+
+    // подменю в окне
+    li:not(.active):hover {
+      background: rgba($blue, 0.1);
+
+      & > ul {
+        display: block;
+        position: absolute;
+        left: 100%;
+        padding: 0;
+        margin-top: -30px;
+        margin-right: -250px;
+        z-index: 10;
+        @include background-clip(padding-box);
+        @include border_radius(4px);
+        @include box-shadow(0 0 3px rgba(0, 0, 0, 0.4));
+
+        & > li {
+
+          & > a {
+            padding: 5px 25px 5px 15px;
+            @include font-size(14px);
+          }
+
+          &:first-child a {
+            padding-top: 7px;
+          }
+
+          &:last-child a {
+            padding-bottom: 7px;
+          }
+        }
+      }
+    }
+
+    // меню первого уровня
+    & > li {
+      & > a {
+        padding: 8px 10px 8px 18px;
+
+        i {
+          display: none;
+        }
+      }
+
+      // активный пункт первого меню
+      &.active {
+        & > a {
+          color: #FFF;
+          background: $blue;
+          &:after {
+            content: none;
+          }
+        }
+      }
+
+      & > ul {
+        padding: 7px 0;
+      }
+
+      & > ul > li > a {
+        padding-left: 27px;
+      }
+
+      & > ul > li > ul > li > a {
+        padding-left: 45px;
+      }
+
+      &.separator {
+        background: #E8E8E8 !important;
+      }
+    }
+  }
+}
+
+
+// стилизация хлебных крошек
+.breadcrumb, .breadcrumbs {
+  padding: 12px 20px;
+  margin: 0;
+  @include font-size(14px);
+}
+
+// правка сообщений
+#suit-center > .alert {
+  margin: 10px 20px 0;
+}
+
+// стилизация кнопок
+.btn {
+  padding: 8px 16px;
+  color: #333333;
+  text-shadow: none;
+  border: none;
+  @include font-size(13px, 16px);
+  @include box-shadow(inset 0px 0px 0px 1px #d0d0d0);
+  @include border_radius(7px);
+  @include linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+
+  &.btn-small {
+    padding: 6px 14px;
+    @include font-size(12px);
+  }
+
+  &.btn-mini {
+    padding: 4px 10px;
+    @include font-size(12px);
+    @include border_radius(5px);
+
+    [class^="icon-"], [class*=" icon-"] {
+      margin: 1px;
+    }
+  }
+
+  &:hover {
+    text-decoration: none !important;
+    background-position: 0 0;
+    @include linear-gradient(to bottom, #EFEFEF, #D6D6D6);
+  }
+
+  &:focus {
+    background-position: 0 0;
+  }
+
+  &:active {
+    background-image: none;
+    @include box-shadow(inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05));
+  }
+
+  &.btn-success {
+    color: white;
+    @include box-shadow(none);
+    @include linear-gradient(to bottom, #44B446, #1CA41C);
+
+    &:hover {
+      @include linear-gradient(to bottom, #5ABC59, #32AD31);
+    }
+
+    &:active {
+      @include linear-gradient(to bottom, #1CA41C, #44B446);
+    }
+  }
+
+  &.btn-info {
+    color: white;
+    @include box-shadow(none);
+    @include linear-gradient(to bottom, #60A7D3, #3B92C8);
+
+    &:hover {
+      @include linear-gradient(to bottom, #71B1D7, #4F9DCE);
+    }
+
+    &:active {
+      @include linear-gradient(to bottom, #3B92C8, #60A7D3);
+    }
+  }
+
+  &.btn-primary {
+    color: white;
+    @include box-shadow(none);
+    @include linear-gradient(to bottom, #5EC9FF, #36BBFC);
+
+    &:hover {
+      @include linear-gradient(to bottom, #6ECEFE, #4BC3FF);
+    }
+
+    &:active {
+      @include linear-gradient(to bottom, #36BBFC, #5EC9FF);
+    }
+  }
+
+  &.btn-warning {
+    color: white;
+    @include box-shadow(none);
+    @include linear-gradient(to bottom, #FE8333, #FE6601);
+
+    &:hover {
+      @include linear-gradient(to bottom, #FF9048, #FF751C);
+    }
+
+    &:active {
+      @include linear-gradient(to bottom, #FE6601, #FE8333);
+    }
+  }
+
+  &.btn-danger {
+    color: white;
+    @include box-shadow(none);
+    @include linear-gradient(to bottom, #E33F40, #DC100F);
+
+    &:hover {
+      @include linear-gradient(to bottom, #E55354, #E02828);
+    }
+
+    &:active {
+      @include linear-gradient(to bottom, #DC100F, #E33F40);
+    }
+  }
+}
+
+
+// стили контента
+#suit-center {
+  padding: 0;
+  float: none;
+}
+
+#content {
+  padding: 20px;
+  @include border-box;
+}
+
+
+// новые стрелки сортировки
+.sortable-up {
+  line-height: 1;
+
+  i {
+    width: 16px;
+    background: url(../img/sprite.svg) no-repeat -68px -3px;
+  }
+}
+.sortable-down {
+  line-height: 1;
+
+  i {
+    width: 16px;
+    background: url(../img/sprite.svg) no-repeat -88px -3px;
+  }
+}
+.inline-sortable a {
+  padding: 2px;
+  margin-right: 8px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.stacked-inline-sortable a {
+  padding: 2px;
+  margin-right: 4px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+
+// стили форм
+.form-horizontal .control-group .controls {
+  background: #F8F8F8;
+}
+
+// стили вкладок
+.nav-tabs-suit li.active a, .nav-tabs-suit li.active a:hover {
+  background: transparent;
+  border-bottom: 1px solid #F8F8F8;
+}
+
+
+// подвал
+#footer {
+  margin: 0;
+  background: #F2F2F2;
+
+  .content {
+    margin: 0 auto;
+    padding: 20px 60px 0;
+    max-width: 1400px;
+    border: 0;
+    @include flexbox;
+    @include media_interval($footer_1col, $footer_2col) {
+      padding: 20px 20px 0;
+    }
+    @include media_interval(0, $footer_1col) {
+      padding: 20px 0 0;
+    }
+
+    p {
+      margin: 4px 0 0;
+      color: #2C3035;
+      @include font-size(13px, 16px);
+    }
+
+    .help-box {
+      margin-right: 4%;
+      @include media_interval(0, $footer_2col) {
+        display: none;
+      }
+    }
+
+    .phone-box {
+      margin-right: 4%;
+    }
+
+    .email-box {
+      @include media_interval(0, $media400) {
+        display: none;
+      }
+    }
+
+    .logo-box {
+      text-align: right;
+      @include flex-grow(1);
+
+      a {
+        display: inline-block;
+        width: 66px;
+        height: 20px;
+        background: url(/static/admin/img/sprite.svg) no-repeat 0 0;
+      }
+    }
+  }
+}
+
+/*
+  ======================================
+        Jquery UI
+  ======================================
+*/
+.ui-widget {
+  font-family: 'Roboto', sans-serif;
+
+  input, select, textarea, button {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+.ui-widget-content {
+  border: none;
+}
+
+.ui-widget-header {
+  border: none;
+}
+
+.ui-dialog {
+  padding: 0;
+  border: none;
+  @include border_radius(7px);
+
+  .ui-dialog-content {
+    padding: .5em 1em 0;
+    margin-bottom: 0;
+  }
+
+  .ui-dialog-titlebar {
+    padding: .6em 1em;
+    @include border_radius(0);
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 10px;
+      background: $blue;
+      z-index: 0;
+    }
+  }
+
+  .ui-dialog-titlebar-close {
+    margin: -12px 0 0 0;
+    width: 24px;
+    height: 24px;
+    right: .8em;
+    border: none;
+    background: transparent;
+
+    .ui-button-icon-primary {
+      display: none;
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 86%;
+      height: 14%;
+      background: white;
+      @include border_radius(4px);
+    }
+
+    &:before {
+      @include transform(translate(-50%, -50%) rotate(-45deg));
+    }
+
+    &:after {
+      @include transform(translate(-50%, -50%) rotate(45deg));
+    }
+
+    &:hover {
+      &:before, &:after {
+        background: #DADADA;
+      }
+    }
+  }
+
+  textarea {
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    min-height: 100px;
+    font-size: 14px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  // footer
+  .ui-dialog-buttonpane {
+    margin-top: 0;
+  }
+
+  .btn {
+    border: none;
+
+    &:not(.btn-info) {
+      @include linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    }
+  }
+}
+
+/*
+  Buttons
+*/
+.btn.ui-button {
+  padding: 0;
+}
+
+.btn-info.ui-button .ui-icon {
+  background-image: url(../css/jquery-ui/images/ui-icons_ffffff_256x240.png);
+}
+
+.ui-icon-check {
+  background-position: -64px -145px;
+}

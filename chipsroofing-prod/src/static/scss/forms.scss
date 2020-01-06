@@ -1,0 +1,273 @@
+@import 'mixins';
+
+form {
+  max-width: 100%;
+  @include border-box;
+}
+
+// стандартные стили полей в форме
+.field {
+  margin-bottom: $field_space;
+  max-width: 100%;
+  width: 380px;
+  @include border-box;
+
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+
+  .label-holder {
+    margin-bottom: 4px;
+    text-align: left;
+    @include fontsize_default;
+  }
+
+  .control {
+    max-width: 100%;
+    @include border-box;
+    @include font_default;
+    @include font-size(15px, 19px);
+
+    @include media_interval(0, $media480) {
+      width: 100%; // fix old safari
+    }
+
+    .select{
+      position: relative;
+      &:before {
+        content: " ";
+        position: absolute;
+        top: 15px;
+        right: 12px;
+        bottom: 8px;
+        width: 0.4em;
+        height: 0.4em;
+        border-right: 0.2em solid #4dc7aa;
+        border-top: 0.2em solid #4dc7aa;
+        transform: rotate(135deg);
+        z-index: 1;
+      }
+    }
+
+    input, select, textarea, .input {
+      padding: 10px 20px;
+      width: 100%;
+      outline: solid 2px #4dc7aa;
+      background-color: #00af86;
+      color: #ffffff;
+      @include border-box;
+
+      &:focus{
+        outline: solid 2px #ffffff;
+      }
+    }
+
+    input::-moz-placeholder {
+      color: #ffffff;
+    }
+    input::-webkit-input-placeholder {
+      color: #ffffff;
+    }
+    textarea::-moz-placeholder {
+      color: #ffffff;
+    }
+    textarea::-webkit-input-placeholder {
+      color: #ffffff;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      position: relative;
+    }
+  }
+
+
+  // класс на поле с ошибкой
+  &.invalid {
+    input, select, textarea, .input {
+      outline: 2px solid $pink;
+      padding: 10px 20px;
+    }
+  }
+
+  // класс текстового описания ошибки
+  .error {
+    margin-left: 10px;
+    color: #FF0000;
+    @include font-size(12px);
+  }
+}
+
+
+
+/*
+    Кастомизация чекбоксов.
+    ОБЯЗАТЕЛЬНО наличие label после input.
+*/
+$checkbox_size: 16px;
+$checkbox_background: $white;
+$checkbox_border_width: 1px;
+$checkbox_border_color: #AAAAAA;
+$checkbox_icon_size: (14px, 13px);
+$checkbox_icon_offset: (2px, 3px);      // left, top
+
+input[type=checkbox] {
+  // прячем оригинал
+  position: absolute;
+  width: auto;
+  left: -9999px;
+  @include opacity(0);
+
+  & + label {
+    position: relative;
+    display: inline-block;
+    padding-left: $checkbox_size + 10px;
+    margin: 0;
+    @include border-box;
+    @include fontsize_default;
+    line-height: $checkbox_size + 2 * $checkbox_border_width;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $checkbox_size;
+      height: $checkbox_size;
+      z-index: 1;
+      background: $checkbox_background;
+      border: $checkbox_border_width solid $checkbox_border_color;
+      @include border_radius(4px);
+    }
+
+    span {
+      @include unselectable;
+    }
+
+    // переключатель
+    &:after {
+      content: '';
+      position: absolute;
+      left: nth($checkbox_icon_offset, 1);
+      top: nth($checkbox_icon_offset, 2);
+      width: nth($checkbox_icon_size, 1);
+      height: nth($checkbox_icon_size, 2);
+      z-index: 1;
+      background: $sprite_url no-repeat -268px 0;
+      @include opacity(0);
+      @include transition(opacity 0.1s);
+    }
+  }
+
+  &:checked {
+    & + label {
+      &:after {
+        @include opacity(1);
+      }
+    }
+  }
+
+  &:disabled {
+    & + label {
+      &:before {
+        background: darken($checkbox_background, 10%);
+      }
+    }
+
+    &:checked {
+      & + label {
+        &:after {
+          @include opacity(0.5);
+        }
+      }
+    }
+  }
+}
+
+/*
+    Кастомизация радиоксов.
+    ОБЯЗАТЕЛЬНО наличие label после input.
+*/
+$radiobox_size: 16px;
+$radiobox_background: $white;
+$radiobox_border_width: 1px;
+$radiobox_border_color: #AAAAAA;
+$radiobox_dot_gap: 3px;
+$radiobox_dot_color: #000000;
+$radiobox_dot_size: $radiobox_size - 2 * $radiobox_dot_gap;
+
+input[type=radio] {
+  // прячем оригинал
+  position: absolute;
+  width: auto;
+  left: -9999px;
+  @include opacity(0);
+
+  & + label {
+    position: relative;
+    display: inline-block;
+    padding-left: $radiobox_size + 10px;
+    margin: 0;
+    @include border-box;
+    @include fontsize_default;
+    line-height: $radiobox_size + 2 * $radiobox_border_width;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $radiobox_size;
+      height: $radiobox_size;
+      z-index: 1;
+      background: $radiobox_background;
+      border: $radiobox_border_width solid $radiobox_border_color;
+      @include border_radius(50%);
+    }
+
+    span {
+      @include unselectable;
+    }
+
+    // переключатель
+    &:after {
+      content: '';
+      position: absolute;
+      top: $radiobox_border_width + $radiobox_dot_gap;
+      left: $radiobox_border_width + $radiobox_dot_gap;
+      width: $radiobox_dot_size;
+      height: $radiobox_dot_size;
+      z-index: 1;
+      background: $radiobox_dot_color;
+      @include opacity(0);
+      @include border_radius(50%);
+      @include transition(opacity 0.2s);
+    }
+  }
+
+  &:checked {
+    & + label {
+      &:after {
+        @include opacity(1);
+      }
+    }
+  }
+
+  &:disabled {
+    & + label {
+      &:before {
+        background: darken($radiobox_background, 10%);
+      }
+    }
+
+    &:checked {
+      & + label {
+        &:after {
+          @include opacity(0.5);
+        }
+      }
+    }
+  }
+}

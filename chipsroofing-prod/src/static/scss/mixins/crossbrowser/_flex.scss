@@ -1,0 +1,182 @@
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+// row | row-reverse | column | column-reverse
+@mixin flex-direction($direction) {
+  @if ($direction == 'row-reverse') {
+    -webkit-box-direction: reverse;
+  } @else if ($direction == 'column') {
+    -webkit-box-orient: vertical;
+  } @else if ($direction == 'column') {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+  }
+
+  -webkit-box-flex-direction: $direction;
+  -moz-box-flex-direction: $direction;
+  -webkit-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap) {
+  -webkit-box-flex-wrap: $wrap;
+  -moz-box-flex-wrap: $wrap;
+  -webkit-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+// flex-start | flex-end | center | space-between | space-around
+@mixin justify-content($alignment) {
+  $old_map: (
+    flex-start: start,
+    flex-end: end,
+    center: center,
+    space-between: justify,
+  );
+  @if map_has_key($old_map, $alignment) {
+    -webkit-box-pack: map_get($old_map, $alignment);
+  }
+
+  -webkit-box-justify-content: $alignment;
+  -moz-box-justify-content: $alignment;
+  -webkit-justify-content: $alignment;
+  -ms-justify-content: $alignment;
+  justify-content: $alignment;
+}
+
+// flex-start | flex-end | center | baseline | stretch
+@mixin align-items($alignment) {
+  $old_map: (
+    flex-start: start,
+    flex-end: end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  );
+  @if map_has_key($old_map, $alignment) {
+    -webkit-box-align: map_get($old_map, $alignment);
+  }
+
+  -webkit-box-align-items: $alignment;
+  -moz-box-align-items: $alignment;
+  -webkit-align-items: $alignment;
+  -ms-align-items: $alignment;
+  align-items: $alignment;
+}
+
+// flex-start | flex-end | center | space-between | space-around | stretch
+@mixin align-content($alignment) {
+  -webkit-box-align-content: $alignment;
+  -moz-box-align-content: $alignment;
+  -webkit-align-content: $alignment;
+  -ms-align-content: $alignment;
+  align-content: $alignment;
+}
+
+// auto | flex-start | flex-end | center | baseline | stretch
+@mixin align-self($alignment) {
+  -webkit-box-align-self: $alignment;
+  -moz-box-align-self: $alignment;
+  -webkit-align-self: $alignment;
+  -ms-align-self: $alignment;
+  align-self: $alignment;
+}
+
+// int >= 0
+@mixin flex-grow($grow) {
+  @if ($grow != 0) {
+    -webkit-box-flex: $grow;
+  }
+
+  -webkit-box-flex-grow: $grow;
+  -moz-box-flex-grow: $grow;
+  -webkit-flex-grow: $grow;
+  -ms-flex-grow: $grow;
+  flex-grow: $grow;
+}
+
+// int >= 0
+@mixin flex-shrink($shrink) {
+  -webkit-box-flex-shrink: $shrink;
+  -moz-box-flex-shrink: $shrink;
+  -webkit-flex-shrink: $shrink;
+  -ms-flex-shrink: $shrink;
+  flex-shrink: $shrink;
+}
+
+// int
+@mixin order($order) {
+  -webkit-box-ordinal-group: $order;
+  -moz-box-ordinal-group: $order;
+  -ms-flex-order: $order;
+  -webkit-order: $order;
+  order: $order;
+}
+
+// length | auto
+@mixin flex-basis($basis) {
+  @if ($basis == 0) {
+    // IE fix
+    $basis: 0%;
+  }
+
+  -webkit-box-flex-basis: $basis;
+  -moz-box-flex-basis: $basis;
+  -webkit-flex-basis: $basis;
+  -ms-flex-basis: $basis;
+  flex-basis: $basis;
+}
+
+// <'flex-direction'> || <'flex-wrap'>
+@mixin flex-flow($args...) {
+  $params: nth($args, 1);
+  @if (length($params) == 2) {
+    $direction: nth($params, 1);
+    @if ($direction == 'row-reverse') {
+      -webkit-box-direction: reverse;
+    } @else if ($direction == 'column') {
+      -webkit-box-orient: vertical;
+    } @else if ($direction == 'column') {
+      -webkit-box-direction: reverse;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  -webkit-box-flex-flow: $args;
+  -moz-box-flex-flow: $args;
+  -webkit-flex-flow: $args;
+  -ms-flex-flow: $args;
+  flex-flow: $args;
+}
+
+// none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+@mixin flex($args...) {
+  $result: ();
+  $params: nth($args, 1);
+
+  @if (length($params) == 3) {
+    @if (nth($params, 1) != 0) {
+      -webkit-box-flex: nth($params, 1);
+    }
+  }
+
+  // IE fix
+  @if ((length($params) == 3) and (nth($params, 3) == 0)) {
+    $result: replace-nth($params, 3, 0.1px);  // 0.1px - хак для cssmin
+  } @else {
+    $result: $params;
+  }
+
+  -moz-box-flex: $result;
+  -webkit-flex: $result;
+  -ms-flex: $result;
+  flex: $result;
+}

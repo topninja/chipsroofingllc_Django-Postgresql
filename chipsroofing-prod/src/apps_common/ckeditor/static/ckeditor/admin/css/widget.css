@@ -1,0 +1,18 @@
+.cke_combo_label,
+.cke_button_label,
+.cke_voice_label {
+    display: none !important;
+}
+
+.cke_button__source_label,
+.cke_button__sourcedialog_label {
+    display: inline !important;
+}
+
+.cke_top, .cke_contents, .cke_bottom {
+    display: block !important;
+}
+
+.inline-related.tabular .cke_source {
+    white-space: pre-wrap;
+}

@@ -1,0 +1,6 @@
+// Пример: @include box_sizing(border-box);
+@mixin box-sizing($args...) {
+  -webkit-box-sizing: $args;
+  -moz-box-sizing: $args;
+  box-sizing: $args;
+}

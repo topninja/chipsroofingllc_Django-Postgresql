@@ -1,0 +1,23 @@
+{% load form_helper %}
+{% load i18n %}
+
+<p class="title-h1">{% trans 'Free Estimate' %}</p>
+
+<form method="post" action="" id="ajax-free-estimate-form" autocomplete="off">
+  {% csrf_token %}
+  {% render_field form 'type_message' %}
+  {% render_field form 'name' %}
+  {% render_field form 'email' %}
+  {% render_field form 'phone' %}
+  {% render_field form 'message' %}
+
+  <div class="recaptcha__wrapper">
+    <p class="recaptcha__text">This site is protected by reCAPTCHA and the Google</p>
+    <a class="recaptcha__link" href="https://policies.google.com/privacy">Privacy Policy</a> <span class="recaptcha__text">and</span>
+    <a class="recaptcha__link" href="https://policies.google.com/terms">Terms of Service</a> <span class="recaptcha__text">apply.</span>
+  </div>
+  <div id="popup_recaptcha_estimate" class="g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_PUBLIC_KEY }}" data-size="invisible"></div>
+  <div>
+    <button id="ajax-estimate-submit" type="submit" class="btn btn-popup btn-popup-estimate btn-red tag-estimate">{% trans 'ESTIMATE' %}</button>
+  </div>
+</form>

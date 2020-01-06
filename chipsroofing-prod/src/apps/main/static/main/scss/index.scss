@@ -1,0 +1,367 @@
+@import "mixins";
+
+.main-preloader {
+  display: block;
+}
+
+.section-header2 {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 1300px;
+}
+
+$icon_size: 42px;
+
+.wrap-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.homeDesc {
+  display: block;
+  @include media_interval(0, 640px) {
+    display: none;
+  }
+}
+
+.homeMob {
+  display: none;
+  @include media_interval(0, 640px) {
+    display: block;
+  }
+}
+
+.section-header{
+  padding-top: 156px;
+  //height: calc(100vh + 380px);
+  z-index: -1;
+  width: 100%;
+  background: #061123;
+  background: radial-gradient(at center,   #043659, #07192d);
+  @include box-sizing(border-box);
+  @include media_interval(0, $media600){
+    padding-top: 140px;
+  }
+  @include media_interval($media600, $media768){
+    padding-top: 160px;
+  }
+
+
+  .wr-section {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+
+    @include media_interval($media400, $media600) {
+      min-height: 295px;
+      max-height: 550px;
+    }
+    @include media_interval(0, $media400) {
+      min-height: 295px;
+      max-height: 450px;
+    }
+    @include media_interval($media768, 0) {
+      min-height: 450px;
+    }
+    .grid-block {
+      @include media_interval(0, $media768) {
+        padding: 0;
+      }
+    }
+    .wr {
+      position: relative;
+      @include media_interval(0, $media480) {
+        margin: 0 -55px 0 -90px;
+      }
+      .homeDescImg{
+        display: none;
+      }
+      .homeMobImg{
+        display: none;
+      }
+      svg{
+        max-width: 1150px;
+        &.svg-ie{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        }
+      }
+    }
+
+  }
+}
+
+.title-h1-main {
+  color: $white;
+  font-weight: bold;
+  @include font-size(40px, 47px);
+   @include media_interval($media640, $media1024) {
+     @include font-size(30px, 38px);
+  }
+  @include media_interval($media480, $media640) {
+    margin-bottom: 15px;
+   @include font-size(25px, 33px);
+  }
+  @include media_interval(0, $media480) {
+    @include font-size(20px, 28px);
+  }
+}
+
+.text{
+  color: $white;
+  font-style: italic;
+  @include font_default;
+  @include fontsize_default;
+}
+
+.g-service-block {
+  .animated {
+    > a, g {
+      visibility: hidden;
+      @include opacity(0);
+      @include transition(opacity .8s)
+    }
+  }
+    &:hover {
+      .animated {
+      > a, g {
+        visibility: visible;
+        @include opacity(1);
+      }
+    }
+
+  }
+}
+
+.title-part {
+  display: flex;
+  flex: 0 1 20%;
+  vertical-align: top;
+  padding-bottom: 50px;
+  @include media_interval(0, $media900) {
+    padding-bottom: 0;
+    @include flex(0 0 100%);
+  }
+
+  @include media_interval(0, $media768){
+    flex-wrap: wrap;
+  }
+
+  .title-h2{
+    max-width: 400px;
+    color: $white;
+  }
+
+  .img{
+    display: inline-block;
+    position: relative;
+    width: 480px;
+    object-fit: contain;
+    margin-left: 100px;
+    margin-bottom: 70px;
+
+    @include media_interval(0, $media768){
+      width: 100%;
+      margin-bottom: 50px;
+      margin-left: 0;
+    }
+  }
+}
+.description-main {
+ padding: 50px 0 130px;
+   @include media_interval($media768, $media1024) {
+    padding: 20px 0 80px;
+   }
+  @include media_interval(0, $media768){
+    padding-top: 30px;
+    padding-bottom: 50px;
+    }
+}
+.services-block {
+  padding-top: 0;
+  position: relative;
+  .services-box {
+    @include media_interval(0, $media768){
+      padding-top: 0;
+    }
+  }
+
+  .img{
+    margin-bottom: 40px;
+
+    @include media_interval(0, $media768){
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.testimonials-bg{
+  background-color: #f2f8fb;
+}
+
+.icons-wr, .estimate-block {
+    &:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -1px;
+    left: -100%;
+    width: 9999px;
+    height: 101%;
+    background-color: #ffffff;
+    z-index: -1;
+  }
+}
+
+.estimate-block{
+  &:after{
+    top: 0;
+    background-color: #f2f8fb;
+     z-index: 0;
+  }
+}
+
+.popup {
+  &.service-popup{
+    .popup-wrapper{
+      max-width: none;
+    }
+    .popup-window{
+      margin: 0;
+      max-width: none;
+      height: 100%;
+      width: 100%;
+      @include media_interval(0, $media1024) {
+        max-width: none;
+        margin: 0;
+      }
+    }
+
+    .popup-close-button {
+      top: 50px;
+      right: 160px;
+      width: 40px;
+      height: 40px;
+      @include media_interval($media1200, 1400px) {
+        right: 100px;
+      }
+      @include media_interval($media768, $media1200) {
+        right: 50px;
+      }
+      @include media_interval(0, $media768) {
+        top: -4px;
+        right: -4px;
+        background-color: $white;
+      }
+
+      &:before, &:after {
+        width: 30px;
+        height: 2px;
+        background: $green;
+      }
+    }
+    .popup-content {
+      background-color: $white;
+      padding: 0;
+      height: 100%;
+      @include media_interval(0, $media768) {
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .wr-popup-service {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        @include flexbox;
+        @include flex-direction(row);
+        @include media_interval(0, $media768) {
+          height: auto;
+          @include flex-direction(column);
+        }
+        .wr-flex{
+          height: 100%;
+          width: 36%;
+          padding-left: 60px;
+          padding-right: 100px;
+          @include flexbox;
+          @include flex-direction(column);
+          @include justify-content(center);
+          @include box-sizing(border-box);
+          @include media_interval($media768, $media900) {
+            width: 45%;
+          }
+          @include media_interval($media768, $media1200) {
+            padding: 0 30px;
+          }
+          @include media_interval(0, $media768) {
+            width: 100%;
+            padding: 0;
+            @include align-items(center);
+          }
+          @include media_interval(0, $media400) {
+            padding-left: 30px;
+          }
+        }
+        .img{
+          position: relative;
+          left: 0;
+          height: 100%;
+          top: 0;
+          width: 64%;
+          overflow: hidden;
+          @include flexbox;
+          @include media_interval($media768, $media900) {
+            width: 55%;
+          }
+          @include media_interval(0, $media768) {
+            position: relative;
+            width: 100%;
+          }
+          @include media_interval($media600, $media768) {
+            height: 400px;
+          }
+          @include media_interval(0, $media600) {
+            height: 300px;
+          }
+          .section-image {
+            @include centrizeImage(1, 100%);
+          }
+        }
+      }
+      .service {
+        padding: 30px 30px 45px 30px;
+        @include flexbox;
+        @include flex-direction(column);
+        @include box-sizing(border-box);
+        @include font_default;
+
+        @include media_interval($media400, $media768) {
+          position: relative;
+          width: 60%;
+          padding: 30px;
+          padding-right: 0;
+        }
+        @include media_interval(0, $media400) {
+          position: relative;
+          width: 100%;
+          padding: 30px;
+        }
+
+        .description {
+          width: 220px;
+          @include media_interval(0, $media768) {
+            width: auto;
+          }
+        }
+        .btn {
+          max-width: 160px;
+        }
+      }
+    }
+  }
+}

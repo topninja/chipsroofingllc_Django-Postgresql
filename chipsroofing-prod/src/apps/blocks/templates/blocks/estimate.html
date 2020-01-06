@@ -1,0 +1,53 @@
+{% load i18n %}
+
+<div class="wow fadeInLeft animated"  data-wow-delay=".8s" data-wow-duration="1s">
+
+{% if is_main_page %}
+
+  <div id="icons" class="icons-wr">
+    <div class="background-block"></div>
+    <div class="grid">
+      <div class="widthBlock gc-wide-10 gc-11 gc-tablet-11 gc-mobile-full">
+        <div class="wrap-icon">
+          {% for block in block.estimate.all %}
+            <div class="icon-block">
+              <div class="icon {{ block.icon }}"></div>
+              <div class="description">{{ block.title }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+
+<div id="estimate" class="estimate-block">
+  <div class="shadow-block">
+    {% if block.image %}
+      {% if block.image %}
+        <img class="estimate-bg"
+             src="{{ block.image.normal.url }}"
+             alt="{{ block.header }}"
+             srcset="{{ block.image.normal.srcset }}, {{ block.image.tablet.srcset }}, {{ block.image.mobile.srcset }}"
+             sizes="(min-width: 1024px) 1090px, (min-width: 768px) 600px (min-width: 480px) 290px">
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <div class="grid">
+    <div class="widthBlock gc-wide-10 gc-11 gc-tablet-11 gc-mobile-full">
+      {% if block.header %}
+        <h2 class="title-h2">{{ block.header }}</h2>
+      {% endif %}
+      {% if block.description %}
+        <div class="description">{{ block.description }}</div>
+      {% endif %}
+      <div class="btn-wrapper">
+        <button class="btn btn-red open-free-estimate-popup tag-estimate">{% trans 'FREE ESTIMATE' %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>

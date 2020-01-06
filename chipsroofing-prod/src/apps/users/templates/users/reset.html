@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% load form_helper %}
+{% load i18n %}
+
+
+{% block content %}
+  <div class="grid-block">
+    <h1 class="title-h1">{% trans 'Password reset' %}</h1>
+
+    {{ form.media }}
+    <form method="post" action="" id="reset-password-form"
+          class="users-reset-password-form users-form" autocomplete="off">
+
+      {% render_form form %}
+
+      <div>
+        <button type="submit" class="btn">{% trans 'Continue' %}</button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

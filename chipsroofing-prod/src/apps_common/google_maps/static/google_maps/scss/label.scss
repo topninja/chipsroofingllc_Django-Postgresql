@@ -1,0 +1,27 @@
+@import "mixins";
+
+.gmap-label {
+  position: absolute;
+  @include no_fontsize;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    z-index: 1;
+    background: #F8554B;
+    border: 1px solid #808080;
+    @include border_radius(50%);
+    @include transform(translate(-50%, -50%));
+  }
+
+  span {
+    display: inline-block;
+    padding-left: 0.8em;
+    margin-top: -0.5em;
+    color: #303030;
+    font-weight: bold;
+    @include font-size(12px);
+  }
+}

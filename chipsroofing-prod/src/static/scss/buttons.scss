@@ -1,0 +1,151 @@
+@import "mixins";
+
+.btn {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 45px;
+  max-width: 100%;
+  min-width: 255px;
+  z-index: 1;
+  color: $white;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  @include border-box;
+  @include font-size(18px, 22px);
+  @include font_default;
+  @include transition(background .6s ease-in-out);
+
+  @include media_interval(0, $media768){
+    min-width: inherit;
+    padding: 14px 40px;
+    @include font-size(16px, 19px);
+  }
+
+  &.btn-red{
+    background-color: $pink;
+    .bg-btn-svg {
+      @include transition(fill .6s ease-in-out);
+    }
+    &:hover{
+      background-color: $dark_pink;
+      .bg-btn-svg {
+        fill: $dark_pink;
+      }
+    }
+    &.btn-svg{
+      visibility: hidden;
+      white-space: nowrap;
+      max-width: none;
+      min-width: auto;
+      padding: 10px 24px;
+      @include transition(background-color .6s);
+      @include font-size(13px, 16px);
+    }
+  }
+
+  &.btn-blue{
+    background-color: #0080b0;
+
+    &:hover{
+      background-color: #006f99;
+    }
+  }
+  &.btn-small-bg {
+    max-width: 100%;
+    min-width: 160px;
+    padding: 10px 0;
+    margin: 0 5px;
+    @include font-size(13px, 16px);
+    @include media_interval($media640, 760px) {
+      min-width: 130px;
+    }
+     @include media_interval($media400, $media640) {
+      min-width: 160px;
+    }
+    @include media_interval(0, $media400) {
+      min-width: 130px;
+      @include font-size(12px, 15px);
+    }
+    &.small-green {
+      background-color: $green;
+      &:hover{
+        background-color: $dark_green;
+      }
+    }
+    &.small-red {
+      background-color: $pink;
+      &:hover{
+        background-color: $dark_pink;
+      }
+    }
+  }
+}
+
+.btn-border{
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  padding: 10px 20px;
+  max-width: 100%;
+  background-color: transparent;
+  min-width: 160px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  @include opacity(0.6);
+  @include font_default;
+  @include font-size(13px, 14px);
+  @include transition(opacity .6s ease-in-out);
+
+  &:hover{
+    @include opacity(1);
+  }
+
+  &.btn-border-white{
+    color: $white;
+    border: solid 2px $white;
+    border-left: hidden;
+
+    &:after{
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      height: 65%;
+      border-left: solid 2px $white;
+    }
+  }
+
+  &.btn-border-green{
+    color: $green;
+    border: solid 2px $green;
+    border-left: hidden;
+    @include opacity(1);
+    @include transition(color .6s ease-in-out, border .6s ease-in-out);
+
+    &:hover{
+      color: #0080b0;
+      border: solid 2px #0080b0;
+      border-left: hidden;
+      &:after{
+        border-left: solid 2px #0080b0;
+      }
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      height: 65%;
+      border-left: solid 2px $green;
+    }
+  }
+}

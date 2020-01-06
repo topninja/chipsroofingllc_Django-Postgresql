@@ -1,0 +1,29 @@
+{% with seo=request.seo %}
+  <meta name="keywords" content="{{ seo.keywords }}"/>
+  <meta name="description" content="{{ seo.description }}"/>
+
+  {% if seo.canonical %}
+    <link rel="canonical" href="{{ seo.canonical }}">
+  {% endif %}
+
+  {% if seo.next %}
+    <link rel="next" href="{{ seo.next }}">
+  {% endif %}
+
+  {% if seo.prev %}
+    <link rel="prev" href="{{ seo.prev }}">
+  {% endif %}
+
+  {% if seo.noindex %}
+    <meta name="robots" content="noindex,follow">
+  {% endif %}
+
+  {% for key, value in seo.opengraph.data.items %}
+    <meta property="{{ key }}" content="{{ value }}">
+  {% endfor %}
+
+  {% for key, value in seo.twitter_card.data.items %}
+    <meta name="twitter:{{ key }}" content="{{ value }}">
+  {% endfor %}
+
+{% endwith %}

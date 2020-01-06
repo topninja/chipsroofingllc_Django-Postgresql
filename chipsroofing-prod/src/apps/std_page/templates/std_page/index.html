@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+{% load pipeline_plus %}
+{% load away %}
+{% load attachable_blocks %}
+{% load breadcrumbs %}
+{% load text %}
+
+{% block critical_css %}
+  {{ block.super }}
+  {% inline_stylesheet 'std_page_critical' %}
+{% endblock critical_css %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'std_page' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'std_page' %}
+{% endblock static_js %}
+
+
+{% block content %}
+
+  <div class="std-bg">
+
+    <div class="top__scrumbs section">
+      {% if not is_contact_page %}
+        <div id="wrImage" class="wr-image">
+          <div class="grid mgBlock">
+            <div id="widthBlock" class=" widthBlock gc-wide-10 gc-10 gc-tablet-10 gc-mobile-full">
+              {% if config.background %}
+                <img id="fullImage" class="full__image"
+                     src="{{ config.background.normal.url }}"
+                     alt="{{ config.background_alt }}"
+                     srcset="{{ config.background.normal.srcset }}, {{ config.background.tablet.srcset }}, {{ config.background.mobile.srcset }}"
+                     sizes="(min-width: 1024px) 1090px, (min-width: 768px) 600px">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      <div class="scrumbs_container">
+        <div class="grid-block">
+          <div class="scrumbs__center">
+            <div class="scrumbs__inner">
+              <div class="breadcrumbs-block">{% breadcrumbs %}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {% if page_data and not is_contact_page %}
+      <div class="content__text">
+        <div class="grid">
+          <div class="gc-wide-10 gc-10 gc-tablet-10 gc-mobile-full">
+
+            {% if page_data.title and not is_service_blocks %}
+              <h1 class="title-h1">{{ page_data.title }}</h1>
+            {% else %}
+              <h1 class="title-h1">{{ page_data.title_for_seo }}</h1>
+            {% endif %}
+
+            {% if page_data.description and not detail_page_blocks %}
+              <div class="hero-description">{{ page_data.description }}</div>
+            {% endif %}
+
+            {% if page_data.text %}
+              <div class="text-styles">{% away page_data.text|typograf %}</div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% block page_content %}
+    {% endblock page_content %}
+
+    {% if page_data.text_second and not is_contact_page %}
+      <div class="content__text">
+        <div class="grid">
+          <div class="gc-wide-8 gc-8 gc-tablet-8 gc-mobile-full">
+            <div class="text-styles">{% away page_data.text_second|typograf %}</div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if not detail_page_blocks %}
+      {% render_attached_blocks config %}
+    {% else %}
+      {% render_attached_blocks detail_page_blocks %}
+    {% endif %}
+
+  </div>
+
+{% endblock content %}

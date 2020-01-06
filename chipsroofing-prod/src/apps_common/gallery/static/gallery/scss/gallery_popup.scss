@@ -1,0 +1,180 @@
+@import "mixins";
+
+// кнопка закрытия
+$close_btn_size: (
+    ($media768, 0px): 60px,
+    (0px, $media768): 40px,
+);
+$close_btn_cross_size: (
+    ($media480, 0px): 50%,
+    (0px, $media480): 60%,
+);
+$close_btn_color: #F2F2F2;
+$close_btn_weight: 2px;
+
+#gallery-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.gallery-popup {
+  .popup-window {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+
+  .popup-content {
+    height: 100%;
+    background-color: transparent;
+  }
+
+  .popup-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+    cursor: pointer;
+    @include opacity(0.5);
+    @include transition(opacity 0.2s);
+    @include media_map((width, height), $close_btn_size);
+    @include media_interval(0, $media480) {
+      top: 5px;
+      right: 3px;
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: $close_btn_weight;
+      background: $close_btn_color;
+      @include media_map(width, $close_btn_cross_size);
+    }
+    &:before {
+      @include transform(translate3d(-50%, -50%, 0) rotate(45deg));
+    }
+    &:after {
+      @include transform(translate3d(-50%, -50%, 0) rotate(-45deg));
+    }
+
+    &:hover {
+      @include opacity(1);
+    }
+  }
+
+  // слайдер
+  .slider-root {
+    height: 100%;
+
+    .slider-slide {
+      height: 100%;
+      padding: 40px 80px;
+      @include valign_after;
+      @include media_interval($media480, $media768) {
+        padding: 32px 60px;
+      }
+      @include media_interval(0, $media480) {
+        padding: 50px 0;
+      }
+    }
+
+    .slider-arrow {
+      @include opacity(0.4);
+      @include transition(opacity 0.2s);
+      @include media_interval(0, $media480) {
+        display: none;
+      }
+
+      &:hover {
+        @include opacity(1);
+      }
+    }
+
+    .slider-navigation {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+
+    .slider-item {
+      overflow: hidden;
+      height: 100%;
+      @include valign_after;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .video-item {
+    .play-btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10%;
+      min-width: 60px;
+      max-width: 100px;
+      z-index: 5;
+      cursor: pointer;
+      @include transform(translate(-50%, -50%));
+
+      &:before {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+        background: $sprite_url no-repeat rel-background-position(32px, 32px, -234px, -56px);
+        background-size: rel-background-size(32px, 32px);
+      }
+    }
+
+    div.vimeo-placeholder, div.youtube-placeholder {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 50;
+    }
+
+    iframe {
+      display: none;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      vertical-align: middle;
+    }
+
+    // в процессе загрузки
+    &.loading {
+      .play-btn {
+        @include opacity(0);
+        @include transition(opacity 0.3s);
+      }
+    }
+
+    // в процессе воспроизведения
+    &.playing {
+      img {
+        display: none;
+      }
+
+      .play-btn {
+        display: none;
+      }
+
+      iframe {
+        display: block;
+      }
+    }
+  }
+}

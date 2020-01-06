@@ -1,0 +1,85 @@
+@import 'mixins';
+
+// размеры окна
+$content_width: (
+    ($media1024, 0): 260px,
+    ($media640, $media1024): 250px,
+    ($media480, $media640): 200px,
+    (0, $media480): 180px,
+);
+$content_height: (
+    ($media1024, 0): 180px,
+    ($media640, $media1024): 160px,
+    (0, $media640): 120px,
+);
+
+// перекрывающий прелоадер
+$preloader_overlay_speed: 0.2s;
+$preloader_overlay_background: rgba($white, 0.8);
+
+
+// Popup с прелоадером внутри
+.popup-preloader {
+  .popup-window {
+    width: auto;
+  }
+
+  .popup-content {
+    padding: 0;
+    min-height: 0;
+    text-align: center;
+    @include valign_after;
+    @include media_map(width, $content_width);
+    @include media_map(height, $content_height);
+  }
+}
+
+
+// Popup с любым контеном, над которым появляется прелоадер
+.popup {
+  // тень
+  .popup-window:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+    pointer-events: none;
+    background: $preloader_overlay_background;
+    @include opacity(0);
+    @include transition(opacity $preloader_overlay_speed 0.1s, z-index 0s #{$preloader_overlay_speed + 0.1s});
+  }
+
+  .preloader-overlay  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -100;
+    pointer-events: none;
+    @include opacity(0);
+    @include transform(translate(-50%, -50%));
+    @include transition(opacity $preloader_overlay_speed 0.1s, z-index 0s #{$preloader_overlay_speed + 0.1s});
+  }
+
+  &.popup-preloader-overlay {
+    .popup-window {
+      @include unselectable;
+
+      &:before {
+        z-index: 100;
+        pointer-events: auto;
+        @include opacity(1);
+        @include transition(opacity $preloader_overlay_speed, z-index 0s);
+      }
+    }
+
+    .preloader-overlay {
+      z-index: 101;
+      pointer-events: auto;
+      @include opacity(1);
+      @include transition(opacity $preloader_overlay_speed, z-index 0s);
+    }
+  }
+}

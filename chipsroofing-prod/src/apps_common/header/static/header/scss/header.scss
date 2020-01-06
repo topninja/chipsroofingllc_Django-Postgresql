@@ -1,0 +1,103 @@
+@import 'mixins';
+
+$logo_width: 170px;
+$logo_height: 96px;
+
+#header-cell > header {
+  padding-top: 50px;
+  position: absolute;
+  width: 100%;
+  @include media_interval(0, $media600) {
+    padding-top: 30px;
+  }
+
+  .logo-box {
+    margin-left: -20px;
+    @include flex(0 0 auto);
+    @include media_interval($media400, $media768) {
+      margin-left: -15px;
+    }
+    @include media_interval(0, $media400) {
+      margin-left: -12px;
+    }
+
+    .logo {
+      display: inline-block;
+      width: $logo_width;
+      vertical-align: middle;
+      @include transition(opacity .6s);
+      @include media_interval($media600, 800px) {
+        width: 130px;
+      }
+      @include media_interval($media400, $media600) {
+        width: 110px;
+      }
+      @include media_interval(0, $media400) {
+        width: 82px;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        padding-bottom: #{100 * $logo_height/$logo_width + "%"};
+        background: $sprite_url no-repeat 0 0;
+        background-size: rel-background-size($logo_width, $logo_height);
+      }
+    }
+
+    a.logo:hover {
+      @include opacity(0.75);
+    }
+  }
+
+  .block-btn {
+    @include flexbox;
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    @include media_interval(0, $media960){
+       @include flex-direction(column);
+    }
+    .header-buttons {
+      margin: 0 -5px;
+      .small-green {
+        @include media_interval(0, $media640){
+          display: none;
+        }
+      }
+    }
+    .phone-header {
+      color: $white;
+      font-weight: bold;
+      @include font_default;
+      @include font-size(18px);
+      @include transition(opacity .6s);
+      @include media_interval(0, $media960){
+        margin-top: 10px;
+        //@include flex-direction(column);
+    }
+      @include media_interval(0, $media400) {
+        color: #00af86;
+        @include font-size(16px);
+      }
+      &:hover {
+        @include opacity(.7);
+      }
+    }
+  }
+
+  .menu-box {
+    padding-right: 30px;
+    text-align: right;
+    @include media_interval($media_mobile, $media1200) {
+      padding-right: 0;
+    }
+    @include media_interval(0, $media_mobile) {
+      padding: 0;
+      text-align: right;
+    }
+    @include media_interval(0, $media400) {
+      padding-top: 8px;
+    }
+  }
+}
+

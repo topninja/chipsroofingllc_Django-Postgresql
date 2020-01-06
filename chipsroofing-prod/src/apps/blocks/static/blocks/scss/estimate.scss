@@ -1,0 +1,153 @@
+@import "mixins";
+
+.estimate-block {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  @include media_interval(0, $media768) {
+    padding-top: 50px;
+    padding-bottom: 75px;
+  }
+  .grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .shadow-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.55);
+    }
+  }
+
+  .estimate-bg {
+    @include centrizeImage(-1, 100%);
+  }
+
+  .title-h2 {
+    color: $white;
+    margin-bottom: 15px;
+
+    @include media_interval(0, $media768) {
+      margin-bottom: 10px;
+    }
+
+    @include media_interval(0, $media480){
+      max-width: 220px;
+    }
+  }
+
+  .description {
+    color: $white;
+    margin-bottom: 30px;
+    max-width: 520px;
+    font-style: italic;
+    @include font_default;
+    @include font-size(15px, 22px);
+
+    @include media_interval(0, $media768) {
+      max-width: 360px;
+      @include font-size(14px, 20px);
+    }
+    @include media_interval(0, $media480) {
+      max-width: 230px;
+    }
+  }
+
+  .btn-wrapper {
+    max-width: 255px;
+    @include media_interval(0, $media768) {
+      max-width: 230px;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.icons-wr{
+  position: relative;
+  background-color: $white;
+  display: inline-block;
+  width: 100%;
+  padding: 30px 0;
+  .background-block {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #0080b0;
+  }
+}
+
+.wrap-icon {
+  margin: 0 -15px;
+  @include flexbox;
+  @include flex-flow(row nowrap);
+  @include media_interval(0, $media960){
+    @include flex-flow(row wrap);
+  }
+  .icon-block{
+    padding: 0 15px;
+    @include flex(0 0 25%);
+    @include flexbox;
+    @include align-items(center);
+    @include box-sizing(border-box);
+    @include media_interval(0, $media960){
+      margin-bottom: 20px;
+
+    }
+    @include media_interval($media480, $media960){
+      &:nth-last-child(-n+2){
+        margin-bottom: 0;
+      }
+    }
+    @include media_interval(0, $media480){
+      &:nth-last-child(1){
+        margin-bottom: 0;
+      }
+    }
+
+    @include media_interval($media480, $media960){
+      @include flex(0 0 50%);
+    }
+    @include media_interval(0, $media480){
+      @include flex(0 0 100%);
+    }
+
+    .description{
+      position: relative;
+      color: $white;
+      margin-left: 15px;
+      margin-right: 10px;
+      @include font_default;
+      @include font-size(14px, 21px);
+    }
+
+    .icon {
+      position: relative;
+      height: 34px;
+      background: $sprite_url no-repeat;
+      @include flex(0 0 34px);
+      @each $item in ((icon-1, 0), (icon-2, -34), (icon-3, -68), (icon-4, -102),  ) {
+        &.#{nth($item, 1)} {
+          background-position: #{nth($item, 2)}px -380px;
+        }
+      }
+    }
+  }
+}
+

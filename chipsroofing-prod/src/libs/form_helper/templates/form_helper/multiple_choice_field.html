@@ -1,0 +1,20 @@
+{% extends 'form_helper/field.html' %}
+
+{% block field %}
+  <div class="control">
+    <ul>
+      {% for value, title in field.field.choices %}
+        <li class="{% if value|stringformat:"s" in field.value %}checked{% endif %}">
+          <input type="checkbox"
+                 id="{{ field.id_for_label }}-{{ forloop.counter }}"
+                 name="{{ field.html_name }}"
+                 value="{{ value }}"
+                 {% if value|stringformat:"s" in field.value %}checked{% endif %}>
+          <label for="{{ field.id_for_label }}-{{ forloop.counter }}">
+            <span>{{ title }}</span>
+          </label>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

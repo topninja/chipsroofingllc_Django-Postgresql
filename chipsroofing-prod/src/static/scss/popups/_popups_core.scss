@@ -1,0 +1,45 @@
+@import 'mixins';
+
+
+.popup-opened {
+  overflow: hidden !important;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 101;
+  @include font-size(20px);
+}
+
+.popup-wrapper {
+  max-width: $grid_max_width;
+  margin: 0 auto;
+  height: 100%;
+  @include border-box;
+  @include no_fontsize;
+  @include valign_after;
+}
+
+.popup-window {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  z-index: 1;
+  text-align: left;
+  vertical-align: middle;
+  @include border-box;
+}
+
+.popup-content {
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  @include border-box;
+}

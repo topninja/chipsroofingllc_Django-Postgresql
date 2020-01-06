@@ -1,0 +1,81 @@
+{% extends 'mailerlite/layout.html' %}
+
+{% load pipeline_plus %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block styles %}
+  {{ block.super }}
+  {% inline_stylesheet 'mailerlite_regular' %}
+{% endblock styles %}
+
+
+{% block content %}
+  <!-- шапка письма -->
+  <table class="full-width">
+    <tr>
+      <td class="header full-width" align="center">
+
+        <table align="center" class="header-table full-width">
+          <tr>
+            <td class="logo-cell" align="left">
+              <a href="{{ config.website }}" target="_blank" class="logo">
+                <img src="{% static 'mailerlite/img/logo.png' %}" alt="" border="0" width="170" height="52">
+              </a>
+            </td>
+
+            <td class="backlink-cell" align="right">
+              <a href="{$url}" target="_blank" class="backlink">{% trans 'open in browser' %}</a>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+  <!-- Контент -->
+  <table class="full-width">
+    <tr>
+      <td class="content-cell full-width">
+        {{ campaign.text|safe }}
+      </td>
+    </tr>
+  </table>
+
+  <!-- Подвал -->
+  <table class="full-width">
+    <tr>
+      <td class="footer full-width" align="center">
+
+        <!-- Верхняя часть -->
+        <table class="top-table full-width">
+          <tr>
+            <td class="top-cell full-width">
+              <span class="note">{{ config.footer_text|linebreaksbr }} </span>
+              <a href="{$unsubscribe}" target="_blank">{% trans 'Unsubscribe' %}</a>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Нижняя часть -->
+        <table class="bottom-table full-width">
+          <tr>
+            <td class="left-cell" align="left">
+              <a href="{{ config.website }}" target="_blank">{{ domain }}</a>
+              <span style="display: inline-block; height: 1em; width: 1.2em;"></span>
+              <a href="mailto:{{ config.contact_email }}">{{ config.contact_email }}</a>
+            </td>
+
+            <td class="right-cell" align="rigth">
+              <a href="https://www.mailerlite.com" class="mailerlite">MailerLite</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+{% endblock content %}
+
+{% block mailerlite %}{% endblock mailerlite %}

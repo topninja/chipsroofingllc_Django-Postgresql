@@ -1,0 +1,105 @@
+@import "mixins";
+
+
+.share-wrapper{
+  padding: 30px 0;
+  background-color: $white;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 160px;
+  margin-top: 60px;
+
+  @include media_interval(0, $media768){
+    margin-bottom: 70px;
+  }
+
+  &:before{
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 420%;
+    height: 100%;
+    z-index: -1;
+    background-color: $white;
+  }
+}
+
+#blog-post {
+
+  &.block{
+    padding-top: 40px;
+    padding-bottom: 0;
+
+    @include media_interval(0, $media768){
+      padding-top: 30px;
+    }
+  }
+
+  .date {
+    color: #A0A0A0;
+    margin-bottom: 0;
+    @include fontsize_default;
+  }
+
+  .title {
+    margin: 20px 0;
+    text-transform: uppercase;
+    @include font-size(38px, 47px);
+    @include media_interval(0, $media768) {
+      @include font-size(26px, 32px);
+    }
+  }
+
+  .preview {
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .text{
+    color: #333333;
+    text-align: left;
+    padding-left: 30px;
+    position: relative;
+    @include font-size(15px, 24px);
+
+    @include media_interval(0, $media768){
+      @include font-size(14px, 21px);
+    }
+
+    &:before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -0.1em;
+      width: 1px;
+      height: 70px;
+      background-color: #bfbfbf;
+    }
+  }
+
+  .social-buttons{
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .likely{
+    vertical-align: middle;
+  }
+
+  .like-slogan{
+    display: inline-block;
+    vertical-align: middle;
+    color: #333333;
+    margin-left: 20px;
+    @include font_default;
+    @include font-size(14px, 24px);
+
+    @include media_interval(0, $media600){
+      display: block;
+      margin-left: 0;
+      margin-top: 10px;
+      max-width: 210px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load text %}
+
+<div id="faq">
+  <div class="grid-block">
+    <div class="space-block">
+      {% if block.header and not is_faq_page %}
+        <div class="title-h2">{{ block.header }}</div>
+      {% endif %}
+      <div class="faq-block">
+        {% for faq in faqs %}
+          <a class="faq-container" href="{{ faq.get_absolute_url }}">
+              <div class="hover-overlay">
+                <div class="icon-faq faq-{{ faq.icon }}"><span class="overlay-icon-faq {{ faq.icon }}"></span></div>
+                <div class="title">{{ faq.title }}</div>
+              </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

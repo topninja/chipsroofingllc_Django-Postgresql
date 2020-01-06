@@ -1,0 +1,43 @@
+@import "mixins";
+
+.gmap-cluster {
+  position: absolute;
+  padding-bottom: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  @include no_fontsize;
+  @include transform-origin(0 0);
+  @include transform(translate(-50%, -100%));
+
+  .gmap-cluster-marker {
+    position: relative;
+    padding: 6px 10px;
+    color: $white;
+    background: #F8554B;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    @include border_radius(18px);
+    @include transition(background 0.3s);
+
+    .gmap-cluster-text {
+      @include font_default;
+      @include font-size(16px, 16px);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -23px;
+      z-index: -1;
+      border-top: 15px solid #F8554B;
+      border-bottom: 15px solid transparent;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      @include transform(translateX(-50%));
+      @include transition(border-top 0.3s);
+    }
+  }
+}

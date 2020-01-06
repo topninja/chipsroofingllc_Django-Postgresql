@@ -1,0 +1,93 @@
+@import "mixins";
+
+
+.content__text {
+  padding-bottom: 0;
+}
+
+#testimonials-page {
+  padding-top: 50px;
+  padding-bottom: 120px;
+
+  @include media_interval(0, $media768){
+    padding-top: 30px;
+    padding-bottom: 70px;
+  }
+
+
+  .wrap-testimonial {
+    margin: 0 -10px;
+    @include media_interval(0, $media600) {
+      margin: 0;
+    }
+    .testimonial {
+      padding-right: 110px;
+      padding-left: 40px;
+      width: 50%;
+      @include media_interval($media600, $media1200) {
+        padding-right: 40px;
+      }
+      @include media_interval(0, $media600) {
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 10px;
+      }
+
+      &:before {
+        left: 10px;
+        @include media_interval(0, $media600) {
+          left: 0;
+        }
+      }
+
+      .contain-star{
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      .star-active{
+        display: inline-block;
+        background: $sprite_url no-repeat 0 -488px;
+        width: 15px;
+        height: 16px;
+        margin-right: 3px;
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+      .star-off{
+        display: inline-block;
+        background: $sprite_url no-repeat 0 -488px;
+        width: 15px;
+        height: 16px;
+        margin-right: 3px;
+        @include opacity(0.5);
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.estimate-block {
+  &:after {
+    content: '';
+    position: absolute;
+    width: 9999px;
+    height: 75%;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: $white;
+  }
+}
+
+
+.services-block{
+  padding-top: 160px;
+  background-color: $white;
+  @include media_interval(0, $media768){
+    padding-top: 70px;
+  }
+}

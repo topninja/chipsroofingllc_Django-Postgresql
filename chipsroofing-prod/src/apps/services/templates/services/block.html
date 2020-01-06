@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load text %}
+
+<div class="services-block">
+  <div id="service-animate" class="grid">
+    {% if block.header and not is_service_page %}
+      <div class="gc-wide-5 gc-5 gc-tablet-6 gc-mobile-full services-box wow fadeInLeft animated"  data-wow-delay="1s" data-wow-duration=".4s">
+        <div class="title-part">
+          <h2 class="title-h2">{{ block.header }}</h2>
+        </div>
+      </div>
+    {% endif %}
+    {% if block.image and is_main_page %}
+      <div class="gc-wide-5 gc-5 gc-tablet-6 gc-mobile-full services-box wow fadeInRight animated"  data-wow-delay="1s" data-wow-duration=".4s">
+        <div class="img">
+          <img class="section-image slogan-image"
+               src="{{ block.image.normal.url }}"
+               alt="{{ block.header }}"
+               srcset="{{ block.image.normal.srcset }}, {{ block.image.table.srcset }}"
+               sizes="(min-width: 1024px) 480, (min-width: 768px) 480">
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="grid-block">
+    <div class="services-part">
+      <div class="services">
+        {% for service in services %}
+          <a class="service wow fadeInRight animated" href="{{ service.get_absolute_url }}" data-wow-delay="{% cycle '0' '0.3s' '0.6s' '0.9s' '1.2s' '1.5s' '1.8s' '2.1s' %}" data-wow-duration=".4s">
+            <div class="icon service-{{ service.icon }}"><span class="overlay-icon {{ service.icon }}"></span>
+            </div>
+            <div class="title">{{ service.title }}</div>
+            <div class="description">{{ service.description }}</div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>

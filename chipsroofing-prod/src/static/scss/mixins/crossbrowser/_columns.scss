@@ -1,0 +1,41 @@
+// @include column-count(3)
+@mixin column-count($count) {
+  -webkit-perspective: 1px;  // fix from http://caniuse.com/#search=column-count
+  -webkit-column-count: $count;
+  -moz-column-count: $count;
+  column-count: $count;
+}
+
+// @include column-gap(10px)
+@mixin column-gap($size) {
+  -webkit-column-gap: $size;
+  -moz-column-gap: $size;
+  column-gap: $size;
+}
+
+// @include column-width(200px)
+@mixin column-width($width) {
+  -webkit-column-width: $width;
+  -moz-column-width: $width;
+  column-width: $width;
+}
+
+// @include column-rule(1px solid black)
+@mixin column-rule($rule) {
+  -webkit-column-rule: $rule;
+  -moz-column-rule: $rule;
+  column-rule: $rule;
+}
+
+// @include column-span(all)
+@mixin column-span($span) {
+  -webkit-column-span: $span;
+  column-span: $span;
+}
+
+// @include column-break-inside(avoid)
+@mixin column-break-inside($value) {
+  -webkit-column-break-inside: $value;
+  page-break-inside: $value;
+  // break-inside: $value;  // bug in IE 10+
+}

@@ -1,0 +1,12 @@
+@mixin user-select($value) {
+  -webkit-touch-callout: $value;
+  -webkit-user-select: $value; /* Chrome all / Safari all */
+  -moz-user-select: $value; /* Firefox all */
+  -ms-user-select: $value; /* IE 10+ */
+
+  /* No support for these yet, use at own risk */
+  -o-user-select: $value;
+  user-select: $value;
+}
+
+

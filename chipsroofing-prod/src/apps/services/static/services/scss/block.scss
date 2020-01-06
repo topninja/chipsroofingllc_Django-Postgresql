@@ -1,0 +1,219 @@
+@import "mixins";
+
+.services-block {
+  padding-bottom: 115px;
+  padding-top: 0;
+
+  .services-part{
+    @include media_interval($media480, 1400px) {
+      margin-right: -2%;
+    }
+
+    @include media_interval(0, $media768){
+      margin-bottom: -40px;
+    }
+  }
+
+  &:before{
+    display: none;
+  }
+
+  @include media_interval(0, $media768){
+    padding-bottom: 70px;
+  }
+
+  .title-h2 {
+    max-width: 400px;
+    z-index: 1;
+    @include media_interval(0, $media768){
+      margin-bottom: 30px;
+    }
+  }
+
+  .services {
+    width: 100%;
+    margin-top: -30px;
+    @include flexbox;
+    @include align-content(stretch);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+
+    @include media_interval(0, $media768){
+      margin-top: 0;
+    }
+  }
+
+  .service {
+    width: 23%;
+    padding: 30px 30px 45px 30px;
+    margin-right: 20px;
+    margin-top: 30px;
+    vertical-align: top;
+    border: 2px solid transparent;
+    border-left: hidden;
+    text-align: left;
+    cursor: pointer;
+    @include transition(border-color .4s ease-in-out);
+    @include flexbox;
+    @include flex-direction(column);
+    @include box-sizing(border-box);
+    @include font_default;
+
+    &:nth-of-type(4) {
+      margin-left: 24.7%;
+      @include media_interval(0, 1400px) {
+        margin-left: 0;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+    @include media_interval($media768, 0){
+      &:hover {
+        border-color: #00af86;
+        transition: border-color .4s ease-in-out;
+
+        &:before {
+          border-left: solid 2px #00af86;
+          top: 0;
+          height: 50%;
+          @include transition(all .4s ease-in-out);
+        }
+
+        .icon {
+          .overlay-icon {
+            opacity: 1;
+            @include transition(opacity .4s ease-in-out);
+          }
+        }
+      }
+    }
+
+
+
+    @include media_interval($media480, 1400px) {
+      width: calc(50% - 20px);
+    }
+
+    @include media_interval(0, $media768) {
+      padding: 0 30px 40px;
+      margin-top: 0;
+    }
+
+    @include media_interval(0, $media480) {
+      width: calc(100% - 20px);
+      margin-right: 0;
+    }
+  }
+}
+
+
+
+.sub-services-block{
+  padding-top: 0;
+  background-color: #f2f8fb;
+  @include media_interval($media768, 0) {
+    margin-top: -100px;
+  }
+  &:before{
+    display: none;
+  }
+}
+
+
+.sub-services {
+  width: 100%;
+  margin-top: -30px;
+  @include flexbox;
+  @include align-content(stretch);
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+
+  @include media_interval(0, $media1024){
+    margin-top: 0;
+    @include flex-wrap(wrap);
+  }
+}
+
+.sub-service {
+  width: calc(20% - 20px);
+  padding: 30px 20px 35px 30px;
+  margin-right: 20px;
+  margin-top: 30px;
+  vertical-align: top;
+  border: 2px solid transparent;
+  border-left: hidden;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  @include transition(border-color .4s ease-in-out);
+  @include flexbox;
+  @include flex-direction(column);
+  @include box-sizing(border-box);
+  @include font_default;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 30px;
+    height: 58px;
+    border-left: solid 1px #bfbfbf;
+    @include transition(all .4s ease-in-out);
+
+    @include media_interval(0, $media768){
+      top: 0;
+      height: 40px;
+    }
+  }
+
+  @include media_interval($media1024, 1400px) {
+    width: 30%;
+  }
+
+  @include media_interval($media480, $media1024) {
+    width: 48%;
+    margin-right: 2%;
+  }
+
+  @include media_interval(0, $media768) {
+    padding: 0 30px 40px;
+    margin-top: 0;
+  }
+
+  @include media_interval(0, $media480) {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @include media_interval($media768, 0){
+    &:hover {
+      border-color: #00af86;
+      transition: border-color .4s ease-in-out;
+
+      &:before {
+        border-left: solid 2px #00af86;
+        top: 0;
+        height: 65%;
+        @include transition(all .4s ease-in-out);
+      }
+    }
+  }
+
+  .title{
+    color: #333333;
+    font-weight: bold;
+    @include font_default;
+    @include font-size(24px, 24px);
+
+    @include media_interval(0, 769px){
+      color: $green;
+      @include font-size(16px, 19px);
+    }
+  }
+}

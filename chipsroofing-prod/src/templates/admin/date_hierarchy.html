@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% if show and choices %}
+  <div class="hierarchy-filter xfull">
+    <div class="title">{% trans 'Date' %}:</div>
+
+    <ul class="toplinks breadcrumb">
+      {% if back %}
+        <li class="date-back">
+          <a href="{{ back.link }}">&laquo; {{ back.title }}</a>
+          <span class="divider">|</span>
+        </li>
+      {% endif %}
+
+      {% for choice in choices %}
+        <li>
+          {% if choice.link %}<a href="{{ choice.link }}">{% endif %}
+          {{ choice.title }}
+          {% if choice.link %}</a>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

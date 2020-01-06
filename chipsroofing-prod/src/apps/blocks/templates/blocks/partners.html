@@ -1,0 +1,19 @@
+<div class="partners-block block wow fadeIn animated" data-wow-duration="2s">
+    <div class="grid-block">
+        <div class="space-block">
+            {% if block.header %}
+                <h2 class="title-h2">{{ block.header }}</h2>
+            {% endif %}
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for block in block.partners.all %}
+                        <div class="swiper-slide">
+                            <img src="{{ block.image.url }}" class="partner" alt="{{ block.header }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </div>
+</div>

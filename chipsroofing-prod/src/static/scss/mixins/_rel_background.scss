@@ -1,0 +1,24 @@
+@import "conf";
+
+// background-size: rel-background-size(30px, 30px);
+@function rel-background-size($img_w, $img_h, $sprite_w:$sprite_width, $sprite_h:$sprite_height) {
+  $offset_left: 100 * $sprite_w / $img_w;
+  $offset_top: 100 * $sprite_h / $img_h;
+
+  @return #{$offset_left + "%"} #{$offset_top + "%"}
+}
+
+// background: $sprite_url no-repeat rel-background-position(30px, 30px, 0px -60px);
+@function rel-background-position($img_w, $img_h, $offset_x, $offset_y, $sprite_w:$sprite_width, $sprite_h:$sprite_height) {
+  $offset_left: 0;
+  @if ($img_w < $sprite_w) {
+    $offset_left: 100 * $offset_x / ($img_w - $sprite_w);
+  }
+
+  $offset_top: 0;
+  @if ($img_h < $sprite_h) {
+    $offset_top: 100 * $offset_y / ($img_h - $sprite_h);
+  }
+
+  @return #{$offset_left + "%"} #{$offset_top + "%"}
+}

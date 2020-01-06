@@ -1,0 +1,35 @@
+@import "mixins";
+$padding_contactss: ( ($media_mobile, 0): 120px, ($media900, $media_mobile): 80px, ($media768, $media900): 70px, ($media640, $media768): 60px, (0, $media640): 45px, );
+.content__text{
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 160px;
+  @include media_interval(0, $media768){
+    padding-top: 30px;
+    padding-bottom: 70px;
+  }
+}
+.attach-blocks {
+    position: relative;
+    z-index: 1;
+    .contact-block:first-child {
+        @include media_map(padding-top, $padding_contactss);
+    }
+    .contact-block:last-child {
+        @include media_map(padding-bottom, $padding_contactss);
+        @include media_interval(0, $media640) {
+            padding-bottom: 0;
+        }
+    }
+    #testimonials-block:first-child {
+        @include media_interval($media_mobile, 0) {
+            padding-bottom: 120px;
+        }
+    }
+}
+.indentation{
+  margin-bottom: 30px;
+  @include media_interval(0, $media768){
+    margin-bottom: 15px;
+  }
+}

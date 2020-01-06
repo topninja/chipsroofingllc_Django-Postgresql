@@ -1,0 +1,82 @@
+//===================================================
+//  Алиас для "@media screen and (min-width: $from) and (max-width: $to)"
+//
+//  Пример:
+//    // красный фон при ширине окна от 768px включительно.
+//    div {
+//      @include media_interval($media768, 0) {
+//        background: red;
+//      }
+//    }
+//
+//
+//  Также можно использовать переменные-списки:
+//    $desktop: ($media768, $media1024);
+//    ...
+//    @include media_interval($desktop) { ... }
+//
+//===================================================
+@mixin media_interval($args...) {
+  $from: 0;
+  $to: 0;
+  $line: "";
+
+  $first: nth($args, 1);
+  @if (type_of($first) == list) {
+    // интервал в виде списка
+    $from: nth($first, 1);
+    $to: nth($first, 2);
+  } @else {
+    $from: nth($args, 1);
+    $to: nth($args, 2);
+  }
+
+  @if $from > 0 {
+    $line: "(min-width: #{$from})";
+  }
+
+  @if $to > 0 {
+    @if $from > 0 {
+      $line: "#{$line} and (max-width: #{$to - 1px})";
+    } @else {
+      $line: "(max-width: #{$to - 1px})";
+    }
+  }
+
+  @media all and #{$line} {
+    @content;
+  }
+}
+
+//===================================================
+//	Установка стилей CSS-свойства $property
+//  на основании SCSS-карты.
+//
+//  Пример:
+//    $width: (
+//      ($media768, $media1024): 80px,
+//      (0, $media768): 60px,
+//    );
+//    ...
+//    @include media_map(width, $width);
+//===================================================
+@mixin media_map($properties, $values) {
+  @if (type_of($properties) != list) {
+    $property:($properties);
+  }
+
+  $values_type: type_of($values);
+  @if ($values_type == map) {
+    @each $media, $value in $values {
+      @include media_interval($media...) {
+        @each $property in $properties {
+          #{$property}: #{$value};
+        }
+      }
+    }
+  } @else {
+    @each $property in $properties {
+      #{$property}: #{$values};
+    }
+  }
+}

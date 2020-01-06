@@ -1,0 +1,101 @@
+{% load i18n %}
+
+<style>
+  #add_id_{{ name }} {
+    display: none;
+  }
+
+  #gallery-{{ name }} .gallery-item {
+    width: {{ admin_item_size.0 }}px;
+    height: {{ admin_item_size.1 }}px;
+  }
+</style>
+
+<script>
+  var admin_gallery_create = "{% url 'admin_gallery:create' %}";
+  var admin_gallery_delete = "{% url 'admin_gallery:delete' %}";
+  var admin_gallery_upload = "{% url 'admin_gallery:upload' %}";
+  var admin_gallery_upload_video = "{% url 'admin_gallery:upload_video' %}";
+  var admin_gallery_sort = "{% url 'admin_gallery:sort' %}";
+  var admin_gallery_delete_item = "{% url 'admin_gallery:delete_item' %}";
+  var admin_gallery_rotate_item = "{% url 'admin_gallery:rotate_item' %}";
+  var admin_gallery_crop_item = "{% url 'admin_gallery:crop_item' %}";
+  var admin_gallery_edit_item = "{% url 'admin_gallery:edit_item' %}";
+</script>
+
+{% block gallery %}
+  <div class="gallery gallery-standart" id="gallery-{{ name }}"
+      data-applabel="{{ app_label }}"
+      data-modelname="{{ model_name }}">
+
+    {% block content %}
+      <input type="hidden" class="gallery_id" {{ attrs }} value="{{ gallery.pk|default:"" }}"/>
+      <input type="hidden" class="max_item_count" value="{{ gallery_model.MAX_ITEM_COUNT|default:0 }}"/>
+
+      {% if gallery_model.IMAGE_MODEL %}
+        <input type="hidden" class="aspects" value="{{ image_aspects }}">
+        <input type="hidden" class="min_dimensions" value="{{ image_min_dimensions }}">
+        <input type="hidden" class="max_dimensions" value="{{ image_max_dimensions }}">
+        <input type="hidden" class="max_size" value="{{ image_max_size }}">
+        <input type="hidden" class="max_source" value="{{ image_max_source }}">
+      {% endif %}
+
+      <div class="gallery-wrapper">
+        {% if gallery %}
+          {% include gallery_model.ADMIN_TEMPLATE_ITEMS %}
+        {% else %}
+          {% include gallery_model.ADMIN_TEMPLATE_EMPTY %}
+        {% endif %}
+      </div>
+
+      <!-- templates -->
+      <script type="text/template" class="image-template">
+        <div class="gallery-item gallery-item-image"
+             style="width:{{ admin_item_size.0 }}px; height:{{ admin_item_size.1 }}px;">
+
+          <a target="_blank" class="item-preview" style="display:none;">
+            <img src=""/>
+          </a>
+
+          <div class="item-preloader">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                   aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <span class="item-controls">
+            <input type="checkbox" name="gallery-item" class="check-box" value="">
+            <a class="icon-edit item-crop" title="{% trans 'Crop image' %}"></a>
+            <a class="icon-repeat item-rotate-left"
+               title="{% trans 'Rotate by 90 degrees counterclockwise' %}"></a>
+            <a class="icon-repeat item-rotate-right"
+               title="{% trans 'Rotate by 90 degrees clockwise' %}"></a>
+            <a class="icon-pencil item-form" title="{% trans 'Edit item' %}"></a>
+            <a class="icon-trash item-delete" title="{% trans 'Delete' %}"></a>
+          </span>
+        </div>
+      </script>
+
+      <script type="text/template" class="videolink-template">
+        <div class="gallery-item gallery-item-video-link">
+
+          <a target="_blank" class="item-preview" style="display:none;">
+            <span class="inner">
+              <img src=""/>
+            </span>
+          </a>
+
+          <div class="item-preloader"></div>
+
+          <span class="item-controls">
+            <input type="checkbox" class="check-box" value="">
+            <a class="icon-pencil item-form" title="{% trans 'Edit item' %}"></a>
+            <a class="icon-trash item-delete" title="{% trans 'Delete' %}"></a>
+          </span>
+        </div>
+      </script>
+    {% endblock content %}
+
+  </div>
+{% endblock gallery %}

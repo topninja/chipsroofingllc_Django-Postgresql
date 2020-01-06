@@ -1,0 +1,183 @@
+@import "mixins";
+
+.example-block {
+  vertical-align: top;
+  @include flexbox;
+  @include flex-direction(row);
+  @include flex(0 0 100%);
+
+  @include media_interval(0, $media900) {
+    @include flex-wrap(wrap);
+  }
+
+  .title-part {
+    vertical-align: top;
+    @include flexbox;
+    @include flex(0 1 19.49%);
+
+    @include media_interval($media900, 0){
+      padding-top: 70px;
+    }
+
+    @include media_interval(0, $media900) {
+      @include flex(0 0 100%);
+    }
+
+    .title-h2{
+
+      @include media_interval($media900, 1300px){
+        @include font-size(30px);
+      }
+    }
+  }
+
+  .content-part {
+    vertical-align: top;
+    padding-left: 70px;
+    padding-top: 70px;
+    padding-bottom: 50px;
+    text-align: left;
+    background-color: $white;
+    z-index: 0;
+    position: relative;
+    @include box-sizing(border-box);
+    @include flexbox;
+    @include flex(0 0  80.51%);
+    @include media_interval(0, $media900) {
+      @include flex(0 0 100%);
+    }
+
+    @include media_interval(0, $media900) {
+      padding-left: 0;
+    }
+
+    @include media_interval(0, $media768) {
+      padding-top: 0;
+      padding-bottom: 40px;
+      margin-top: 30px;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 9999px;
+      height: 100%;
+      background-color: $white;
+      z-index: -1;
+
+      @include media_interval(0, $media900) {
+        left: -100%;
+      }
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 9999px;
+      height: 50px;
+      background-color: #f2f8fb;
+      z-index: -1;
+
+      @include media_interval($media768, 0){
+        display: none;
+      }
+    }
+  }
+
+  .example-wr {
+    position: relative;
+    margin: -25px -25px;
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(flex-start);
+    @include flex(1 0 100%);
+
+    @include media_interval(0, $media1200){
+      margin: -10px -10px;
+    }
+
+    .example-image {
+      z-index: 1;
+      display: inline-block;
+      padding: 25px 25px;
+      width: 33.3%;
+      box-sizing: border-box;
+
+      @include media_interval(0, $media1200) {
+        padding: 10px 10px;
+      }
+
+      @include media_interval(0, $media600) {
+        width: 50%;
+      }
+
+      .img-wr{
+        overflow: hidden;
+        position: relative;
+
+        &:before{
+          padding-bottom: 72%;
+          content: '';
+          display: block;
+
+          @include media_interval(0, $media480){
+            padding-bottom: 75%;
+          }
+        }
+      }
+      .section-image {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        max-width: none;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .btn-wrapper {
+    position: relative;
+    text-align: center;
+    bottom: -40px;
+    width: 250px;
+    margin: 0 auto;
+
+    @include media_interval(0, $media768) {
+      bottom: -40px;
+    }
+
+    @include media_interval(0, $media600) {
+      width: 100%;
+      left: 0;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 22px;
+      left: -1000%;
+      width: 9999px;
+      height: 15px;
+      background-color: #f2f8fb;
+      z-index: -1;
+
+      @include media_interval(0, $media768){
+        height: 40px;
+      }
+    }
+
+    .btn-border {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{% extends 'std_page/index.html' %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+{% load text %}
+{% load away %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'faq_detail' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'faq_detail' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  {% render_attached_blocks detail_page_blocks set_name='questions_block' %}
+
+{% endblock page_content %}
+

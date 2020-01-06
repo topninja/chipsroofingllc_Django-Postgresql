@@ -1,0 +1,11 @@
+<input id="redir" type="hidden" value="{{ url }}"/>
+<script>
+  window.opener = null;
+  window.location.replace(document.getElementById('redir').value);
+</script>
+<noscript>
+  <META http-equiv="refresh" content="0;URL='{{ url }}'">
+  <form action="{{ url }}" method="POST">
+    <input type="submit" value="Continue"/>
+  </form>
+</noscript>

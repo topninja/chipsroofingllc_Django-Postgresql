@@ -1,0 +1,23 @@
+.page-images {
+    font-size: 14px;
+    color: #404040;
+    background: khaki;
+    padding: 5px;
+}
+
+.single-image img {
+    width: 620px;
+    height: auto;
+    max-width: 100%;
+    box-shadow: 1px 1px 3px #808080;
+}
+
+.multi-image img {
+    width: auto;
+    height: auto;
+    max-width: 140px;
+    max-height: 140px;
+    margin: 1px 3px 1px 2px;
+    box-shadow: 1px 1px 3px #808080;
+    vertical-align: middle;
+}

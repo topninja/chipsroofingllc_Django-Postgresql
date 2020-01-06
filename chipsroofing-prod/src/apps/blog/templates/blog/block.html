@@ -1,0 +1,40 @@
+{% load text %}
+{% load i18n %}
+
+
+{% if posts.count > 0 %}
+  <div id="news">
+    <div class="grid-block">
+        <div class="news-block">
+          <div class="title-part wow fadeInLeft animated" data-wow-duration="1s" >
+            {% if block.header %}
+              <h2 class="title-h2">{{ block.header }}</h2>
+            {% endif %}
+          </div>
+
+          <div class="news-part wow fadeInRight animated" data-wow-duration="1s" >
+            <div class="container">
+              <div class="container-wrapper">
+                {% for post in posts %}
+                  <div class="container-slide">
+                    <a href="{{ post.get_absolute_url }}" class="news-content">
+                      {% if post.preview.normal.url %}
+                        <div class="image"><img src="{{ post.preview.normal.url }}" class="image-news" alt=""></div>
+                      {% endif %}
+                      <div class="date">{{ post.date }}</div>
+                      <div class="title">{{ post.header }}</div>
+                      {% if post.note %}
+                        <div class="description">{{ post.note|clean }}</div>
+                      {% endif %}
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="swiper-scrollbar"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+{% endif %}

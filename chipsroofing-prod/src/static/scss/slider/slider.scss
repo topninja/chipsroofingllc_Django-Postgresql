@@ -1,0 +1,59 @@
+@import "mixins";
+
+.slider-root {
+  position: relative;
+  z-index: 1;
+  @include no_fontsize;
+
+  &.unselectable .slider-item {
+    @include unselectable;
+  }
+}
+
+.slider-list-wrapper {
+  position: relative;
+  height: inherit;
+  min-height: inherit;
+  z-index: 1;
+}
+
+.slider-list {
+  position: relative;
+  height: inherit;
+  min-height: inherit;
+  z-index: 1;
+  @include border-box;
+  @include valign_after;
+  @include backface-visibility(hidden);
+}
+
+.slider-slide {
+  position: absolute;
+  min-height: inherit;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  @include border-box;
+  @include backface-visibility(hidden);
+  @include transform(translateX(-10000px));
+}
+
+.slider-item {
+  position: relative;
+  z-index: 1;
+}
+
+.no-slider {
+  @include border-box;
+
+  // Скрытие всех слайдов, кроме первого
+  .slider-slide:first-child {
+    position: relative;
+    @include transform(none);
+  }
+
+  .slider-slide ~ .slider-slide {
+    display: none;
+  }
+}

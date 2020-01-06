@@ -1,0 +1,26 @@
+{% extends 'std_page/index.html' %}
+{% load i18n %}
+{% load text %}
+{% load away %}
+
+{% load attachable_blocks %}
+{% load pipeline_plus %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'service' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'service' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  {% include 'services/sub_menu.html' %}
+
+  {% render_attached_blocks detail_page_blocks set_name='services' %}
+
+{% endblock page_content %}

@@ -1,0 +1,77 @@
+{% load i18n %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<!--xmlns  fix Outlook Scaling-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Fix Outlook Scaling-->
+  <!--[if gte mso 9]><xml>
+  <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+  </xml><![endif]-->
+
+  <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse;}
+    </style>
+  <![endif]-->
+
+  <title></title>
+
+  <!-- Стили -->
+  {% block styles %}{% endblock styles %}
+</head>
+<body yahoo>
+  <center class="wrapper" style="background-color: {{ config.bg_color }}; {% if config.bg_image %}background-image: url({{ config.bg_image.url }}); {% endif %}">
+    <div class="webkit">
+
+      <!--[if (gte mso 9)|(IE)]>
+      <table width="640" align="center">
+      <tr>
+      <td>
+      <![endif]-->
+      <table class="outer">
+        <tr>
+          <td align="left">
+
+            <!-- контент -->
+            {% block content %}{% endblock content %}
+
+            <!-- Mailerlite logo -->
+            {% block mailerlite %}
+              <table align="center" class="full-width">
+                <tr>
+                  <td align="center">
+                    <a style="display: inline-block; margin: 0; border: none;" href="https://www.mailerlite.com">
+                      <img border="0" alt="MailerLite"
+                           src="https://static1.mailerlite.com/images/builder/powered-by-mailerlite.png">
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td height="30px"></td>
+                </tr>
+              </table>
+            {% endblock mailerlite %}
+
+          </td>
+        </tr>
+      </table>
+      <!--[if (gte mso 9)|(IE)]>
+      </td>
+      </tr>
+      </table>
+      <![endif]-->
+
+    </div>
+  </center>
+</body>
+</html>

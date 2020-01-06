@@ -1,0 +1,20 @@
+<div class="wr-popup-service">
+      <div class="img">
+      <picture>
+        <source srcset="{{ service.popup_image.micro.url }}" media="(max-width: 479px)">
+        <source srcset="{{ service.popup_image.mobile.url }}" media="(min-width: 480px) and (max-width: 799px)">
+        <source srcset="{{ service.popup_image.desktop.url }}" media="(min-width: 800px) and (max-width: 1399px)">
+        <source srcset="{{ service.popup_image.desktop.url }}">
+
+        <img src="{{ service.popup_image.desktop.url }}" alt="{{ service.title}}" class="section-image">
+      </picture>
+    </div>
+  <div class="wr-flex">
+    <div class="service">
+      <div class="icon service-{{ service.icon }}"></div>
+      <div class="title">{{ service.title }}</div>
+      <div class="description">{{ service.description }}</div>
+      <a href="{{ service.get_absolute_url }}" class="btn btn-border btn-border-green">Learn more</a>
+    </div>
+  </div>
+</div>

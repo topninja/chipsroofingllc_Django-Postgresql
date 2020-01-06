@@ -1,0 +1,454 @@
+@import 'mixins';
+
+@include global-reset;
+
+body {
+  -ms-overflow-style: none;  // IE 10+
+  overflow: -moz-scrollbars-none;  // Firefox
+}
+body::-webkit-scrollbar {
+  display: none;  // Safari and Chrome
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  color: $text_color;
+  line-height: 1;
+  @include no_fontsize;
+  @include font_default;
+
+  &.main-menu-opened {
+    overflow: hidden;
+  }
+}
+
+// Скрытый элемент
+.hidden {
+  display: none;
+}
+
+// Основной контейнер
+#wrapper {
+  overflow: hidden;
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+
+#header-wrapper {
+  display: table-row;
+  height: 0;
+}
+
+#header-cell {
+  display: table-cell;
+  position: relative;
+  height: 0;
+  z-index: 3;
+  vertical-align: top;
+}
+
+#content-wrapper {
+  display: table-row;
+}
+
+#content {
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  z-index: 2;
+  vertical-align: top;
+}
+
+#footer-wrapper {
+  display: table-row;
+  height: 0;
+}
+
+#footer-cell {
+  display: table-cell;
+  position: relative;
+  height: 0;
+  z-index: 2;
+  vertical-align: top;
+}
+
+// Полноэкранный блок
+.section {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  z-index: 1;
+  @include border-box;
+  @include valign_after;
+
+  &.section-full-height {
+    min-height: 768px; // for old
+    min-height: 100vh;
+  }
+
+  img.section-image {
+    @include centrizeImage($zIndex: 2, $minSize:100.5%);
+  }
+
+  picture.section-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+
+    img {
+      @include centrizeImage($zIndex: 2, $minSize: 100.5%);
+    }
+  }
+
+  .section-video {
+    visibility: hidden;
+    @include centrizeImage($zIndex: 20);
+
+    &.loaded {
+      visibility: visible;
+    }
+  }
+
+  @at-root .no-js & .section-video {
+    visibility: visible;
+  }
+
+  .section-inner {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    z-index: 50;
+    vertical-align: middle;
+    @include border-box;
+  }
+}
+
+.hero-description{
+  font-style: italic;
+  color: #333333;
+  margin-top: 15px;
+  @include font-size(15px, 22px);
+  @include font_default;
+
+  @include media_interval(0, $media768){
+    margin-top: 10px;
+    @include font_size(14px, 20px);
+  }
+}
+
+.space-block{
+  @include media_interval($media1200, 0){
+    padding-right: 30px;
+  }
+}
+
+// Контентный блок
+.block {
+  @include vpad(70px, 80px);
+  @include media_interval(0, $media768) {
+    @include vpad(50px, 70px);
+  }
+}
+
+// Заголовки
+.title-h1 {
+  font-weight: bold;
+  @include fontsize_h1;
+}
+
+.title-h2 {
+  font-weight: bold;
+  @include fontsize_h2;
+}
+
+// гифка до загрузки страницы
+#page-preloader {
+  position: fixed;
+  z-index: 10;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(12, 35, 72, 0.96);
+  #sprite{
+    stroke-dasharray: 20;
+  }
+}
+
+// Блок соц иконки фиксированный
+.scroll-fix-block{
+  display: block;
+  position: fixed;
+  width: 100%;
+  top: 41vh;
+  @include media_interval(0, $media1200){
+    display: none;
+  }
+  & > .grid-block {
+    position: relative;
+    &:before, &:after {
+      @include media_interval($media1200, 0){
+        content: '';
+        position: absolute;
+        right:110px;
+        top: -41vh;
+        width: 1px;
+        height: 99999px;
+        background-color: rgb(216, 216, 216);
+        z-index: 49;
+        @include opacity(.4);
+      }
+
+    }
+    &:after {
+      @include media_interval($media1200, 0){
+        right: 54px;
+      }
+    }
+    .wr{
+      position: absolute;
+      top: 0;
+      right: 68px;
+    }
+    .social-links {
+      a{
+        display: block;
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.main-preloader {
+  position: fixed;
+  display: none;
+  z-index: 10;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(at center,   #043659, #07192d);
+  .home-preloader {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    .preloader-svg {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: dash 2.6s linear alternate infinite;
+    }
+
+    @keyframes dash {
+      from {
+        stroke-dashoffset: 1000;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+}
+
+// Testimonial styles
+
+.wrap-testimonial {
+  .testimonial {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 40px;
+    @include font-default;
+    @include box-sizing(border-box);
+    @include media_interval(0, $media600) {
+      &:nth-last-of-type(1) {
+        margin-bottom: 0;
+      }
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      top: 57px;
+      height: 70px;
+      border-left: solid 1px #bfbfbf;
+    }
+    .quotes {
+      display: block;
+      margin-top: 8px;
+      margin-bottom: 33px;
+      width: 20px;
+      height: 16px;
+      background: $sprite_url no-repeat 0 -419px;
+    }
+
+    .title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      @include font-size(18px, 22px);
+      @include media_interval(0, $media768) {
+        margin-bottom: 5px;
+        @include font-size(16px, 19px);
+      }
+    }
+    .description {
+      @include font-size(14px, 21px);
+      @include media_interval(0, $media768) {
+        @include font-size(13px, 21px);
+      }
+    }
+  }
+}
+
+// Service block + icon
+
+  .service {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 92px;
+      height: 70px;
+      border-left: solid 1px #bfbfbf;
+      @include transition(all .4s ease-in-out);
+    }
+    .icon {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 20px;
+      background: $sprite_url no-repeat center;
+
+      &.service-overlay-newroof {
+        background-position: 0px -183px;
+      }
+
+      &.service-overlay-comerc-roof {
+        width: 47px;
+        background-position: -45px -183px;
+      }
+
+      &.service-overlay-resident-roof {
+        background-position: -93px -183px;
+      }
+
+      &.service-overlay-roof-rep {
+        background-position: -138px -183px;
+      }
+
+      &.service-overlay-siding {
+        background-position: -183px -183px;
+      }
+
+      &.service-overlay-gutter {
+        background-position: -228px -183px;
+      }
+
+      .overlay-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+        background: $sprite_url no-repeat center;
+        @include transition(opacity .4s ease-in-out);
+
+        &.overlay-newroof {
+          background-position: 0px -232px;
+        }
+
+        &.overlay-comerc-roof {
+          background-position: -45px -232px;
+        }
+
+        &.overlay-resident-roof {
+          background-position: -93px -232px;
+        }
+
+        &.overlay-roof-rep {
+          background-position: -138px -232px;
+        }
+
+        &.overlay-siding {
+          background-position: -183px -232px;
+        }
+
+        &.overlay-gutter {
+          background-position: -228px -232px;
+        }
+      }
+    }
+
+    .title {
+      margin-bottom: 10px;
+      font-weight: bold;
+      @include font-size(26px, 32px);
+
+      @include media_interval(0, 769px) {
+        margin-bottom: 5px;
+        color: $green;
+        @include font-size(16px, 19px);
+      }
+    }
+
+    .description {
+      @include font-size(14px, 21px);
+    }
+  }
+
+  // Button View More (examples, blog)
+  .more-block {
+    width: 100%;
+     padding-top: 70px;
+    @include media_interval(0, $media768) {
+        padding-top: 40px;
+      }
+    .btn-wrapper {
+      position: relative;
+      padding: 0 25px;
+      max-width: 350px;
+      margin: 0 auto;
+      @include media_interval(0, $media768) {
+        padding: 0 15px;
+      }
+      &:before{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 65%;
+        left: -1000%;
+        width: 9999px;
+        height: calc(100px + 35%);
+        background-color: $white;
+        z-index: 0;
+      }
+      .btn-border {
+        width: 100%;
+      }
+    }
+  }
+
+  // Captcha
+    #popup_recaptcha {
+      @include media_interval(0, 360px) {
+        @include transform-origin(0 0);
+        @include transform(scale(0.8));
+      }
+    }

@@ -1,0 +1,94 @@
+@import "mixins";
+
+// цвета
+$dot_color: rgba(#cccccc, 1);
+$dot_hover_color: rgba($white, 0.6);
+$dot_active_color: rgba(#00af86, 1);
+
+
+.slider-navigation {
+  margin: 16px auto 0;
+  overflow: hidden;
+  z-index: 9;
+  text-align: center;
+  @include order(1);
+  @include border-box;
+  @include no_fontsize;
+  @include valign_after;
+  @include unselectable;
+}
+
+.slider-navigation-window {
+  position: relative;
+  margin: -3px auto 0;
+}
+
+.slider-navigation-item {
+  display: inline-block;
+  margin: 3px 2.5px 0;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  text-align: center;
+  @include valign_after;
+
+  // dot
+  span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    vertical-align: middle;
+    background-color: $dot_color;
+    @include border-box;
+    @include border_radius(50%);
+    @include transition(background 0.3s);
+  }
+
+  &:hover {
+    span {
+      background-color: $dot_hover_color;
+    }
+  }
+
+  &.active {
+    cursor: default;
+
+    span {
+      background-color: $dot_active_color;
+    }
+  }
+}
+
+
+/*
+    Прокручиваемая навигация
+ */
+.slider-scrollable-navigation {
+  @include media_interval(0, $media640) {
+    max-width: 100px;
+  }
+
+  .small-dot {
+    span {
+      width: 8px;
+      height: 8px;
+    }
+
+    &:hover span {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .smaller-dot {
+    span {
+      width: 6px;
+      height: 6px;
+    }
+
+    &:hover span {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

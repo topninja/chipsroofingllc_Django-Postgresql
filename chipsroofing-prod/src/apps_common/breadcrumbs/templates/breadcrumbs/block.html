@@ -1,0 +1,17 @@
+<ul class="breadcrumbs" typeof="BreadcrumbList">
+  {% for crumb in breadcrumbs %}
+    <li class="breadcrumb-item {% if forloop.last %}active{% endif %}" property="itemListElement" typeof="ListItem">
+      {% if crumb.url and not forloop.last %}
+        <a href="{{ crumb.url }}" class="breadcrumb-link" property="item">
+          <span property="name">{{ crumb.title }}</span>
+          <meta property="position" content="{{ forloop.counter }}"/>
+        </a>
+      {% else %}
+        <span class="breadcrumb-link" property="item">
+          <span property="name">{{ crumb.title }}</span>
+          <meta property="position" content="{{ forloop.counter }}"/>
+        </span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

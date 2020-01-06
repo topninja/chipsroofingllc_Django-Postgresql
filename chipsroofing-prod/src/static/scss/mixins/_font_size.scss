@@ -1,0 +1,16 @@
+@mixin font-size($size, $line_height:0) {
+  font-size: $size;
+
+  @if $size != 0 {
+    $remSize: $size / 16px;
+    font-size: $remSize * 1rem;
+  }
+
+  @if $line_height != 0 {
+    line-height: $line_height / $size;
+  }
+}
+
+@mixin no_fontsize() {
+  font-size: 0;
+}

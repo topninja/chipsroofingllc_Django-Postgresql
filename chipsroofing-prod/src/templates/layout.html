@@ -1,0 +1,126 @@
+{% load pipeline_plus %}
+{% load staticfiles %}
+{% load js_storage %}
+{% load header %}
+{% load footer %}
+{% load seo %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#" class="no-js"
+      lang="{{ LANGUAGE_CODE }}" data-google-apikey="{{ GOOGLE_APIKEY }}">
+<head>
+  <title>{% block title %}{{ request.seo.title }}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+
+  {% block metatags %}
+    {% include 'seo/metatags.html' %}
+  {% endblock metatags %}
+
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{% static 'img/favicon/favicon-64x64.png' %}">
+    <link rel="icon" type="image/png" sizes="128x128" href="{% static 'img/favicon/favicon-128x128.png' %}">
+
+  {# === SCRIPTS === #}
+  <script>
+      var docElement = document.documentElement;
+      docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+  </script>
+
+  {# === STYLES === #}
+  {% include 'pipeline/_loadcss.html' %}
+
+  {% block critical_css %}
+    {% inline_stylesheet 'critical' %}
+  {% endblock critical_css %}
+
+  {% stylesheet 'fonts' %}
+
+  {% stylesheet 'core' %}
+  {% block static_head %}{% endblock static_head %}
+
+  {% include 'pipeline/_preloadcss.html' %}
+
+  {% seo_counters 'head' %}
+</head>
+<body class="{% block bodyclass %}{% endblock %}" vocab="http://schema.org/">
+{% seo_counters 'body_top' %}
+
+<div id="page-preloader" class="main-preloader">
+    <div class="home-preloader">
+        <svg viewBox="0 0 148 94">
+            <g id="Sprite" class="preloader-svg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="home-copy-2" transform="translate(-291.000000, -124.000000)" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="4">
+                    <polygon id="Path-15" points="293 216 437 216 437 126 293 126 293 157 325 139 353 156 353 139 363 139 363 160 410 188 336 188 336 171 314 171 314 188 293 188"></polygon>
+                </g>
+            </g>
+        </svg>
+    </div>
+</div>
+
+<div id="wrapper">
+  {% block header %}
+    <div id="header-wrapper">
+      <div id="header-cell">
+        {% if not is_main_page %}
+          <!--noindex-->
+        {% endif %}
+
+        {% block header_content %}
+          {% header %}
+        {% endblock header_content %}
+
+        {% if not is_main_page %}
+          <!--/noindex-->
+        {% endif %}
+      </div>
+    </div>
+  {% endblock header %}
+
+    <div id="content-wrapper">
+        <div id="content">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+  {% block footer %}
+    <div id="footer-wrapper">
+      <div id="footer-cell">
+        {% if not is_main_page %}
+          <!--noindex-->
+        {% endif %}
+
+        {% block footer_content %}
+          {% footer %}
+        {% endblock footer_content %}
+
+        {% if not is_main_page %}
+          <!--/noindex-->
+        {% endif %}
+      </div>
+    </div>
+  {% endblock footer %}
+</div>
+
+
+<script src="{% url 'jsi18n' %}"></script>
+
+<!--[if lte IE 9]>
+    <script src="{% static 'polyfills/es5-shim.min.js' %}"></script>
+    <script src="{% static 'polyfills/respond.min.js' %}" defer async></script>
+  <![endif]-->
+
+{% block static_js %}
+  {% js_storage_out %}
+  {% javascript 'core' %}
+{% endblock static_js %}
+<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&hl=en&render=explicit" async defer></script>
+<script src="{% static 'polyfills/loader.js' %}" defer async></script>
+
+{% seo_counters 'body_bottom' %}
+</body>
+</html>

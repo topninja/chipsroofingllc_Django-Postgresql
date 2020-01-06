@@ -1,0 +1,27 @@
+@import "mixins";
+
+
+// fallback, опирающийся на существование <noscript>
+.no-js .lazyload {
+  display: none;
+}
+
+
+// блок-заглушка
+div.lazyload {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+// Скрываем пустые картинки
+img:not([src]):not([srcset]) {
+  visibility: hidden;
+}
+
+// Fix Firefox
+@-moz-document url-prefix() {
+  img:-moz-loading {
+    visibility: hidden;
+  }
+}

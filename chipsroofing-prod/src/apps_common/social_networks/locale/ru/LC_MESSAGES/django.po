@@ -1,0 +1,246 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 11:33+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: admin.py:87
+#, python-format
+msgid "Add redirect URI \"%s\" to your Twitter application"
+msgstr "Добавьте Redirect URI \"%s\" в ваше приложение Twitter"
+
+#: admin.py:100
+#, python-format
+msgid "Add redirect URI \"%s\" to your Facebook application"
+msgstr "Добавьте Redirect URI \"%s\" в ваше приложение Facebook"
+
+#: admin.py:112
+#, python-format
+msgid "Add redirect URI \"%s\" to your Instagram application"
+msgstr "Добавьте Redirect URI \"%s\" в ваше приложение Instagram"
+
+#: admin.py:127
+#, python-format
+msgid "Add redirect URI \"%s\" to your LinkedIn application"
+msgstr "Добавьте Redirect URI \"%s\" в ваше приложение LinkedIn"
+
+#: admin.py:133
+msgid "Google"
+msgstr "Google"
+
+#: admin.py:139 conf.py:15
+msgid "Twitter"
+msgstr "Twitter"
+
+#: admin.py:146 conf.py:14
+msgid "Facebook"
+msgstr "Facebook"
+
+#: admin.py:152
+msgid "Instagram"
+msgstr "Instagram"
+
+#: admin.py:158
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: admin.py:167 admin.py:188 admin.py:215
+msgid "General"
+msgstr "Основные"
+
+#: admin.py:201
+msgid "Information"
+msgstr "Информация"
+
+#: admin.py:244
+msgid "#"
+msgstr "#"
+
+#: admin.py:250
+#, python-format
+msgid "Schedule %(verbose_name_plural)s to publish"
+msgstr "Опубликовать выбранные %(verbose_name_plural)s"
+
+#: admin.py:255
+#, python-format
+msgid "Unschedule %(verbose_name_plural)s to publish"
+msgstr "Отменить публикацию выбранных %(verbose_name_plural)s"
+
+#: admin_views.py:34
+msgid "Twitter access_token updated successfully!"
+msgstr "Twitter access_token успешно обновлен!"
+
+#: admin_views.py:80
+msgid "Facebook access_token updated successfully!"
+msgstr "Facebook access_token успешно обновлен!"
+
+#: admin_views.py:108
+msgid "Instagram access_token updated successfully!"
+msgstr "Instagram access_token успешно обновлен!"
+
+#: admin_views.py:136
+msgid "LinkedIn access_token updated successfully!"
+msgstr "LinkedIn access_token успешно обновлен!"
+
+#: apps.py:7
+msgid "Social Media"
+msgstr "Соц. сети"
+
+#: conf.py:16
+msgid "Google Plus"
+msgstr "Google Plus"
+
+#: conf.py:17
+msgid "Linked In"
+msgstr "Linked In"
+
+#: forms.py:10
+msgid "Social network"
+msgstr "Соц. сеть"
+
+#: forms.py:23
+msgid "Social networks"
+msgstr "Соц. сети"
+
+#: forms.py:28
+msgid "Please select at least one social network"
+msgstr "Выберите хотя бы одну соц. сеть"
+
+#: forms.py:34
+msgid "Text"
+msgstr "Текст"
+
+#: forms.py:40
+msgid "Please enter text"
+msgstr "Введите текст"
+
+#: models.py:13 models.py:17 models.py:26
+msgid "API Key"
+msgstr "Ключ API"
+
+#: models.py:18 models.py:27
+msgid "API Secret"
+msgstr "Секретный ключ API"
+
+#: models.py:19 models.py:24 models.py:28 models.py:32
+msgid "Access Token"
+msgstr "Access Token"
+
+#: models.py:20
+msgid "Access Token Secret"
+msgstr "Access Token Secret"
+
+#: models.py:22
+msgid "App ID"
+msgstr "App ID"
+
+#: models.py:23
+msgid "App Secret"
+msgstr "App Secret"
+
+#: models.py:30
+msgid "Client ID"
+msgstr "Client ID"
+
+#: models.py:31
+msgid "Client Secret"
+msgstr "Client Secret"
+
+#: models.py:34 models.py:51
+msgid "change date"
+msgstr "дата изменения"
+
+#: models.py:38 models.py:41
+msgid "Settings"
+msgstr "Настройки"
+
+#: models.py:45
+msgid "facebook"
+msgstr "facebook"
+
+#: models.py:46
+msgid "instagram"
+msgstr "instagram"
+
+#: models.py:47
+msgid "twitter"
+msgstr "twitter"
+
+#: models.py:48
+msgid "pinterest"
+msgstr "pinterest"
+
+#: models.py:49
+msgid "google plus"
+msgstr "google plus"
+
+#: models.py:50
+msgid "vk"
+msgstr "вконтакте"
+
+#: models.py:55
+msgid "Links"
+msgstr "Ссылки"
+
+#: models.py:58
+msgid "Links to social media"
+msgstr "Ссылки на страницы в соц. сетях"
+
+#: models.py:72
+msgid "social network"
+msgstr "соц. сеть"
+
+#: models.py:78
+msgid "text"
+msgstr "текст"
+
+#: models.py:79
+msgid "URL"
+msgstr "URL"
+
+#: models.py:80
+msgid "sheduled to share"
+msgstr "запланирован"
+
+#: models.py:86
+msgid "created on"
+msgstr "дата создания"
+
+#: models.py:87
+msgid "posted on"
+msgstr "дата публикации"
+
+#: models.py:91
+msgid "feed post"
+msgstr "публикация"
+
+#: models.py:92
+msgid "feeds"
+msgstr "публикации"
+
+#: templates/social_networks/admin/change_form.html:11
+msgid "Share"
+msgstr "Поделиться"
+
+#: templates/social_networks/admin/change_form.html:25
+msgid "It can take up to <b>1 hour</b> for the post to be published"
+msgstr "Публикация может занять <b>до 1 часа</b>"
+
+#: widgets.py:19
+msgid "Populate form fields above"
+msgstr "Заполните поля выше"

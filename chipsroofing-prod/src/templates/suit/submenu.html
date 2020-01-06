@@ -1,0 +1,11 @@
+<ul>
+  {% for model in models %}
+    <li{{ model.is_active|yesno:' class=active,' }}>
+      <a href="{{ model.url }}"{{ model.blank|yesno:' target=_blank,' }}>{{ model.label }}</a>
+
+      {% if model.models %}
+        {% include 'suit/submenu.html' with models=model.models %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

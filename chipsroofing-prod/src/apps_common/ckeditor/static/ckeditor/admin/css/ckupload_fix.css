@@ -1,0 +1,61 @@
+/* Plupload */
+.ckupload_dialog .cke_dialog_contents_body {
+    padding: 0;
+    overflow: hidden;
+}
+.ckupload_dialog .cke_dialog_ui_vbox_child {
+    padding: 0;
+}
+.ckupload_dialog .cke_dialog_page_contents {
+    position: relative;
+    height: 100%;
+}
+
+
+.ckupload-files {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+.ckupload-files .ui-resizable-handle,
+.ckupload-files .plupload_upload_status {
+    display: none;
+}
+.ckupload-files .plupload_file_status,
+.ckupload-files .plupload_file_size,
+.ckupload-files .plupload_file_action {
+    vertical-align: middle;
+}
+.ckupload-files .plupload_header {
+    z-index: 1;
+}
+.ckupload-files .plupload_wrapper {
+    height: 100%;
+}
+.ckupload-files .plupload_container {
+    height: 100%;
+    padding-bottom: 42px;
+    box-sizing: border-box;
+}
+.ckupload-files .plupload_dropbox {
+    position: absolute !important;
+}
+.ckupload-files .plupload_button .ui-button-text {
+    cursor: pointer;
+}
+
+.plupload_file_action .ui-icon {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+}
+
+.plupload_filelist_content:after {
+    content:'';
+    clear: both;
+    display: block;
+}
+
+.plupload_filelist {
+    background: #f0f0f0;
+}

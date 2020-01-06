@@ -1,0 +1,110 @@
+@import "mixins";
+
+.testimonials-bg {
+  padding-top: 160px;
+  padding-bottom: 120px;
+  @include media_interval(0, $media768) {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+  }
+}
+
+.testimonials-content {
+  display: flex;
+  @include flex-direction(row);
+  @include media_interval(0, $media1024) {
+    @include flex-direction(column);
+  }
+
+  .title-block {
+    .title-h2 {
+      margin-top: 35px;
+       @include media_interval(0, $media1024) {
+        margin-top: 0;
+      }
+      @include media_interval($media1200, 1400px) {
+        @include font-size(36px);
+      }
+    }
+    .btn-wrapper {
+      max-width: 255px;
+      margin-top: 20px;
+
+      @include media_interval(0, $media1024) {
+        margin-top: 15px;
+        margin-bottom: 40px;
+      }
+      @include media_interval(0, $media600) {
+        max-width: inherit;
+      }
+
+      .btn-border {
+        width: 100%;
+      }
+    }
+  }
+
+  .wrap-testimonial {
+    margin-left: -25px;
+    @include flexbox;
+    @include flex-direction(row);
+    @include media_interval(0, $media1024) {
+      margin: 0;
+    }
+    @include media_interval(0, $media600) {
+      @include flex-direction(column);
+    }
+    .testimonial {
+      width: 33.333%;
+      padding: 0 30px 0 55px;
+      @include media_interval($media1024, $media1200) {
+        padding-right: 0;
+      }
+      @include media_interval($media600, $media1024) {
+        padding: 0 30px;
+      }
+      @include media_interval(0, $media600) {
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 10px;
+      }
+      &:before {
+        left: 25px;
+        @include media_interval($media600, $media768) {
+          left: 15px;
+        }
+        @include media_interval(0, $media1024) {
+          left: 0;
+        }
+      }
+
+      .contain-star{
+        display: inline-block;
+        margin-bottom: 15px;
+      }
+
+      .star-active{
+        display: inline-block;
+        background: $sprite_url no-repeat 0 -488px;
+        width: 15px;
+        height: 16px;
+        margin-right: 3px;
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+      .star-off{
+        display: inline-block;
+        background: $sprite_url no-repeat 0 -488px;
+        width: 15px;
+        height: 16px;
+        margin-right: 3px;
+        @include opacity(0.5);
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{% extends 'std_page/index.html' %}
+
+{% load pipeline_plus %}
+{% load share_buttons %}
+{% load away %}
+{% load text %}
+
+{% block static_head %}
+  {{ block.super }}
+  {% stylesheet 'blog_detail' %}
+{% endblock static_head %}
+
+{% block static_js %}
+  {{ block.super }}
+  {% javascript 'blog_detail' %}
+{% endblock static_js %}
+
+
+{% block page_content %}
+
+  <div id="blog-post" class="block" typeof="BlogPosting">
+    <meta property="dateModified" content="{{ post.updated|date:"c" }}"/>
+    <meta property="mainEntityOfPage" typeof="WebPage" content="{{ post.get_absolute_url }}"/>
+
+    {% if post.preview %}
+      <link property="image" href="{{ post.preview.normal.url }}"/>
+    {% endif %}
+
+    <div class="grid">
+          <div class="gc-wide-10 gc-10 gc-tablet-10 gc-mobile-full">
+        <time datetime="{{ post.date|date:"c" }}" class="date" property="datePublished">
+          {{ post.date|date }}
+        </time>
+
+        <h1 class="title title-h1" property="headline">{{ post.header }}</h1>
+
+        <div class="text-styles" property="articleBody">
+          {% away post.text|typograf %}
+        </div>
+
+        <section class="share-wrapper grid-center">
+
+                <div class="social-buttons">
+                  <div class="likely">
+                    <div class="facebook">Share</div>
+                    <div class="twitter">Tweet</div>
+                    <div class="gplus"></div>
+                    <div class="linkedin"></div>
+                  </div>
+
+                  <div class="like-slogan">If you like the article, please, like it or share it!</div>
+                </div>
+
+              </section>
+      </div>
+    </div>
+  </div>
+
+{% endblock page_content %}

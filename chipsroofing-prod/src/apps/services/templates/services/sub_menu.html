@@ -1,0 +1,33 @@
+{% load i18n %}
+
+{% if services %}
+  <div class="sub-services-block">
+    <div class="grid-block">
+      <div class="services-part">
+        <div class="sub-services">
+          {% for service in services %}
+            <a class="sub-service" href="{{ service.get_absolute_url }}">
+              <div class="title">{{ service.title }}</div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% elif sub_services and not is_root_node %}
+  <div class="sub-services-block">
+    <div class="grid-block">
+      <div class="services-part">
+        <div class="sub-services">
+          {% for service in sub_services %}
+            <a class="sub-service" href="{{ service.get_absolute_url }}">
+              <div class="title">{{ service.title }}</div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+

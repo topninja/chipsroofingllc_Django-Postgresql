@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load text %}
+
+{% if message.name %}
+  <p><b>{% trans 'Type' %}:</b> {{ message.type_message }}</p>
+{% endif %}
+
+{% if message.name %}
+  <p><b>{% trans 'Name' %}:</b> {{ message.name }}</p>
+{% endif %}
+
+{% if message.phone %}
+  <p><b>{% trans 'Phone' %}:</b> {{ message.phone }}</p>
+{% endif %}
+
+{% if message.email %}
+  <p><b>{% trans 'E-mail' %}:</b> {{ message.email }}</p>
+{% endif %}
+
+{% if message.message %}
+  <p><b>{% trans 'Message' %}:</b> {{ message.message|clean }}</p>
+{% endif %}
+
+{% if message.referer %}
+  <p><b>{% trans 'From page' %}:</b> <a href="{{ message.referer }}" target="_blank">{{ message.referer }}</a></p>
+{% endif %}
+
+{% if request.COOKIES.utm %}
+  <p><b>{% trans 'UTM' %}:</b> {{ request.COOKIES.utm }}</p>
+{% endif %}

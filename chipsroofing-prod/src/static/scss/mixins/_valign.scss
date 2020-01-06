@@ -1,0 +1,20 @@
+// Вертикальное центрирование. Применяется к родителю
+@mixin valign_before() {
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    min-height: inherit;
+    vertical-align: middle;
+  }
+}
+
+@mixin valign_after() {
+  &:after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    min-height: inherit;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,28 @@
+{% extends 'suit/change_form.html' %}
+
+{% load i18n %}
+
+{% block object-tools %}
+  {% if not is_popup %}
+    <ul class="box menu-box">
+      <li>
+        <a href="{% url 'admin:mailerlite_subscriber_changelist' %}?group={{ original.pk }}" class="sendtest-btn">
+          <i class="icon-list icon-alpha75"></i>
+          {% trans "Show subscribers" %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'admin:mailerlite_group_download_csv' group_id=original.pk %}">
+          <i class="icon-download icon-alpha75"></i>
+          {% trans 'Export subscribers as a CSV file' %}
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'admin:mailerlite_group_upload_csv' group_id=original.pk %}" class="upload-csv">
+          <i class="icon-upload icon-alpha75"></i>
+          {% trans 'Import subscribers from CSV file' %}
+        </a>
+      </li>
+    </ul>
+  {% endif %}
+{% endblock object-tools %}

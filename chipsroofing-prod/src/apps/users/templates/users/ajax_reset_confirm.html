@@ -1,0 +1,15 @@
+{% load form_helper %}
+{% load i18n %}
+
+<p class="title title-h1">{% trans 'Set password' %}</p>
+
+{{ form.media }}
+<form method="post" action="" id="ajax-reset-confirm-form"
+      class="users-reset-confirm-form users-popup-form users-form" autocomplete="off">
+
+  {% render_form form %}
+
+  <div>
+    <button type="submit" class="btn">{% trans 'Save' %}</button>
+  </div>
+</form>

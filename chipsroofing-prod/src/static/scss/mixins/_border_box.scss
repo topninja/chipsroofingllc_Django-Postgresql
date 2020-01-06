@@ -1,0 +1,4 @@
+// Алиас для "box-sizing: border-box"
+@mixin border-box() {
+  @include box-sizing(border-box);
+}

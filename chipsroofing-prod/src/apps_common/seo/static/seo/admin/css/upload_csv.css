@@ -1,0 +1,13 @@
+.upload-csv-dialog h3 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.upload-csv-dialog h3:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 44px;
+    height: 44px;
+    background: url(../img/preloader.svg) no-repeat center;
+}

@@ -1,0 +1,40 @@
+{% extends 'suit/change_form.html' %}
+
+{% load i18n %}
+
+{% block object-tools %}
+  {% if not is_popup %}
+    <ul class="box menu-box">
+      <li>
+        <a href="javascript: void(0)" class="sendtest-btn">
+          <i class="icon-envelope icon-alpha75"></i>
+          {% trans "Send test e-mail" %}
+        </a>
+      </li>
+
+      {% if has_absolute_url %}
+        <li>
+          <a href="{{ original.get_absolute_url }}" class="viewsitelink"><i
+              class="icon-eye-open icon-alpha75"></i>{% trans "View on site" %}</a>
+        </li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock object-tools %}
+
+
+{% block content %}
+  {{ block.super }}
+
+  <div id="sendtest-dialog" class="hide">
+    <form action="{{ sendtest_url }}" method="post" class="sendtest-form">
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="sendtest-email">E-mail</label>
+        <input type="email" id="sendtest-email" name="receiver" required>
+      </div>
+    </form>
+  </div>
+
+{% endblock content %}

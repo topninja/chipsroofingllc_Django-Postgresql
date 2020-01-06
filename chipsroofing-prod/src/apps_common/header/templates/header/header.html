@@ -1,0 +1,53 @@
+{% load placeholder %}
+{% load social_links %}
+{% load menu %}
+{% load text %}
+
+<div class="menu mobile-menu">
+  <div class="scrollable">
+    <div class="scrollable-content">
+      {% placeholder 'menu' menu_name='main' referer=request.path_info %}
+      {% social_links %}
+    </div>
+  </div>
+</div>
+
+<header>
+
+  <div class="grid">
+    <div class="gc-wide-2 gc-2 gc-tablet-2 gc-mobile-2 wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="0.4s">
+      <div class="logo-box">
+        {% if is_main_page %}
+          <div class="logo"></div>
+        {% else %}
+          <a href="/" class="logo"></a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="block-btn gc-wide-8 gc-ml-wide-1 gc-8 gc-ml-1 gc-tablet-8 gc-ml-tablet-1 gc-mobile-3 wow fadeInDown" data-wow-delay="0.5s" data-wow-duration="0.4s">
+      <div class="header-buttons">
+        <button class="btn btn-small-bg small-green open-contact-popup tag-contact-us">Contact us</button>
+        <button class="btn btn-small-bg small-red open-free-estimate-popup tag-estimate">Free Estimate</button>
+      </div>
+      <div class="phone-header">
+        <a href="tel:+1{{ address.phone|phone }}"><span>{{ address.phone }}</span></a>
+      </div>
+    </div>
+    <div class="gc-wide-1 gc-1 gc-tablet-1 gc-mobile-1">
+      <div class="menu-box">
+
+        <div id="mobile-menu-button">
+          <div class="burger"></div>
+        </div>
+
+        <nav class="menu main-menu">
+          {% menu 'main' %}
+        </nav>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</header>

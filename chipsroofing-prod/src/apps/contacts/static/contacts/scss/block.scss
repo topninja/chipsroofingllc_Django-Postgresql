@@ -1,0 +1,128 @@
+@import "mixins";
+
+.contact-block {
+  position: relative;
+  padding-top: 70px;
+  padding-bottom: 160px;
+  background-color: #00af86;
+
+  @include media_interval(0, $media768){
+    padding-bottom: 70px;
+  }
+
+  .content-block {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+
+    @include media_interval(0, $media600) {
+      flex-direction: column;
+    }
+  }
+
+  .section-image {
+    display: inline-block;
+    position: relative;
+    width: 65%;
+    @include media_interval($media600, $media900) {
+      display: flex;
+      flex: 60%;
+    }
+    @include media_interval(0, $media600) {
+      width: 100%;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 230px;
+        background: url(/static/img/home_contactus.svg) center no-repeat;
+        background-size: contain;
+        left: 0;
+        top: -85px;
+
+        @include media_interval(0, $media400) {
+
+          width: 290%;
+          top: -85px;
+          left: -100%;
+        }
+      }
+
+    }
+
+    .home-contact {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      @include media_interval(0, $media600) {
+        display: none;
+      }
+    }
+  }
+
+  .section-inner {
+    display: inline-block;
+    width: 35%;
+    text-align: left;
+    color: $white;
+    @include font_default;
+
+    @include media_interval(0, $media600) {
+      order: 2;
+      margin-top: 185px;
+      width: 100%;
+    }
+
+    @include media_interval($media600, $media900) {
+      display: flex;
+      flex: 50%;
+      flex-direction: column;
+    }
+  }
+  .title-h2 {
+    margin-bottom: 15px;
+
+    @include media_interval(0, $media768) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .description {
+    margin-bottom: 20px;
+    max-width: 360px;
+    font-style: italic;
+    @include font-size(15px, 22px);
+
+    @include media_interval(0, $media768) {
+      max-width: 260px;
+      @include font-size(14px, 20px);
+    }
+  }
+
+  .phone {
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    @include font-size(24px, 30px);
+
+    @include media_interval(0, $media768) {
+      margin-bottom: 30px;
+      @include font-size(20px, 24px);
+    }
+  }
+
+  .btn-wrapper {
+    max-width: 255px;
+    overflow: hidden;
+    @include media_interval(0, $media768) {
+      max-width: 230px;
+    }
+
+    .btn {
+      width: 100%;
+      min-width: inherit;
+    }
+  }
+}
