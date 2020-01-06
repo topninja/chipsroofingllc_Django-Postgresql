@@ -18,7 +18,7 @@ psycopg2==2.7.4
 pytils==0.3
 pytz==2018.3
 redis==2.10.6
-requests==2.18.4
+requests==2.20.0
 PyLinkedinAPI==0.1.5
 facebook-sdk==2.0.0
 python-twitter==3.3
