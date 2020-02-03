@@ -7,6 +7,7 @@ need virtual env
 
 
 //django install all module
+
 pip freeze > requirements.txt
 pip install -r requirements.txt
 
