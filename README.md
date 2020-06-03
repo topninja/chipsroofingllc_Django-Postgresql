@@ -5,7 +5,7 @@ Django + postgresql
 (python3)
 need virtual env
   
-###django install all module
+###django install all module 
 pip freeze > requirements.txt
 pip install -r requirements.txt
 
